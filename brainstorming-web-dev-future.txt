@@ -1,0 +1,41 @@
+State of the art seems to be astro.build:
+partialy hydration (based on what you want into view, interaction, ..)
+RakkasJS (await useSSQ( () => query('...' )) thus no API required cause it will create it for you
+But I imagine even crazier stuff such as log(user.lastname) -> due to bidirectional typing
+find out that lastname is missing -> suggest adding it to the table (or creating the table)
+and asrto.build is still JS and pages like this indicate
+the benefits of using compiled languages:
+https://sancho.dev/blog/server-side-rendering-react-in-ocaml
+Now esbuild bundles faster than Rust compiles.
+Thus for dev mode interpreted might still be an option
+blurring the line of compliation, interpretation, jitting ?
+
+Now Rust/Nim always require typing annotations (takes time).
+
+Googling shwos that idris still is research (and might stay at that
+stage?) yet its a compiled language partially infering types and
+compiling to JS
+
+What language might come closest to what I am looking for 
+or do I have to write it from scratch ? If so anybody interested
+in the progress of such ?
+
+So my favorite code would eventually look like this:
+
+# client side code
+id = 20
+row = server: sql: FROM users WHERE id = $id
+log(row.name)
+
+turns into SELECT name from users WHERE id = 20)
+creating API ..
+
+Humans can think on such abstract level and fill in the dots
+why do compilers still have a hard time doing so ?
+
+Also if you have simple code let's say sum (map value basket_items)
+whetehr its JS/server-side or webassembly should be able to generate
+code for all targets. And that leads me to how would a language look
+like where bastract syntax trees are native citizens allowing
+to blend such snippets into either webassembly/JS or backend
+(idris/rust/C like) code.
