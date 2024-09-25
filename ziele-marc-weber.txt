@@ -1,0 +1,166 @@
+Ziel 1: (Robotik im Service Bereich)
+
+  Roboter (z.B. humanoide/dog) von Menschen steuern lassen eventuell unterstützt
+  durch AI, weil AI noch nicht gut genug ist, aber eventuell bereits jetzt
+  Werte geschaffen werden könnten ?
+
+  Wenn Roboter vom Afrikaner oder Inder gesteuert pro Tag < 20 EUR mietbar
+  würde sich Service-Industrie freuen ?
+
+  Latenz mit Starlink 150ms => nur für langsame Aufgaben.
+
+Ziel 2: (IT) bessere Entwicklungssysteme für Programmierer - SRY geht nicht
+  kurz
+
+  Keine der Programmiersprachen ist perfekt.
+  Aber wenn man Spezialfähigkeiten als opt-in traits verstehen würde,
+  könnte man mit einer Sprache mehr erreichen und Lernzeiten reduzieren
+
+  Ziel: Eine Sprache entwickeln, welche alle Vorteile vereint und noch was draufsetzt:
+    + kompiliert
+    + interpretiert (wie C++ interpreter)
+    + dynamisch (wie JS/PHP/Python)
+      -> das ist eigentlich eine extra Sprache im gleichen Compiler
+      weil dynamisch immer komplett anders zu sehen ist
+    + jitted
+    + DSL/AST als first class citizen
+      context switches wie SQL, server side call, CSS (LESS/SASS), Ansible Recipes
+      fühlen sich an wie "native". (Siehe useServerSideQuery = useSSQ in RakkasJS)
+      als Beispiel
+    + JS als target (wegen Ladezeit im Browser)
+    + Type Holes
+    + Type -> Code (wie Idris)
+    + Fehlermeldungen nutzen kann um Code zu ergänzen oder sogar tabellen
+      Felder zu erstellen. Also bidirectionales Typing wo Typing aus dem Compiler
+      herauswachsen kann.
+    + GPU/UI wie Flutter/Dart oder DearGUI (Python)
+
+  Beispiel-Code JS Like
+    i = 20
+    row = server:
+      <?php sql: FROM user where id = ${i}
+    console.log(row.name, row.age)
+
+    Quickfix: Wollen sie age zu Tabelle user hinzufügen, es existiert noch nicht ?
+
+    Dann erkennt Kompiler dass SELECT age, name gemeint ist und eine row
+    zurückgegeben wird, weil id primary Feld ist.
+
+  Vorteile:
+    Programmierer muss weniger lernen
+    Firmen können ihre Mitarbeiter flexibler einsetzen
+    Es gibt mehr Open-Source Code, weil die Energie sich auf weniger
+    Sprachen aufteilt.
+
+
+Ziel 3: (IoT)
+     Mischung aus infrastructer / company / social accounts from code
+     und cross language/platform dependency management
+
+     So dass man ein Projekt per Drag&Drop in eine Umgebung fallen lassen kann.
+     und es funktioniert.
+
+     Umgebung kann Linux/Windows/ HTTP Weiche mit VMs sein was auch immer.
+
+     Gleichzeitig sollen Entwicklungsumgebungen reproduzierbar erstellt werden
+     können:
+        pool = (ubuntu mit source-pool)
+        solved = solve(firefox)
+        mache_dev_umgebung_mit_rebuild_all_script(solved)
+
+     Ergebnis:
+          /tmp/lib-weil-von-ubuntu-zu-alt
+          /tmp/cache-libjpeg
+          /tmp/cache-firefox
+          /tmp/cache-rebuild-all.sh
+
+Ziel 4: (IoT)
+  Daten mit Umwandungen 
+  Der Ort der Daten kommt auf die Container an.
+  Mischung aus Github, drive.google.com und Nividias omniverse
+
+  Beispiele (Transformationen){
+    Code -> Binary
+    Bilder/Video -> Movie
+    Photoshop -> webp für Wordpress
+    Inputs -> AI -> trainiertes Modell
+    Trainiertes Modell + Inputs -> Ergebnis
+    Engineering Input  -> Simulationsergebnis
+    Latex -> DVI/PDF
+    Engineering DB (Batterien) -> Stream mit besten 10 Batterien für mein Ziel
+          und Notification wenn was dazukommt
+
+  Das würde private und viele andere Bereiche eventuell vereinfachen und
+  revolutionieren. Weil Prozesse definiert werden können, und wo die Daten
+  verarbeitet werden eher Regeln sind. (im Browser, native, in der Cloud)
+
+
+Ziel 5:
+  Ziel: Warehouses wie Arbeitsspeicher
+
+  Autonom fahrende Autos können Waren verteilen.
+  Aber wo kommen diese Waren her ?
+
+  -> viele Geschäftsbereiche möglich
+
+
+Ziel 6: 
+  Wissen als Sternenwolke.
+
+  Damit kann man Lernwege messbar machen oder HR Aufgaben vereinfachen
+  100 Bewerber -> sortieren nach Lernweg .. (fachliche) Beurteilung fertig?
+
+  Braucht man noch Unis ? Oder nur ein Video eines Professors und ein paar Menschen,
+  die Übungsaufgaben korrigieren ?
+
+  Ich schau Video -> passives Wissen gelernt >>Wenn Wasser gefriert wird es zu
+  Eis<< Youtube/TicToc etc könnten eingebunden werden um Verbreitung zu
+  vereinfachen.
+
+  Dinge wie >>for-loop<< haben immer einen abstrakten Anteil und einen realen
+  (in C++)
+
+  Trainings-Materialien können für AI oder Menschen genutzt werden ?
+
+
+Ziel 7: (Medizin)
+  Die meisten Probleme treten ab 40 bis 50 Jahre auf (Krebs, Demenz, ..)?
+
+  Macht es Sinn durch einfache Games kognitive Fähigkeiten zu messen, um zu
+  verstehen, wann was zu untersuchen ist?
+  
+  Ich habe gehört dass z.B. bei Infektionen die Augen schlechter wahrnehmen
+  und deswegen alleine die Zeit um orientierungen von graune Strichen zu erkennen
+  bereits eine schnelle Messung sein kann ? (n-back oder ähnliches sind andere Wege)
+
+
+Ziel 8) SimCity für echte Welt und Datenbanken von BlackBoxen (wie Batterie)
+
+  Beispiel CO2 - einige Optionen:
+
+    Atomkraftwerke -> Abwärme -> Wenn alle Menschen Vorbild USA
+    10x Energie -> Ab wann wird Abwärme zum Problem zusätzlich zu CO2 !?
+    
+    In Erde pumpen
+
+    Aus Sand Erde machen (-> Pflanzen binden CO2)
+
+    #temp_electricity Aus Wärme (Entropie) direkt Strom machen ?
+    https://www.nature.com/articles/s41467-024-52047-5
+    => 94 W  auf 2 cm * m^2  vorstellbar wenn 2e7 Schichten machbar ?
+
+    weniger verbrauchen
+
+  Wenige Menschen verstehen alles und brauchen Zeit alles zu berechnen.
+  Sim-City (Drag&Drop) -> [10 Jahre vorspulen] -> kann jeder
+
+  Also wenn man eine Datenbank mit Modellen und Simulation machen würden
+  -> AlphaStar -> schnellere und genauere Anpassung an Änderungen.
+
+  #temp_electricity betrifft:
+    Autos, Ebikes, leichet Flugzeuge? Personenzüge? Handies, Taschenrechner,
+    Herzschrittmacher, Hirnimplantate (Neuralink), alle könnten diese
+    Technologie verwenden ?
+
+  Hätte man von Produkten abstrakte Modell könnte man automatisch
+  neue Szenarien entwerfen ohne sie zu verpassen.
