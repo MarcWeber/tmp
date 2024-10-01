@@ -11,6 +11,18 @@ PHP -> taugt nicht als Frontend (Webesasembly gibts aber wer will 20MB
 
 TS z.B 
 
+Dart/Flutter:
+  Dart yet another OO.. aber mit Performance (embedde/Handy) in mind.
+  GPU Rendering auf allen Plattformen mit IOs/Android native look.
+  Am Ende auch nur React mit GPU Rendering als Ziel statt HTML.
+  2 Wege HTML zu rendern (GPU/Canvas oder HTML/CSS Mischung)
+  Braucht man dafür eine neue Sprache ?
+  Ports nach Python etc vorhanden
+
+  Und Community kommt und schreibet AI libraries in Dart weil eine Sprache ...
+  -> deswegen ists so wichtig das Sprachproblem zu lösen :-)
+  Der Rest kommt von alleine.
+
 JS/TS ist eine gute eierlegende Wollmilchsau solange man keine
   Spezialanforderungen hat (execve geht mit modernem node schon nicht ohne Patchen).
   (pnpm / vite/esbuild & webpack oder bun) ->
