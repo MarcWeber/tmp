@@ -117,6 +117,18 @@ Ocaml:
 
   Bucklescript experimente Facebook
 
+Haskell:
+  Most famous: Wegen Lazyness Benchmarks mussten Performance Vergleiche
+  erzwingen dass Werte ausgegeben werden, sonst hätte Haskell immer gewonnen.
+  Viele Abstraktionen (Monads, Flows, ..)
+  Performance aber 3x bis 10x langsamer wenn man nicht Haskell zu C macht.
+  By default copy on write. (also multi-core safe)
+  Also Konsequenz schneller GC (3 Generationen)
+  Bidirectional Typing. Oft muss man nur paar Hints geben.
+  functional
+  Haskell->JS viele Wege.
+
+
 Nim/Idris: Kann JS und backend generieren. Wenig genutzt.
 
   Nim: Jede Funktion muss Rückgabetyp angegeben werden und Autor wird seine Meinung nicht ändern
@@ -166,3 +178,24 @@ Python:
   https://sidsite.com/posts/python-corrset-optimization/
 
   Der letzte Schrei hier ist wieder Python mit Rust Integration
+
+sh/zsh/...:
+  Weil Python/* blah nicht gut genug sind (completion von Commandlines)
+  wirds wohl so schnell nicht ersetzt werden.
+  bis 1000 Zeilen oder so angenehm ..
+  Gentoo, git (porcelaine), Wenn man will geht alles
+
+Disciple:
+  Effect-Typing
+  ....
+  habs nicht verfolgt
+
+
+Urweb:
+  1/0 -> crash :-)
+  Viele tolle Ideen. Aber zu viel für normalen Programmierer.
+  Und einfache Dinge (Email-Schicken) brauchen wieder C erweiterung.
+  Coole Ideen wie reuse of memory (malloc=inc ptr). restart wenn nicht ausreicht
+  (-> Rust/Zig like bumpalo etc)
+  Wenn man nicht in die Boxen passt (Triggers/Stored Procedures / kein
+  Web-Projekt) -> Problem
