@@ -1,0 +1,168 @@
+PHP -> taugt nicht als Frontend (Webesasembly gibts aber wer will 20MB
+      download !?) PHP auf JVM/.net gabs / gibts aber keiner hatte Lust alle C
+      Extensions nachzumachen.
+      PHP wurde in Facebook auch ersetzt ?
+      Wordpress .. 40% vom Web. Kunden kennen und wollen es
+      weil sie selber basteln können.
+      keine einheitliches Typing (PHPStorm vs Intelliphense vs Psalm)
+
+      Some Batteries included (file_put_contents) ohne import :-)
+      Angeblich bischen schneller als Python weil eben viele C Extensions
+
+TS z.B 
+
+JS/TS ist eine gute eierlegende Wollmilchsau solange man keine
+  Spezialanforderungen hat (execve geht mit modernem node schon nicht ohne Patchen).
+  (pnpm / vite/esbuild & webpack oder bun) ->
+  schnelle dev-cycles. Ob React, Preact oder Angular ..
+
+  astro.build  / RakkasJS / ... -> 'ne gute Option. 
+
+  Aber Microsoft will weder conditional Compilation noch Macros [x]. 
+  Langsamer als Rust/Ocaml. -> JS limitiert auf Web-Cram.
+  [x] ja gibt Ausnahmen bun und paar webpack plugins .. aber .. bedeutet dass
+  man kein Editor Support hat
+
+  Vorprogrammiertes Login weil conditional compilation machmal schneller ist
+  als 20 Pakete zu managen.
+
+  200+ Frontend-Framwerks vielleicht 6 oft genutzte.
+
+Ruby:
+  Die meisten sagen bei großen Projekten wirds anstrengend zu warten.
+  Wechsel Ruby -> Rust 5 Server zu 1/10 Server geschrumpft ..
+  Aber Kunden wollen Ruby-Programmierer, die performanten Code schreiben.
+
+  Testing ad absurdum: Lass uns Code schütteln, und ändern.
+  und schauen ob die Test-Suite das Problem fängt.
+
+  Eine Firma (Verkauf oder Verleih von Autos)
+    1 Pair-Programmer-Team für Code 5 für Testing :-)
+
+Rust: 
+  Bischen mehr Tipp-Arbeit (dauert etwas länger)
+  Github hat libraries wier können HTML/GPU/.. rendering.
+  Besucht man die HTML Librariy >nicht mehr gewartet<<
+  -> https://github.com/iced-rs/iced
+
+  Aber wenns läuft, dann läufts vermutlich überall
+
+  Rust ist erfolgreich wegen Cargo. Es verspricht
+  dass auch alter Code immer funktioniert !
+  Das fehlt C/C++ (einheitliches Paket-Management)
+
+  50% vom Erfolg von Rust ist Cargo.
+
+  Schneller als Java.
+  Sicherer als C/C++
+    Wird Integriert in Linux-Kernel 
+    Funding von Google/Amazon
+    Ersetzt C/C++ in Android .. ?
+
+
+  Warnungen:
+    https://loglog.games/blog/leaving-rust-gamedev/
+
+    https://github.com/RazrFalcon/tiny-skia
+    Currently, tiny-skia is 20-100% slower than Skia on x86-64 and about
+    100-300% slower on ARM. Which is still faster than cairo and raqote in many
+    cases. See benchmark results here.
+
+    Auch Rust kann abstürzen (doppeltes mut borrowing),
+    aber man findet den Fehler ..
+
+    Ist dabei Ideen von Zig (bumpalo) etc zu integrieren.
+    D.h. sie geben selber zu dass ihr Ownership nicht gut genug ist für
+    einige Zwecke :-)
+
+GC-OO like:
+  Dart/Java/C#/... -> Webassembly -> Business Anwendung ok. Als Amazon oder
+  ebay wo es auf Ladezeit ankommt vielleicht noch leichte Nachteile
+
+Java:
+  Industriestandard. Eclipse vs Vscode ? Zeigt dass Jitted eben doch
+  eventuell Entwicklungsvorteil ist !
+  Eclipse übre Browser laden .. vscode geht.
+  Super optimiert. Advanced Tools wie Suche Code, weaving AOP / pointcuts
+
+  Aber auch 4+ GC Varianten, 6+ Industrielle Implementationen.
+  Und 20-30ms langsamer im Server Bereich wegen GC.
+
+  Ja man kann ohne Java Code ohne Allocations schreiben.
+  Aber dann kann man gleich Rust oder Zig nutzen (oder urweb) ?
+
+  Bazel -> Buck2 ist ein Beweis dass Java eben manche Hürden nicht überwinden
+  kann (oder nicht so einfach). Sons würde es Buck nicht geben
+
+  Datenbanken 
+
+Scala:
+  Schien die JVM Zukunft zu sein. Aber keine Android-Apps mehr möglich
+  weil JVM auf Android nicht JVM Dekstop gefolgt ist.
+
+Zig:
+  Rusts' bumpalo als default. :-)
+  Paar coole Ideen.
+  Werden llvm neu schreiben / ersetzen damit Kompilierzeiten weiter
+  runtegehen.
+  bun als Beispiel
+  System-Language - d.h manche Dinge wie Lambdas etc sind kompliziert zu
+  scrheiben, aber möglich.
+  Cooles-Macro System
+
+Ocaml:
+  Einfacheres: C/C++, dennoch schnell
+  Anwendungen: Haxe, COQ, ahrefs (verarbeitet das ganze Web)
+  bischen lahm, weil Multi-Core Support etc nur schleppend eingeführt wurde.
+
+  Bucklescript experimente Facebook
+
+Nim/Idris: Kann JS und backend generieren. Wenig genutzt.
+
+  Nim: Jede Funktion muss Rückgabetyp angegeben werden und Autor wird seine Meinung nicht ändern
+
+  Idris -> (zu) kleine Community, aber Code von Type-Definition generieren
+  lassen ist keine coole Idee. Und die zeigt dass das Feature in anderen
+  Sprachen auch toll wäre.
+
+C/C++:
+  Kenne mich zu wenig aus.
+
+  v8 JS engine hat 32 bit Pointer in 64 bit - Systemen implementiert
+  5% Performance verlust aber 30% weniger RAM
+
+  Mit genug Zeit Geld kann man alles machen.
+
+  Aber defaults sind auch nicht immer perfekt:
+  https://thatonegamedev.com/cpp/rust-enums-in-modern-cpp-match-pattern/
+
+  https://github.com/ldionne/dyno (polymorphism)
+
+  pain:
+    cmake und Alterantiven (kein Standard)
+
+  C vs C++ flame wars (jackd gibts in beiden Sprachen, Qt vs GTK, ..)
+  Bram Melonaar beruflich C++, privat (Vim) C weil einfacher ist.
+
+Python:
+  GIL
+
+  Erfahrung:
+    multi core script. UI PyInstaller -> restartet sich von alleine :-!?
+
+  Aber viel Code wie DearPyGUI der auch wieder Zeit sparen kann
+  und ankommt.
+
+  C++ (QT) > PyQT > QuickQT (JS Properties) damit man modern ist .
+  zeigt die Absurdität der Geschichte !
+  opencv (C++) > Python bridge (implementiert aber nicht alles)
+  -> Constant Pain
+
+  mojo (jitted mit GPU und automatisierte Vektoroptimierungen)
+  zeigt dass man mit dynamischen Sprachen an kompilierte rankommt.
+
+  Beispiel Rust vs Python
+  https://willcrichton.net/notes/k-corrset/
+  https://sidsite.com/posts/python-corrset-optimization/
+
+  Der letzte Schrei hier ist wieder Python mit Rust Integration
