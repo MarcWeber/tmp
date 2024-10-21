@@ -1,0 +1,92 @@
+Imagine a platform reachout.com
+
+(eg website and app)
+-> and now you understand the means doing the work twice ?
+That's why PHP / Wordpress sucks and is more than buzz (to me).
+
+But maybe you can review the description and tell me what you
+understand and what you don't understand.
+
+
+STORY 1:
+You can login and save the following profile information:
+
+  login/password:
+  contact-data: (text put phone/email skype whatsapp insta, whatever )
+  name:
+  image:
+  My location: GPS lat/lon
+  I am:
+  looking for:
+  not looking for:
+
+===
+STORY 2:
+  After having logged in and entered your data
+  you can identify the target audience
+  cheap and fast without getting on anybodies nerves:
+
+
+Start a reach out process (form)
+
+  keywords/regex: 
+    Example: "bus"
+
+  location: 
+    upolad shape file
+    or multilne text "20 km around New York\nNew York"
+
+  ai-filter:
+    "Looking for bus companies"
+
+  inquiry-text: (used by ai)
+    "I want to explain you why we have the best bus leasing offers in north america"
+
+  upload (voice or video)
+  If people want to look at the inquiry be most personal
+   
+  [ identify target audience (no costs ) ]
+
+PHASE 1:
+  filter all people by keywords and location (because no AI it's
+  cheap)
+
+  Show something like 
+  Applying location and keyword filter resulted in 
+  200 people
+
+  [ apply AI filter for (0.20 USD) ]
+
+PHASE 2:
+  After applying AI filter 30 people are left.
+
+  [ run ai and generate match scores (0.05 USD) ]
+  
+
+PHASE 4:
+  Your results
+
+  10 = high match
+  0 = no match
+
+  10 Mr X, ..
+  9 Mr X, ..
+  0 Mr X, ..
+  0 Mr X, ..
+
+
+
+STORY 3:
+  You can look at the people who reached out to you.
+  out-reaches of others (only showing scores > 5)
+
+  Mr X, .... , voice/text -> result 10
+
+
+
+And the cool thing is. If you added some kind of 
+business tracking or like system or rating ..
+The requests could be given weight.  Like if you get a request
+and you know 500 other parties this request turned into a business
+relationship it would act as accelerator. So it would save time on all
+sides.
