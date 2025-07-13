@@ -1,0 +1,114 @@
+
+Technical details types
+  Types will be handled as type level functions
+  So you can actually write your own
+
+  (compiling_context, data) => target_type
+
+
+  The following initial types will be provided
+  option() (nullable)
+  boolean
+  bytes
+    JS -> buffer
+  utf-8-string 
+    JS       -> sting
+    compiled -> bytes
+  Vector
+    JS -> array
+
+  StructOptimized (compile chooses layout)
+    compiled -> struct
+    JS -> [name,age]
+
+  StructLabeled
+    JS -> { name: 1, age 20}
+
+  Dynamic nice JSON interfacing
+    null
+    bool
+    true/false
+    string
+    dictionary
+    array
+
+  optimized (compiler chooses layout)
+    struct
+    tuple
+
+  dynamic
+    js-like-types (bool, array, object as hash)
+
+
+Target use cases:
+
+- development
+  fast dev cycle
+  being lazy only compile code which gets run!
+
+- production
+  saving resources is important compilation time isn't
+
+Target runtimes:
+  JS 
+  native (llvm, C, later-out-of-scope: C++)
+  Webassembly (2-3x slower)
+
+Target UIs (only prototypes will be part of this project to proof everything works)
+  HTML/GPU are used by modern frameworks only
+  eventually native
+
+So we define 3 execution modes:
+  - compiled
+  - interpreted (interpete the compiled version)
+  - dynamic (like JS/Python) -> future case only availabe targeting dynamic languages
+  
+and try to fit an Esperanto sub language into them which can utilize native on
+the targets for interfacing
+
+You cannot turn dynamic into compiled borrow checked.
+But you can the other way round.
+
+So given strict borrow checking requirements both static and dynamic code can
+be generated. To speed up dev time GC mode could be used in both where it
+doesn't matter.
+
+Datatypes:
+We treat datatypes as compile time function given some compilation context
+and target they turn into a specialized type which hopefully when compiled
+works out or fails at compile time.
+
+So a struct {name: utf8string} would be turned into struct: { name: binary }
+on a compiled target and TS type { name: string } on JS target.
+
+borrow checking on resources optionally relax > GC mode
+borrow checking on memory    optionally relax > GC mode
+
+Handling backend in compiled or interpreted mode and targeting JS
+interpreted mode is possible.
+
+Data structures:
+
+There are 2 use cases
+  1) passed to low level code
+  2) used within app only
+
+There are 2 types of structures:
+
+  Known in advance (eg struct)
+    in interpreted or JS mode can be relaxed to array/objet
+    unless passed to low level code
+
+  dynamic in nature (eg array and dictionary)
+    JS like dynamic objects could be easily be redefined in a static language
+    while adding TS like typing for coding assistance.
+    Eg getting JS from some APIs
+
+So we'll get some interesting properties.
+
+Compiling down to JS means turning the code into JS perfectly blending with JS
+or existing libraries.
+
+Compiling dowmn to llvm like means blending with native code prefectly
+
+

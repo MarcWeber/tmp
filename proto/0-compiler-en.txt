@@ -1,0 +1,522 @@
+= 1
+== Projekttitel
+alienc
+== Name für Account
+alienc
+== Vorname / Nachname
+Marc Weber
+== E-Mail
+marco-oweber@gmx.de
+== Github
+https://github.com/MarcWeber/
+
+= 2 (Dein Projekt) max 100
+Over 100 million programmers are challenged choosing a
+programming languages. 
+They have to compromise too hard between
+fast web site, less verbose code, code which generetas code, fast backend
+execution, installability.
+This splits dev communities the way Germany was split in the past.
+Switching languages later comes with cost akin to rewriting from scratch.
+This overhead can be reduced by a compiler which can turn into a specialist
+making open source programmers, communities and distribution more productive.
+
+
+= 3 (Gesellschaftliche Herausforderung) max 175
+East and west Germany was split.
+Programming landscape is worse for reasons which should be managed !
+Imagining going shopping. You can choose between an airplane (too high fule
+consumption, too much noise, no parking lot) and a tractor (too slow) and by
+walking or rocket. Switch mode of transport thus going back is expensive.
+So you can't get it right.
+
+Each task comes with unique challenges. Switching eco systems is expensive
+cause you either have to retrain staff *OR* you have to find other people
+because it means switching language, dev tools, libraries, testing systems,
+continuos integration solutions, library tooling and more.
+
+List of some traits and some consequences. No language fits them all which
+could be changed!
+  * compiled (+fast execution)
+  * interpreted (+dev cycle)
+  * dynamic (+quick & dirty)
+  * bidirectional typing (+less_typing)
+  * server side calling no API
+  * borrow checked (+borrow checking vs GC rather than being able to choose)
+  * macros (+ avoid repating yourself)
+
+= 4 (Wie willst du technisch umsetzen - max 175)
+
+Will be using Zig because it allows interfacing with C and is a good compromise
+simplicity and features for bootstrapping.
+
+Goals:
+
+* if there is a choice choose what makes code easier and faster for humans.
+  No thought is best thought.
+
+* targeting LLVM (like mojo) and JS while allowing to choose how much GC (like
+  Nim) unless specified directly 
+
+* bidirectional typing escaping the compiler. Thus allow typing issues
+  to hint extending your database scheme.
+
+* future: avoid assertions by allowing verification.
+  [1,2][-4] could be a runtime error (out of bounds),
+  additional code (count backwards if index < 0) or a compile time check.
+
+* code like humans think switching execution contexts made easy:
+  x = server:
+    row = sql: FROM USERS where $$id 
+    row.name
+
+* target JS and LLVM blending into target language
+  using type level functions to determine target types
+
+It can be done:
+  Rust => borrow checking)
+  Nim => choosing GC)
+  Haskell => bidirectional typing
+  Scala => short lambdas
+  Google react ocaml => JS and ocaml versions working together
+
+= 5
+I've been thinking about this for years and have been taking notes for many
+month setting priorities. Compiled, interpreted, blending into dynamic delaying
+the dynamic version for compiled backends.
+Multiple execution contexts as common pattern.
+Embedding foreign abstract syntax trees as solution to many problems
+such as why there are command line versions and libraries to do the same
+starting from mkdir to git clone ..
+Now it's time to get the hands dirty and reach the goals.
+
+
+= 6
+https://github.com/MarcWeber/data-memitxy234/tree/master/alien/compiler
+
+Please mind that there are some ideas which are little bit more complicated
+and cannot be done within this project. Such as embedding proof systems etc.
+It just shows that I am aware of the full cycle from Source storage, compilation,
+to distribution within multiple contexts and have plans for all of them
+
+
+= 7
+The innovative thing is integrating best concepts into one tool
+and going beyond while defining the project in balance by its usefulness
+making it easy for others to join and trust.
+Most of the projects below fail for some reasons like author not wanting
+bidirectional typing, short lambdas whatever.
+
+Nim: GC is a choice. Targeting compiled and JS.
+Rust: Borrow works on memory works but verbose to write.
+Haskell: bidirectional typing with holes means a lot less
+typing saving time.
+Mojo auto vectorization (simd) boosts special use cases
+Scala: gonig beyond their short lamdas: reduce($1 + $2, 0)
+urweb: passing proofs to functions to avoid runtime checks
+RakkasJS/QwickJS/NextJS: API less server side calls useSSQ
+TS: No conditional compilation, no macros
+
+= 8
+Of course programmers and end users (cause they will use the results 
+and benefit from unified distribution patterns outside of this scope to be
+implemented).
+
+Will setup coding competitions to proof this system will outperform
+existing solutions in many use cases and allows to be adopted to specific
+cases.
+
+So this effort will amplify the resources (programmers) out there a lot.
+
+
+= 9
+
+1) define syntax
+
+2) target compiled and JS
+
+  The following initial types will be provided as starting point
+  option() (nullable)
+  boolean
+  bytes
+  utf-8-string 
+  Vector
+  StructOptimized (compile chooses layout)
+  StructLabeled
+
+  Dynamic nice JSON interfacing
+    null
+    bool
+    true/false
+    string
+    dictionary
+    array
+
+  optimized (compiler chooses layout)
+    struct
+    tuple
+
+3) make sure the different modes of operation work:
+  - embedded (eg esp32)
+  - JS/TS (web app)
+  - compiled or interpreted backend
+  - targeting HTML/ CPU/GPU as UI.
+
+  - development
+    fast dev cycle
+    being lazy only compile code which gets run (interpreted)
+
+  - production
+    saving resources is important compilation time isn't
+
+
+
+
+= 10
+Marc Weber
+Full stack developer having coded in many languages
+TCL,Rust,C,JS,Ruby,Python,Pascal,VimL,Lua,C#,VB,Perl
+and getting tired of it.
+
+Mr X/Y. Honestly its a very tough situation having to cancel carreer
+choices just because of maybe Prototype funding. That's why I will
+pick random people and integrate in the team for community building
+marketing etc *ONCE* I know I have a chance. I can tolerate much pain
+myself. BUt will not put it onto others. So I'd be happy
+to expand to team mode if there is reasonable chance to get there.
+
+= 11
+Nix (packaged 2000+ packages) -> the future will be a differnt project
+it-glue but that's a different story.
+
+= 12
+The project is open ended more than 950h will have to be spent
+to keep turning this project into an ongoing success story.
+
+  1) settle on and implement parser 4
+
+  2) implement backends
+        JS 4
+        Webassembly 4
+        LLVM 4
+    I assume round about 2 weeks for each for a prototype.
+
+  total 16
+
+  3) implement libraries
+      React 4 weeks
+      GPU basic Rendering 4 weeks
+      basic app support
+      Android 2 weeks
+      IOS     2 weeks
+      QwickQS 4 weeks (if there is time left)
+
+  This is like 1200 hours. 
+  So it's likely that I will get stuck or have to compromise a little.
+
+= 13 (100 words)
+
+  Productivity is limited by brain capacity.
+
+  Within than there must fit
+    - the task at hand
+    - the language (syntax & core libs and packageing, editor, dev tools )
+    - other people
+  So having to use and learn multiple tools is a burden.
+
+  Gimp vs Krita. vscode vs lapce. jackd (C/C++ version).
+  OpenCV (C++,Python & JS in QwickQT) shows that technical depth
+  starts being a probem. So want one solution which is fast to setup
+  and type for all future projects enabling reusing my and others brains
+  within projects. Even AI will benefit cause less details.
+
+= 14
+  Yes. Building a new community around a compiler takes 10 years.
+  Its important to get started. People will join and community will grow.
+  Ruby / TS grew from web development only. Now it's time to build the synthesis 
+
+= 15
+  The project will require publicity.
+  So I have to integrate and setup a community
+  and proof and tell its worth continuing.
+
+  Managing the community is going to be the most important success factor in
+  the long run because it will be other peole who will help maintain the many
+  details and libraries which will get written.
+
+  So this phase will be used to set all that up. Assigning responsibilities to
+  people. Making sure everybody only does as much as he she can bare etc.
+
+  As written earlier one promise is staying ahead so I will have to come up with
+  regular competition to proof the weaknesses.
+
+  The potential outcome could be that other communities catch up and fix.
+  But honestly then my goal has been reached, too.
+  It wousld not be the first time this happens.
+
+
+= 16
+
+  - setting up competitions
+
+  - setting up plans for 
+    - editor integration (languages servers)
+    - core and killer libraries
+      Android/Ios/SQL/webl/embedded support
+      maybe with incremental binary transfers
+      and many more
+
+  - defining responsibilites and finding people who can help
+    cause there is a lot more to be done.
+
+  - setting up "why you want to suport this project and why Nim,Haxe,Rust,...
+    will not do it" to ease transition and understanding
+
+  - telling people that leading means honoring the transition from other
+    languages code and integrating it along with leading and moving forward.
+    Thus try to assist eduacting about why ideas should be stolen and
+    integrated in existing languages :-P
+
+=== submitted
+
+Prototype Fund Logo
+alienc
+alienc #PTFJ01160
+RequestExt
+Jahrgang 01
+Bewerbung Prototype Fund Jahrgang 01
+Lead: Marie Kreil - Team Prototype Fund
+Draft
+Application Received
+Prototype Fund Review
+External Review
+Application Outcome
+Submission details
+Communications (0)
+Activity feed
+Submitted yesterday by alienc
+Updated yesterday by alienc
+Proposal Information
+Legal Name
+alienc
+
+E-mail
+marco-oweber@gmx.de
+
+Vorname
+Marc
+
+Name
+Weber
+
+Hast du einen Account bei GitHub, BitBucket oder einer ähnlichen Plattform? Wenn ja, gib bitte den entsprechenden Link an.
+https://github.com/MarcWeber/
+Beschreibe dein Projekt kurz.
+Over 100 million programmers are challenged choosing a
+programming languages. 
+They have to compromise too hard between
+fast web site, less verbose code, code which generetas code, fast backend
+execution, installability.
+This splits dev communities the way Germany was split in the past.
+Switching languages later comes with cost akin to rewriting from scratch.
+This overhead can be reduced by a compiler which can turn into a specialist
+making open source programmers, communities and distribution more productive.
+
+Welche gesellschaftliche Herausforderung willst du mit dem Projekt angehen?
+East and west Germany was split.
+Programming landscape is worse for reasons which should be managed !
+Imagining going shopping. You can choose between an airplane (too high fule
+consumption, too much noise, no parking lot) and a tractor (too slow) and by
+walking or rocket. Switch mode of transport thus going back is expensive.
+So you can't get it right.
+
+Each task comes with unique challenges. Switching eco systems is expensive
+cause you either have to retrain staff *OR* you have to find other people
+because it means switching language, dev tools, libraries, testing systems,
+continuos integration solutions, library tooling and more.
+
+List of some traits and some consequences. No language fits them all which
+could be changed!
+  * compiled (+fast execution)
+  * interpreted (+dev cycle)
+  * dynamic (+quick & dirty)
+  * bidirectional typing (+less_typing)
+  * server side calling no API
+  * borrow checked (+borrow checking vs GC rather than being able to choose)
+  * macros (+ avoid repeating yourself)
+
+Wie willst du dein Projekt technisch umsetzen?
+Will be using Zig because it allows interfacing with C and is a good compromise
+simplicity and features for bootstrapping.
+
+Goals:
+
+* if there is a choice choose what makes code easier and faster for humans.
+  No thought is best thought.
+
+* targeting LLVM (like mojo) and JS while allowing to choose how much GC (like
+  Nim) unless specified directly 
+
+* bidirectional typing escaping the compiler. Thus allow typing issues
+  to hint extending your database scheme.
+
+* future: avoid assertions by allowing verification.
+  [1,2][-4] could be a runtime error (out of bounds),
+  additional code (count backwards if index < 0) or a compile time check.
+
+* code like humans think switching execution contexts made easy:
+  x = server:
+    row = sql: FROM USERS where $$id 
+    row.name
+
+* target JS and LLVM blending into target language
+  using type level functions to determine target types
+
+It can be done:
+  Rust => borrow checking)
+  Nim => choosing GC)
+  Haskell => bidirectional typing
+  Scala => short lambdas
+  Google react ocaml => JS and ocaml versions working together
+
+Hast du schon an der Idee gearbeitet? Wenn ja, beschreibe kurz den aktuellen Stand und erkläre die geplanten Neuerungen.
+I've been thinking about this for years and have been taking notes for many
+month setting priorities. Compiled, interpreted, blending into dynamic delaying
+the dynamic version for compiled backends.
+Multiple execution contexts as common pattern.
+Embedding foreign abstract syntax trees as solution to many problems
+such as why there are command line versions and libraries to do the same
+starting from mkdir to git clone ..
+Now it's time to get the hands dirty and reach the goals.
+
+Link zum bestehenden Projekt (falls vorhanden)
+https://github.com/MarcWeber/data-memitxy234/tree/master/alien/compiler
+Welche ähnlichen Ansätze gibt es schon und was wird dein Projekt anders bzw. besser machen?
+The innovative thing is integrating best concepts into one tool
+and going beyond while defining the project in balance by its usefulness
+making it easy for others to join and trust.
+Most of the projects below fail for some reasons like author not wanting
+bidirectional typing, short lambdas whatever.
+
+Nim: GC is a choice. Targeting compiled and JS.
+Rust: Borrow works on memory works but verbose to write.
+Haskell: bidirectional typing with holes means a lot less
+typing saving time.
+Mojo auto vectorization (simd) boosts special use cases
+Scala: ..
+urweb: passing proofs to function
+
+Wer ist die Zielgruppe und wie soll dein Projekt sie erreichen?
+Of course programmers and end users (cause they will use the results 
+and benefit from unified distribution patterns outside of this scope to be
+implemented).
+
+Will setup coding competitions to proof this system will outperform
+existing solutions in many use cases and allows to be adopted to specific
+cases. 
+
+So this effort will amplify the resources (programmers) out there a lot.
+
+Skizziere kurz die wichtigsten Meilensteine, die im Förderzeitraum umgesetzt werden sollen.
+1) define syntax
+
+2) target compiled and JS
+
+  The following initial types will be provided as starting point
+  option() (nullable)
+  boolean
+  bytes
+  utf-8-string 
+  Vector
+  StructOptimized (compile chooses layout)
+  StructLabeled
+
+  Dynamic nice JSON interfacing
+    null
+    bool
+    true/false
+    string
+    dictionary
+    array
+
+  optimized (compiler chooses layout)
+    struct
+    tuple
+
+3) make sure the different modes of operation work:
+  - embedded (eg esp32)
+  - JS/TS (web app)
+  - compiled or interpreted backend
+  - targeting HTML/ CPU/GPU as UI.
+
+  - development
+    fast dev cycle
+    being lazy only compile code which gets run (interpreted)
+
+  - production
+    saving resources is important compilation time isn't
+
+Bewerbt ihr euch als Team um die Förderung?
+nein
+
+Für Teams: Namen der Teammitglieder (verbindliche Nennung)
+If it's possible to add team members I'd gladly do so. But please understand that whether getting funded or not is uncertain. I don't want to put uncertainty into other peoples life. I know why I will eat the glass. But I cannot ask others to unless I know they have to eat and a roof.
+
+An welchen Software-Projekten hast du / habt ihr bisher gearbeitet? Bei Open-Source-Projekten bitte einen Link zum Repository angeben.
+Several
+Haxe -> Vim
+PHP debugger for Vim
+topgit -> push topic branches
+Nix (packaged 2000+ packages)
+
+Wie viele Stunden willst du (bzw. will das Team) in den 6 Monaten Förderzeitraum insgesamt an der Umsetzung arbeiten?
+950
+
+Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir über dich (bzw. euch) wissen und bei der Auswahl berücksichtigen?
+  Productivity is limited by brain capacity.
+
+  Within than there must fit
+    - the task at hand
+    - the language (syntax & core libs and packageing, editor, dev tools )
+    - other people
+  So having to use and learn multiple tools is a burden.
+
+  Gimp vs Krita. vscode vs lapce. jackd (C/C++ version).
+  OpenCV (C++,Python & JS in QwickQT) shows that technical depth
+  starts being a probem. So want one solution which is fast to setup
+  and type for all future projects enabling reusing my and others brains
+  within projects. Even AI will benefit cause less details.
+
+Beantragst du die viermonatige Second-Stage-Förderung nach Ablauf der sechsmonatigen regulären Förderung?
+ja
+
+Wenn du eine Verlängerung beantragen möchtest: Erzähle uns kurz, was dein Projekt braucht, um aus dem Prototypen-Stadium herauszukommen und wie du dein Projekt in den vier Monaten nachhaltig aufbauen willst.
+  It will require stability (10+ years) for people to join.
+  Thus will require
+  - training and certificates
+  - platforms to find people you can hire
+  - industrial support
+  - setting clear rules and distribute load among people
+    making sure time constraints are met.
+    Better be a part and have it working than having too less doing too much.
+  - making sure the promise (being best dev tool) gets met.
+  - make sure people understand the why its important watch or use.
+  Even if other communities listen and fix the benefit would be huge.
+
+Skizziere kurz die wichtigsten Meilensteine, die in der viermonatigen Verlängerung deines Förderzeitraum umgesetzt werden sollen.
+    Building infrastrucutre for 15 and distributing load on several people to
+    allow scaling setting up clear decision making processes to allow people to
+    stay on board
+    See last answer adding regular competitions cause what you don't measure you cannot make perfect.
+
+Ich habe die Checkliste für Bewerber*innen gelesen.
+True
+
+Ich bin über 18 Jahre alt und habe meinen Hauptwohnsitz bzw. den GbR-Sitz meines Teams in Deutschland.
+True
+
+Ich bin damit einverstanden, die Projektergebnisse unter einer Open-Source-Lizenz (z. B. MIT-Lizenz), öffentlich zugänglich (z. B. über Github/Gitlab/Codeberg) zur Verfügung zu stellen.
+True
+
+Mastodon | Linkedin | Newsletter
+Datenschutzerklärung | Impressum

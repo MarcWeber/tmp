@@ -1,0 +1,75 @@
+= 1
+== Projekttitel
+alienc
+== Name für Account
+alienc
+== Vorname / Nachname
+Marc Weber
+== E-Mail
+marco-oweber@gmx.de
+== Github
+https://github.com/MarcWeber/
+
+= 2
+Über 100 Millionen Programmierer und ihrer Kunden haben das
+Problem der Wahl der Programmiersprache Jede hat seine Vor- und
+Nachteile. Das wechseln entspricht einem Neubau.
+Ich will einen Kompiler schaffen, welcher wie Esperanto
+eine Sprache die im Backend und Frontend funktioniert schafft,
+aber gleichzeitig zum Spezialist werden kann so dass keine
+Kompromisse mehr eingegangen werden müssen. Moderne
+Web-Frameworks lösen die Grenzen zwischen Backend und Frontend
+auf. Dieser Compiler soll diese Fortschritte mitgehen und bestm:gliche User-Experience für Programmierer und Nutzer bieten
+
+
+= 3
+The dev-community is split by many technologies such as
+as Rust, Java, C#, TS, Zig, Python, Nim. But all have their
+shortcomings making software development slow
+
+Java/C#:
+- embedded
+- gc-slowness
+- slow-in-browser
+
+Rust:
++ fast
++ reproducable compilation of dependencies
+- compilation slows down
+- verbose to write
+- not suited for dynamic tasks
+
+JS/TS:
++ fast-to-type
++ fast-loaded-in-browser
++ fast-dev-cycle (eg vscode, vite)
+- no macros supported by TS
+
+C/C++:
+See TS/Rust
+
+Zig:
+See Rust
+
+Python:
+- performance
+
+Mojo:
+- slow-in-browser
+
+
+Haskell ist Lazy (aber zu langsam)
+JS/TS ist cool (aber als Backend zu langsam, siehe
+https://sancho.dev/blog/server-side-rendering-react-in-ocaml)
+JS/TS ist nichts für Embedded
+
+
+Ich werde einen Kompiler bauen, welcher zum Spezialist werden
+kann. So dass man mit einem Werkzeug mehr Aufgaben erledigen
+kann ohne neue Sprachen lernen zu müssen.
+Mehrere Paradigmen/Ziele wie kompiliert, interpretiert,
+dynamisch, jitted, Webassembly borrow checking, Garbage
+Collecting, perfektes Blending mit der Zielsprache, werden also auch perfektes Blending mit der Zielsprache so dass
+man ohne Kompromisse Backends, Frontends, embedded entwickeln
+kann, ohne Angst Tools wechseln und alles nochmal machen zu
+müssen.
