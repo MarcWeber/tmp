@@ -1,0 +1,190 @@
+https://prototypefund.de/how-to-bewerben/
+
+1) Allgemeine Informationen:
+
+Projekttitel: IT-Glue
+AccountName: TeamWEB
+Vorname/Nachname: Marc/Weber
+Emailadresse: marco-oweber@gmx.de
+github.com: https://github.com/MarcWeber/it-glue
+
+1) Beschreibe dein Projekt kurz
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+  100 Wörter:
+
+
+2) Projektbeschreibung
+
+  Es gibt >5+ Betriebssysteme, >10+ Paketmanager, >20+ Programmiersprachen
+  Dazu 100 Mio Programmierer, die zusammen arbeiten wollen!
+
+  IT-Glue automatisiert die Enirichtung der Entwicklungsumgebung.
+  Es erlaubt 'Aktionen' zu definieren wie alles kompilieren, packen und anderen
+  zur Verfügung stellen etc.
+  Weil eine Programmiersprache genutzt wird ist IT-GLUE so vielseitig wie eine
+  Sprache.
+
+  Man wählt sich eine Idee wie "Installiere X" oder "Arbeite an Y" und 
+  schreibt ein Rezept, die die Arbeitsumgebung für diese Idee bereitstellt.
+
+  Weil Platform und Programmiersprachenübergreifend Beziehungen dargestellt
+  werden können ergibt sich die Möglichkeit Pakete automatisch für
+  Distributionen zu erstellen nebenbei.
+
+  Lange manuelle README Anleitungen wie auf Github werden automatisiert.
+
+3) Themenfeld
+  Softwareinfrastruktur
+
+4) Gesellschaftliche Herausforderungen
+
+  Die IT Welt wird immer bunter. Spezialisten kosten Geld.
+  Es geht darum die Reproduktion bestehender Open-Source Arbeit zu vereinfachen
+  und den Einstieg trotz komplexer Beziehungen so einfach wie möglich und
+  reproduzierbar zu machen.
+
+  Ein typisches Beispiel von unendlich vielen wäre z.B. Apache, PHP mit XDebug,
+  Wordpress mit PHP Code von Git und einer bestehenden Datenbank also auch
+  einem Editor wie VSCode mit PHP Support Plugin auf dem eigenen Computer
+  einzurichten ohne die Dokumentationen jeder einzelnen Komponenten gelesen
+  haben zu müssen.
+
+  Entwicklerzeit ist wertvoll. Deswegen sollte Projekautoren es ermöglicht werden
+  den Nutzern es einfach zu machen ihre Software zu installieren, zu
+  aktualisieren und Feedback zu geben ohne dass der Nutzer sich durch
+  pip, conda, mamba, nixpkgs & flakes, (20+ ...) durcharbeiten muss.
+
+  Welche Teile dabei vom Betriebssystem gestellt oder durch externe Paketmanager
+  oder selbst installiert werden sollen, soll die Anleitung selber herausfinden
+  können.
+
+  Hier eine kleine :-) Liste von Open-Source Tools, die orchestriert werden wollen
+  mit unterschiedlichem Fokus wie Reproduzierbarkeit oder minimale Installationszeit.
+
+    C: make,nmake,scons,cmake,ninja (Windows: vcbuild etc)
+    Java: Ivy, maven, ..
+    Python/Ironpython/Jython/Micropython: Pip und Alternativen
+    Ruby: ...
+    Compiler ..
+
+      https://github.com/xmake-io/xmake/tree/master/xmake/platforms
+      https://github.com/xmake-io/xmake/tree/master/xmake/toolchains
+
+5) Technische Umsetzung
+  1) Verstehen bestehender Paket-Datenbanken wie Apt, chocolately, ...
+  2) Verstehen der Bedürfnisse der Story
+  3) Herausfinden der besten Pfades (Solver) in Äbhängigkeit davon,
+     an welchen Pakten gearbeitet werden soll
+  4) Umsetzen des Plans
+  5) Bereitstellen von Aktionen wie Webesite im Browser aufmachen,
+     Editieren einer Komponente des Projektes, verbinden zur Datenbank.
+     Backupm machen was auch immer das Herz begehrt
+
+6) Aktueller Stand
+  https://github.com/MarcWeber/it-glue
+
+7) Link zum Projekt
+  https://github.com/MarcWeber/it-glue
+
+8) Innovation
+  60 Wörter
+  Projektbeispiele und warum anders ..
+
+  Brew Conda, Mamba, Ansible, chef, alle sind entweder deklarative oder
+  imperativ oder eine Kombination. Keine erlaubt es Entwicklungsumgebungen zu managen.
+  Die Komplexizität wird oft hinter Namen versteckt aber nicht gelöst.
+
+  IT-Glue wird deklarativ, imperativ, und resourcen tracken, so dass stories
+  auch wieder entfernt werden können und gleichzeitig so reporduzierbar sein
+  wie nur irgendwie möglich.
+
+  Wenn Ich es bereits gefunden hätte würde Ich es nicht schreiben wollen :-?
+  Wenn Sie eine Lösung kennen sparen Sie mir viel Zeit :-)
+
+9) Zielgruppe und wie sie erreicht werden soll
+
+  Weil es am flexibelsten und bequemsten ist ist es nur eine Frage der Zeit,
+  bis Menschen.
+
+  Gleichzeitig werde ich versuchen eine internationale Support-Firma aufzubauen.
+
+10) Erfahrung Link zu bestehenden Open Source Projekten
+  Nixos.org/Nixpkgs: Nur Linux/Drawin aber nicht abstrakt genug
+  Ansible/Chef/..: Nicht abstrakt genug, weil sie keine Solver eingebaut haben
+  Chocolately && : nur Binary distribution
+  Conda/Xmake etc -> fokussiert auf Dist-Pakete, aber die Abstraktion diese
+                Dist-Pakete zu erstellen ist was IT-Glue ausmachen wird.
+11) Motivation
+  Das einrichten und testen von Software auf vielen Systemen auch bei
+  Mitarbeiterwechsel kostet immer viel Zeit und Resourcen.
+  Wenn Code auf Github findet hat man keine Ahnung wie lange man braucht um das
+  Projekt einzurichten.
+  Undbekanntes sollte angeschaut und in Bekanntes transformiert werden.
+  it-glue ist der erste Schritt dazu.
+
+12) Team
+  Es ist schwer Team-Mitglieder zu finden, welche das Risiko eingehen ein Einkommens-Loch
+  in ihrem Leben einzuplanen für eine 10%ige Wahrscheinlichkeit.
+  D.h. bei Bedarf werde Ich passende Menschen finde und integrieren um das
+  Ziele zu erreichen, auch wenn Ich mehrere Projekte gefördert bekomme.
+
+13) Arbeitsstunden
+  Zu integrierende Komponenten:
+
+  Paket-Quellen(9) Nixpkgs, apt, chocolately, scoop, winget, gentoo, pacman, gentoo, conda, Random (z.B. Github)
+  Paket-Dist(9)
+
+  >6 OSX, Ubuntu, Nixos,, Windows, BSD, (Webassembly?)
+  >24 VC++, gcc, clang, weitere C compiler 3x, ruby, Python, Dart, Java, Perl, Zig, Nim, Ocaml, Ghc, Haxe, Android, Rust, Ocaml, Elm, Scala, Zig, Pascal, BuckleScript / Reason
+  6 5x JVM, .net (x5), Flutter
+  2 solver, GC,
+  12 VisualStudio, brew, nixpkgs, nix-flakes, pip, rubyforge, mavencentral, hackage, 4+
+  6 Mysql, Apache, Postgresql, Rethinkdb, DuckDb, MariaDb
+  8 Vscode & Plugins, Emacs & Plugins, NeoVim & Plugins, AndroidStudio Plugins ?
+  7 cmake, make, nmake, ivy, ant, xmake, Ninja
+  3 git, mercurial, 
+  5 docker, VirtualBox, lxc, ..
+  3 Nvidia / OpenGL/  VR (Steam & Oculus)
+  Aktionen 5)  DB erstellen/löschen, Browser / Editor aufmachen, rebuild -all, publish
+
+  Random (4: GTK, QT, Man, info, ...
+
+  9 + 9 + 6 + 24 +  6 + 2 + 12 + 6 + 8 + 7 + 3+ 5 + 3 + 4 = 104
+
+  Wenn man für jede Komponente 2 Tage (16h) annimt
+  104 * 16 = 1648
+
+  Ehrlich gesagt wäre ich froh wenn Ich nur 50% vom Ziel erreichen
+
+  250 < Zahl < 950
+
+14) Meilensteine
+  1) Für alle Paket-Quellen finde eine vereinfachte Darstellung, so dass der Solver sie nutzen kann
+  2) implementiere Solver (Wie Mamba)
+  3) In Abhängigeit der Zielsetzung versuche den Abhängigkeitsketten Hashes zu geben
+    A) dev chain
+    B) Ergebnis Chain (Wie Nix)
+    c) Kompatibilitätschain (wenn möglich, also binary Kompatibiltät)
+  4) Inegration mit VMs und Installation
+  5) Aktionen ..
+
+  100 Wörter
+
+15) Bestätigungen
+
+  [ ] Ich habe die Checkliste für Bewerber*innen gelesen
+     [  ] TODO
+
+  [ ] Ich habe die Datenschutzvereinbarung gelesen und stimme der
+      Verwendung meiner Daten im Rahmen der Programmziele des
+      Prototype Funds zu
+
+  [ ] 
+      Ich bin über 18 Jahre alt und habe meinen Hauptwohnsitz in
+      Deutschland.
+
+  [ ]
+      Ich bin damit einverstanden, die Projektergebnisse unter einer
+      Open-Source-Lizenz (z. B. MIT Lizenz), öffentlich zugänglich (z. B.
+      über Github oder BitBucket) zur Verfügung zu stellen.

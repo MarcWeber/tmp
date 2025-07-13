@@ -1,0 +1,135 @@
+==> Template
+
+1) Briefly describe your project
+
+   They clearly explain which problem needs to be addressed and
+   relate the project idea to it.
+
+   Every person is different and wants to stay healthy with minimal effort.
+   my-personal-health allows you to manage important events in your life
+   to save so that you learn how to optimize your own well-being
+   can:
+
+     - Sleep / get up or bed time
+     - Movement (sports/stretching)
+     - Food (purchase bar code / meal & scan, carbs, minerals, own
+       Configure evaluation) but also with instructions on how to prepare it
+       Frying at what temperature was in the freezer, .. what happens then
+       with vitamins?
+     - Sun
+     - Already laughed today
+     - Or thinking of friends?
+     - Brain training (mediation / relaxation / gratitude / stay with yourself
+       exercises/prayer)
+     - Consumed your tablets or “spermidine” or “bean sprouts”?
+     - Cuddled & ..
+     - Alergens in food or 'pollen count' / weather (humidity/temperature/air pressure)
+     - Headache / ...
+     - Screen time or desk time
+     - Mental pain/real pain
+     - Exposure to toxins (from radioactive radiation to "colors")
+     - vaccinations
+
+   Set yourself what is important to you to track and how you are doing.
+
+   Expect that science (which you have learned about)
+   Maybe you don't know everything yet and configure your own
+   Trackings.
+
+   You are changing. Just let go of the flexible lifestyle
+   say what worked best for you!
+
+2) What social problem do you want to solve with your project?
+   They clearly explain which problem needs to be addressed and
+   relate the project idea to it.
+
+   People and their needs are diverse. Sometimes you lose yours
+   Mood because you haven't eaten at the wrong time or yet.
+   Or you become depressed because of an allergic reaction. Or you forget
+   to consume a few important amino acids.
+
+   With this app you can do your shopping and your food but also your
+   Behavior Sports Meditation ... configure and track and your own
+   Set alarms like “Too little protein” or “Too many carbs/calories”.
+   Or “Too much/little wrong Omega 3/6 ratio” or “Iodine deficiency?”
+
+   Or forget about stretching/exercise...
+
+   Even an apple today is no longer the same as it was 50 years ago
+   may contain more sugar.
+
+   No matter whether you want to track fibers or spermidine. Just configure everything
+   and look at the evaluations whenever it suits you.
+   State if you feel good/bad.
+   Let the AI collect ideas about what could be wrong, from the weather to pollen counts
+   or insulin/sugar peaks from food.
+
+   Get to know yourself and let yourself be guided.
+   Choose the guidelines low carb / carnivore / cheap
+   Just do it yourself and try out what works best for you.
+
+   A normal person can only keep about 7 chunks in their head. foods are
+   but much more complicated and versatile.
+
+3) How do you want to implement it technically
+   They show that the applicants have already given the matter some thought
+   implemented the idea - so the idea is not a quick fix. The
+   does not mean that the project ultimately has to be implemented in exactly the same way.
+
+   There are different events:
+
+   purchase
+     X with nutritional profile
+
+   Food/application
+     Eating/exercising/sleeping/...
+
+   Based on these facts and self-chosen or suggested
+   Tables are created derived facts such as iodine amino acid profiles,
+   Carbs/Fats/...
+
+   Evaluations are then made based on these derived facts
+   made.
+
+   Based on "How did you feel?"
+   Behavior/food etc. determined
+   which may predict your mood.
+
+   But so that it can be used quickly, you can do everything
+   can object:
+
+   E.g. "Breakfast eggs, beans, ham, 8 a.m. to 12 p.m. desk, ..."
+
+   Because if it's too complicated you won't do it.
+
+4) What similar solutions already exist and what will make your project different or better?
+   There are many food trackers out there, but none are as comprehensive and precise
+   configurable. E.g. It depends on what a fish ate which
+   It contains omega fatty acids.
+
+5) Who is the target group and how should your tool reach them?
+   They show that the project ideas have the potential to have a major social impact
+   have reach and that the applicants are equipped with knowledge about the
+   Target group have an understanding of what goes into developing their software
+   will be particularly important. The measures to reach the target group
+   show that the applicants are concerned about distribution and use
+   of the software.
+
+   Anyone who wants to get to know each other or feels uncomfortable from time to time.
+
+6) Have you already worked on the idea?
+   If yes, describe the treatment
+
+https://www.youtube.com/watch?v=cnTHgRJi0mM
+-> C15
+-> liver capacity of suggar in relation to sport and eating habits ?
+
+https://www.sciencedirect.com/science/article/abs/pii/S0169534724001125?fbclid=IwY2xjawFz4W5leHRuA2FlbQIxMQABHZ5_kVtY9VYduennyE3UqOigmwlskQ9Q3ixZmxwwIw6eHUDmGG8fnltGxQ_aem_9jwrIghEkuhJtzvTd10Iag
+-> green stuff less minerals more CO2 -> herbivores -> in trouble
+
+voice therapy
+https://www.soundtherapycrete.com/voice-analysis
+
+https://www.youtube.com/shorts/HGEox8e5Aak
+.. NAD cause by exercising, fasting and ice water bathing ..
+

@@ -1,0 +1,118 @@
+1) Briefly describe your project
+   They clearly explain which problem needs to be addressed and
+   relate the project idea to it.
+
+   Programmers around the world miss a unified path
+   To present “Github instructions” in the form of a modular, flexible program
+   Setting up the development environment and making the software available
+   through existing distribution tools or installing the target
+   automate.
+
+   It's so complicated because there are many operating systems [1],
+   programming languages [2], language-[3] or distribution-specific [4] package managers,
+   external libraries [6] distribution channels [7] and toolchains [8].
+
+   That's why we need a tool that achieves the following goals:
+     1) Can describe cross language platform dependencies. Example “Need OpenGL”
+
+     2) Microservice vs Monorepo resolves.
+        A,B,C depend on each other, have the same version 2.0 and that's why
+        create package.json automatically
+
+     3) Manage your own local package libraries:
+        Because Github author didn't do it check out X and assume is
+        Version 2.0 with Patch P
+
+     4) Provide scripts that start recompiling firefox with libjpeg, for example
+        or for Chocolately/Conda packages
+
+     5) Reproducibility at different levels:
+        - Build way
+        - ABI compatibility
+        - Exact version and dependencies nixpkgs
+
+     6) If possible, be able to specify an evaluation time if possible
+        This is about resolving dependencies on known package databases
+        PyPi, hackage because there are not always version lock files.
+
+   Example tasks in words that the system should be able to solve:
+
+     With packages from Ubuntu
+     With package list [github:user/repo-1, github:user/repo-2]
+     Find dependencies on repo-2, install Ubuntu packages
+     provide build-all script.
+
+   In addition, the feeling of a mono-repository should be created in which you
+   You can use modules without having to declare them as dependencies.
+
+   In words: Imagine Lib-A, Lib-B, Lib-C were a mono repo and can
+   benefit each other. Use imports to identify the dependencies if
+   you create distribution archives.
+   This means you can maintain several libraries together, such as the Haskell platform
+   so that the dependency hell remains controllable :-/
+
+   [1] (IOS,Linux,Windows,BSD,Android,Iphone,Cygwin,Msys,HarmonyOS,...)
+
+   [2] (Python, C, C++, Nim, Rust, Go, Ocaml, JS, TS, Lua, Vim, Perl, PHP, Dart, ..)
+
+   [3] PyPy (Python), Hackage (Haskell), PHP (composer), Perl (perlpackages),
+       Lua, VimL, Emacs, ...
+       C/C++ (2-3 different)
+i
+   [4] nixpkgs (linux, drawin)
+       pacman (msys, ..)
+       apt (ubuntu)
+       gentoo (..)
+       brew (OSX also Linux)
+
+   [6]
+       External libraries: examples. OpenGL, Vulkan, Proprietary Machine Learning
+       Libraries from Intel, ..
+
+   [7] Cross:
+       mamba/conda
+       Windows: Chocolately
+       opencv
+       C/C++ (3+)
+       Language Leader (Python: PyPi, PHP: Composer, Haskell: Hackage, ...)
+       OSX (less often also Linux): Brew
+       nixpkgs (Linux, Darwin, Nixos)
+       Linux: Nixos, Debian, Suse, Ubuntu, Gentoo, ..
+
+   [8] Example C/C++ gcc, visual ccp, tinycc, clang, and the many embedded
+       Ruby: Ruby,JRuby,MRuby
+       Python: CPython, Mojo, Cpython, IRonPython, ...
+
+2) What social problem do you want to solve with your project?
+    They clearly explain which problem needs to be addressed and
+    relate the project idea to it.
+
+    I would like to enable software programmers to create a description
+    so that your software can be reproduced and installed with minimal effort
+    can be so that typical README.md files on Github shrink too
+
+    dev-buttler install-script
+
+    If the user is a developer, he has the option
+    Control whose dependency code you edit and rewrite via script
+    can compile.
+
+3) How do you want to implement it technically
+   They show that the applicants have already given the matter some thought
+   implemented the idea - so the idea is not a quick fix. The
+   does not mean that the project ultimately has to be implemented in exactly the same way.
+
+   The past has shown that declarative systems are good,
+   but at the end programming elements were always added, such as Ansible.
+
+   That's why I want to use the same programming language
+   like TS/Rust to create a modular, flexible system that adapts to the
+   Adapts the task.
+
+   Here is a more complex example showing libraries from Github
+   cloned and then added to a temporary package list of its own
+   and resolved according to dependencies.
+   For each package you can specify whether it comes with cmake, scons
+   is to be built.
+   At the same time, you can see the strength of a programming language because
+   you can define something with git_mit_themen_zweig

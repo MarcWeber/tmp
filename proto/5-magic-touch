@@ -1,0 +1,94 @@
+1) Beschreibe dein Projekt kurz
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+  Blinde Menschen können nicht sehen. Aber sie können fühlen.
+  Darum möchte Ich mit VR Technologie die Umwelt in eine virtuelle 3d-Szene
+  überführen, die dann z.B. mit Händen oder mit VR-Controllern angefasst werden
+  kann.
+
+  Gleichzeitig sollen 2d Bildern mit AI in 3d übersetzt werden,
+  so dass z.B. auch Webseiten und Familienfotos schneller be/ergriffen werden
+  können. Denn gerade das Vorlesen von Webseiten kostet mangels Struktur viel
+  Zeit.
+
+  Zusätzlich soll AI Erkennung z.B. durch Gestensteuerung möglich sein "Was ist
+  hinter meinem Finger?" "Orangen/Bagger/.."
+
+2) Welches gesellschaftliche Problem willst du mit deinem Projekt lösen?
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+  Nicht jeder blinde Mensch kann in jeder Situation gut höhren.
+  Dennoch wollen Sie sich orientieren ohne über die Straße zu laufen
+  und ohne alles anzufassen.
+
+3) Wie willst du technisch umsetzen
+  Sie zeigen, dass die Bewerber*innen sich bereits eingehend Gedanken um die
+  Umsetzung der Idee gemacht haben – die Idee ist also kein Schnellschuss. Das
+  bedeutet nicht, dass das Projekt letztlich genau so umgesetzt werden muss.
+
+  Ich möchte verschiedene Wege nutzen um 3d aus der Umgebung zu erzeugen:
+    - Handies mit TTF (z.B. Iphone)
+    - Intel realsense
+    - weitere
+
+  Dann will Ich verschiedene Wege implementieren die Hände relativ zum
+  Kopf zum essen (sensorxy, Kamera, VR Brille)
+
+  Sobald man mit der Hand die verkleinerte Umgebung berührt, werden Töne
+  ausgegeben. So können Formen mit der Hand schnell erkannt werden.
+
+4) Welche ähnlichen Lösungen gibt es schon und was wird dein Projekt anders
+bzw. besser machen?
+
+  Machine Learning also Bilderkennurng: Hat das Problem dass ein Tunnel nicht
+  von dem Bild eines Tunnels unterschieden werden kann und nur das erkannt wird
+  was vorher gelernt wurde.
+
+  Blindenhund / Stöcke (geringere Reichweite)
+
+  Klicklaute etc (funktioniert nicht in lauter Umgebung)
+
+  Apps die mit GPS sagen "Du bist in der Straße" - erkennt aber keine Mülltonne
+  direkt vor einem !
+
+  Technik die Bilder scannt und die Pixel in Frequenzen umwandelt:
+  Mit viel Aufwand können einzelne Buchstaben erkannt werden.
+  Kostet aber viel Zeit
+
+  Laser Stäbe alse Blindenstockersatz. Hat nicht die gleiche Qualität weil man
+  nur eine Hand nutzen kann und kein
+
+5) Wer ist die Zielgruppe und wie soll dein Tool sie erreichen?
+  Sie zeigen, dass die Projektideen potenziell eine große gesellschaftliche
+  Reichweite haben und dass die Bewerber*innen mit dem Wissen über die
+  Zielgruppe ein Verständnis dafür haben, was in der Entwicklung ihrer Software
+  besonders wichtig sein wird. Die Maßnahmen zur Erreichung der Zielgruppe
+  zeigen, dass die Bewerber*innen sich Gedanken um die Verbreitung und Nutzung
+  der Software machen.
+
+  Blinde Menschen. Ich werde Vereine und Shops anschreiben mit dem fertigen
+  Produkt. Der Quellcode wird frei sein.
+
+6) Hast du schon an der Idee gearbeitet? Wenn ja, beschreibe kurz den aktuellen Stand und erkläre die Neuerung.
+  Wenn die Antwort hier “ja” lautet, ist es besonders wichtig deutlich zu
+  machen, was die Neuerung ist, die nun gefördert werden soll. Reine Updates,
+  Ausbesserungen und Maintenance sind nicht förderfähig.
+
+  Ja, Ich habe bereits versucht 3d in Sound-Tippeche zu verwandeln, habe aber
+  schnell feststellen müssen dass vor Lauter Klangteppich Ich nichts mehr
+  gehört habe.
+
+7) Wie viele Stunden willst du (bzw. will das Team) insgesamt in den 6 Monaten
+  Förderzeitraum an der Umsetzung arbeiten?
+  250 bis 950 h
+
+8) Skizziere kurz die wichtigsten Meilensteine, die du (bzw. das Team) im
+   Förderzeitraum umsetzen willst.
+   Die Bewerber*innen zeigen, dass sie den Arbeitsaufwand einschätzen können und
+    welche Schritte notwendig sind, um ihr Ziel zu erreichen.
+
+9) Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir
+   über dich (bzw. euch) wissen und bei der Auswahl
+   berücksichtigen?

@@ -1,0 +1,130 @@
+1) Beschreibe dein Projekt kurz
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+  server -> serverless -> homeless :-)
+  Homeless wird die Zukunft: Optional server, optional serverless.
+  Aber gerne auch mal ganz ohne Dezentral:
+  Dezentrales Dateisysteme, Referenzen, Datenbanken
+  werden es erlauben Dateien, Ergebnissen einen Namen zu geben und zu nutzen
+  ohne sich zu viel Gedanken zu machen.
+
+2) Welches gesellschaftliche Problem willst du mit deinem Projekt lösen?
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+3) Wie willst du technisch umsetzen
+  Sie zeigen, dass die Bewerber*innen sich bereits eingehend Gedanken um die
+  Umsetzung der Idee gemacht haben – die Idee ist also kein Schnellschuss. Das
+  bedeutet nicht, dass das Projekt letztlich genau so umgesetzt werden muss.
+
+4) Welche ähnlichen Lösungen gibt es schon und was wird dein Projekt anders bzw. besser machen?
+
+5) Wer ist die Zielgruppe und wie soll dein Tool sie erreichen?
+  Sie zeigen, dass die Projektideen potenziell eine große gesellschaftliche
+  Reichweite haben und dass die Bewerber*innen mit dem Wissen über die
+  Zielgruppe ein Verständnis dafür haben, was in der Entwicklung ihrer Software
+  besonders wichtig sein wird. Die Maßnahmen zur Erreichung der Zielgruppe
+  zeigen, dass die Bewerber*innen sich Gedanken um die Verbreitung und Nutzung
+  der Software machen.
+
+6) Hast du schon an der Idee gearbeitet? Wenn ja, beschreibe kurz den aktuellen Stand und erkläre die Neuerung.
+  Wenn die Antwort hier “ja” lautet, ist es besonders wichtig deutlich zu
+  machen, was die Neuerung ist, die nun gefördert werden soll. Reine Updates,
+  Ausbesserungen und Maintenance sind nicht förderfähig.
+
+7) Wie viele Stunden willst du (bzw. will das Team) insgesamt in den 6 Monaten
+  Förderzeitraum an der Umsetzung arbeiten?
+  250 bis 950 h
+
+8) Skizziere kurz die wichtigsten Meilensteine, die du (bzw. das Team) im
+   Förderzeitraum umsetzen willst.
+   Die Bewerber*innen zeigen, dass sie den Arbeitsaufwand einschätzen können und
+    welche Schritte notwendig sind, um ihr Ziel zu erreichen.
+
+9) Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir
+   über dich (bzw. euch) wissen und bei der Auswahl
+   berücksichtigen?
+
+
+
+
+Let me try to pitch an idea:
+The world is going OpenSource to some extend.
+So all non open source companies face future risk.
+We went from server to serverless.
+I want to propose homeless. Let me explain:
+You don't care about technical details. You care about memes and stories.
+Like "patch that app whatever it takes" so that's what I want to do:
+
+I want to create 'glue' for users and developers to describe systems (or copies)
+including git repositories but also eventually replacing them.
+So that you have 'data' with changelogs so that derived content like low level
+resolutions (tumbs also 3d objects) can be derived cross platform.
+A ordered bag of items (eg presentation) would just be special FS.
+No need to depend on "PowerPoint" anymore to get that.
+
+So disrutping 3d, development, data storage, website development, ... etc.
+How do I want to make money ? Having the same and providing 'centralized
+server' to share the data.
+
+So basically I am replacing Github installation recipes with code which
+produces a working environment (OSX/Linux/Windows/BSD/Brownser/many VM/Wine/ ..)
+
+How does it look like ?
+
+  project = "wordpress site for company X"
+  fs = new_distributed_fs(project)
+  php = php_local_setup(fs)
+  db = new_distributed_database(db
+  wordpress = install_wordpress(fs, ghp, db)
+
+  actions = {
+    open_in_browser,
+    open_shell,
+    open_dev_editor
+  }
+
+How does it look like if you want to create a story 'change website'?
+
+  origin = "wordpress site for company X"
+  story  = "add-feature"
+  fs     = fork_fs(origin, story)
+  db     = fork_db(origin, story)
+  php    = php_local_setup(fs)
+  wordpress = install_wordpress(fs, ghp, db)
+
+  actions = {
+    .. same as above plus
+    update_from_upstream
+    merge_back # well complicated if databse is touched
+  }
+
+=> Yeah Wordpress require MySQL which is not distributed. Imagining using
+online version of MySQL or a copy of mysql with a 'dump to my pc update'
+command is no brainer.
+
+
+=== More use cases:
+
+Introducing lazy data meaning the structure is shared first, then the contents:
+
+fs = new_fs("my personal media", {
+  devices= [laptopt, server, desktop]
+  store_on = {
+    desktop = everything,
+    mobile = hd_version, 30 days old or 5 stars images,
+    server = nothing
+  }
+})
+
+
+And then when you record a 4K video it will transfer the name, the length and a frame every 5 seconds
+-> so you get impression about what happens fast without having to transfer all data.
+You can request "HD" or "4K stream" and streams, still not uploading all 4k.
+
+So the idea is you can finish cutting without touching all data and only the
+data you need will be uploaded in full size.
+
+
+

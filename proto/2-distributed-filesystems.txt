@@ -1,0 +1,59 @@
+
+1) Beschreibe dein Projekt kurz
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+  Ich möchte Sammlungen von Daten einen Namen geben, so dass Sie von allen
+  Geräten genutzt werden kann. Redundanz kann global konfiguriert werden.
+
+  Beispiele: 
+
+  "Meine Bilder" Sammlung mit Fotos. 5 Sterne auf Handy, 1-5 Sterne auf Backup.
+  4,5 Sterne auf meinem Desktop speichern. So habe Ich Redundanz und freien
+  Speicher
+
+
+  "Meine Präsentation": Geordnete Liste von Dateien zum Präsentieren.
+
+  "Meine Urlaub in Australien": Von meinen 4K Aufnahmen werden zuerst nur HD
+  Frames alle 5 Sekunden Mobil hochgeladen um kosten zu sparen. So kann mein Team
+  bereits einen Eindruck erhalten. Sobald Ich stabiles Internet habe, wird
+  der vom Team ausgewählte Bereich zuerst ins Internet geladen.
+
+
+2) Welches gesellschaftliche Problem willst du mit deinem Projekt lösen?
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+
+3) Wie willst du technisch umsetzen
+  Sie zeigen, dass die Bewerber*innen sich bereits eingehend Gedanken um die
+  Umsetzung der Idee gemacht haben – die Idee ist also kein Schnellschuss. Das
+  bedeutet nicht, dass das Projekt letztlich genau so umgesetzt werden muss.
+
+4) Welche ähnlichen Lösungen gibt es schon und was wird dein Projekt anders bzw. besser machen?
+
+5) Wer ist die Zielgruppe und wie soll dein Tool sie erreichen?
+  Sie zeigen, dass die Projektideen potenziell eine große gesellschaftliche
+  Reichweite haben und dass die Bewerber*innen mit dem Wissen über die
+  Zielgruppe ein Verständnis dafür haben, was in der Entwicklung ihrer Software
+  besonders wichtig sein wird. Die Maßnahmen zur Erreichung der Zielgruppe
+  zeigen, dass die Bewerber*innen sich Gedanken um die Verbreitung und Nutzung
+  der Software machen.
+
+6) Hast du schon an der Idee gearbeitet? Wenn ja, beschreibe kurz den aktuellen Stand und erkläre die Neuerung.
+  Wenn die Antwort hier “ja” lautet, ist es besonders wichtig deutlich zu
+  machen, was die Neuerung ist, die nun gefördert werden soll. Reine Updates,
+  Ausbesserungen und Maintenance sind nicht förderfähig.
+
+7) Wie viele Stunden willst du (bzw. will das Team) insgesamt in den 6 Monaten
+  Förderzeitraum an der Umsetzung arbeiten?
+  250 bis 950 h
+
+8) Skizziere kurz die wichtigsten Meilensteine, die du (bzw. das Team) im
+   Förderzeitraum umsetzen willst.
+   Die Bewerber*innen zeigen, dass sie den Arbeitsaufwand einschätzen können und
+    welche Schritte notwendig sind, um ihr Ziel zu erreichen.
+
+9) Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir
+   über dich (bzw. euch) wissen und bei der Auswahl
+   berücksichtigen?

@@ -1,0 +1,302 @@
+  so dass auch komplexere Ziele wie Installieren von Software, Kompilierprozesse
+  und speichern der Story basierten Quellcodeänderungen auf eigenen 
+
+  Ich programmiere seid über 20 Jahren, und man braucht immer sehr viel
+  Zeit abzuschätzen oder auszuprobieren ob Softwareprojekte einfach
+  zu installieren sind. Manuelle README Anleitungen sind nett, aber 
+  konkurrieren nicht mit App-Stores.
+
+  Installieren ausprobieren und löschen sollte auch für komplexe Umgebungen
+  einfach möglich sein, ist es aber nicht weil es viele verschiedene
+  Betriebssysteme, Programmiersprachen und Einstellungen gibt.
+  Gleichzeitig ändert sich die Welt nur langsam, weil neu Technologien
+  noch nicht alle Funktionien haben. So kommt immer wieder der Wunsch auf
+  alte und neue Techniken zu kombinieren. Auch bei allen Programmen,
+  die Scripting-Sprachen erlauben ergibt sich das Problem der Kombination.
+  (Neo)Vim, Blender, Gimp, Krita sind nur einige bekannte Beispiele.
+
+  IT Glue will Beziehungen zwischen Projekten und Paketdatenbanken
+  flexibel neu gestalten, so dass dass installieren, entwickeln und verteilen
+  von Paketen einfach ist.
+
+  Details:
+  IT-glue ersetzt Github's README.md Anleitungen durch ein Script so dass
+  Entwickler und Anwender Software einfach kompilieren, ausführen und
+  aktualisieren können. Native Paket-Manager der Platform werden soweit
+  sinnvoll mitgenutzt.
+
+  Entwicklern werden weiter Aktionen wie integrieren in bestehende
+  Distributionswege und Abstraktionen zur Verfügung gestellt, die Zeit sparen.
+  Zusätzlich kann man Sammlungen [0] von Software gemeinsam managen so dass
+  gehenseitige Abhängigkeiten von dev-glue verwaltet werden bis zur Distribution.
+
+  Ähnlich wie bei nixpkgs soll es verschiedene Wege geben Build-Ergebnisse zu hashes.
+  Z.b. 'immer aktuell', nach 'binary Kompatibilität' oder 'Source Kompatibilität'
+  Natürlich wird Nixpkgs auch also native Paket-Manager gesehen und kann auch
+  neben conda, brew und weiteren als Distributionsweg angesteuert werden.
+  So wird es möglich durch Trennung von Source und Build-Verzeichnissen
+  auch mehrere Platformen und Toolchains gleichzeitig auszuprobieren.
+
+  Der Graph, der die Paketabhängigkeiten abbildet, kann verwendet werden
+  um 'aktualisiere alles' oder 'kompiliere' alles auszuführen.
+  Also ein "Ninja" aber auf Paketebene was die paketspezifischen Build-Systeme
+  aufruft
+
+  Durch Snapshotting der bekannten Repositories wie PyPi soll es ermöglicht werden auch
+  ohne Lock-Files deterministische Ergebnisse soweit möglich zu erreichen.
+  In Worten: Versuche mir eine Umgebung bereitzustellen wie sie zu dem Zeitpunkt
+  erstellt worden wäre, als der Autor seinen Commit gemacht hat.
+
+  Es ist so kompliziert, weil es viele Betriebssysteme [1],
+  Programmiersprachen [2], sprach- [3] oder distributionsspezifische [4] Paket-Manager,
+  externe Bibliotheken [6] Distributionswege [7] und Toolchains [8] gibt.
+
+  Deswegen brauchen wir ein Tool welches folgende Ziele erreicht:
+
+    1) Cross Language Platform Abhängigkeiten  beshreiben kann. Beispiel
+       "Brauche OpenGL/Vulkan"
+
+    2) Microservice vs Monorepo auflöst.
+       A,B,C hängen voneinander ab, haben gleiche Version 2.0 und deswegen
+       erstelle mir package.json automatisch
+
+    3) Eigene lokale Paket-Bibliotheken managen:
+       Weil Github Autor es nicht gemacht hat checke X aus und nehme an ist
+       Version 2.0 mit Patch P
+
+    4) Scripte bereitstellt die z.B. Firefox mit Libjpeg neu kompilieren
+      starten oder für Chocolately/Conda packagen
+
+    5) Reprodurzierbarkeit auf verschiedenen Ebenen:
+       - Build-Weg
+       - ABI Kompatibilität
+       - Exakte Version und Abhängigkeiten nixpkgs
+
+    6) Wenn möglich opitonal einen Auswertzeitpunkt angeben können wenn es
+       darum geht Abhängigkeiten von bekannten Paket-Datenbanken aufzulösen wie
+       PyPi, Hackage weil es nicht immer Versions-Lockfiles gibt.
+
+  Beispielaufgaben in Worten welche das System lösen können soll:
+
+    Mit Paketen von Ubuntu
+    Mit Paketliste [github:user/repo-1, github:user/repo-2]
+    Finde Abhängigkeiten von repo-2, installiere Ubuntu Pakete
+    stelle build-all Script bereit.
+
+  [0] Sammlungen bedeuten einfach nur Ich habe 30 kleine JavaScript/TypeScript
+      Repositories und 10 Webseiten bzw Apps die zusammen funktionieren und
+      gewartet werden müssen. Also z.B. auch eine gemeinsame Version bekommen.
+      Durch das definieren der Sammlung werden gegenseitige Abhängigkeiten
+      automatisch erkannt und 'package.json' Dateien erstellt.
+      Gleichzeitig können gemeinsame Konfigurationen für Editoren etc
+      bereitgestellt werden. Wie z.B. eslint.json Konfigurationsdatein.
+
+  [1] (IOS,Linux,Windows,BSD,Android,Iphone,Cygwin,Msys,HarmonyOS,...)
+
+  [2] (Python, C, C++, Nim, Rust, Go, Ocaml, JS, TS, Lua, Vim, Perl, PHP, Dart, ..)
+
+  [3] PyPy (Python), Hackage (Haskell), PHP (composer), Perl (perlpackages),
+      Lua, VimL, Emacs, ...
+      C/C++ (2-3 verschiedene)
+i
+  [4] nixpkgs (linux (flakes), Drawin)
+      pacman (msys, ..)
+      apt (ubuntu)
+      gentoo (..)
+      brew (OSX auch Linux)
+
+  [6]
+      Externe Bibliotheken: Beispiele . OpenGL, Vulkan, Proprietäre Machine Learning
+      Libraries von Intel, ..
+
+  [7] Cross:
+      mamba/conda
+      Windows: Chocolately
+      opencv
+      C/C++ (3+)
+      Sprach-Leader (Python: PyPi, PHP: Composer, Haskelll: Hackage, ...)
+      OSX (seltener auch Linux): Brew
+      nixpkgs (Linux, Darwin, Nixos)
+      Linux: Nixos, Debian, Suse, Ubuntu, Gentoo, ..
+
+  [8] Example C/C++ gcc, visual ccp, tinycc, clang, und die vielen embedded
+      Ruby: Ruby,JRuby,MRuby
+      Python: CPython, Mojo, Cpython, IRonPython, ...
+
+2) Welches gesellschaftliche Problem willst du mit deinem Projekt lösen?
+   Sie stellen verständlich dar, welches Problem angegangen werden soll und
+   setzen die Projektidee in Bezug dazu.
+
+   Ich möchte Software-Programmierern es ermöglichen eine Beschreibung zu erstellen,
+   so dass ihre Software mit minimalem Aufwand reproduziert und installiert
+   werden kann so dass typische README.md Dateien auf Github schrumpfen zu
+
+   Sollte der Anwender ein Entwickler sein, so hat er die Möglichkeit zu
+   kontrollieren wessen Abhängigkeitscode er bearbeiten und per Script neu
+   kompilieren kann. Z.b. bereite eine Entwicklungsumgebung vor indem du
+   mir es erlaubts Libjpeg und Firefox Code zu bearbeiten mit einem "Kompiliere
+   alles und starte dann" Script.
+
+3) Wie willst du technisch umsetzen
+  Sie zeigen, dass die Bewerber*innen sich bereits eingehend Gedanken um die
+  Umsetzung der Idee gemacht haben – die Idee ist also kein Schnellschuss. Das
+  bedeutet nicht, dass das Projekt letztlich genau so umgesetzt werden muss.
+
+  Die Vergangenheit hat gezeigt, dass deklarative Systeme gut sind,
+  aber am Ende immer Programmier-Elemente eingefügt wurden wie z.B. Ansible.
+
+  Deswegen will Ich gleiche ein Programmiersprache nutzen
+  wie TS/Rust um ein modulares flexibles System zu schaffen, welches sich an die
+  Aufgabe anpasst.
+
+  Hier ist ein komplexeres Beispiel, welches zeigt wie Libraries von Github
+  geklont werden, um dann in einer temporären eigenen Paket-Liste aufgenommen
+  und nach Abhängigkeiten aufgelöst werden.
+  Dabei kann für jedes Paket angegeben werden, ob es mit cmake, scons
+  zu bauen ist.
+  Gleichzeitig erkennt man die Stärke einer Programmiersprache, weil
+  man git_mit_themen_zweig einmal definieren kann was effizienter ist als eine
+  deklarative Vorgehensweise
+
+  Am Ende werden Scripte definiert, welche das Ziel kompilieren übere mehrere
+  Libraries hinweg und für 2 Godot-Versionen.
+
+  Die Flexibilität erkennt man dass das Ergebnis eine Liste von Aktionen ist.
+  Diese kann beliebig erweitert werden
+
+    story_name   = "godotvnc-update"
+
+    git_mit_themen_zweig = (repo) => git({repo, uploda_to: my_bare_location, story-branch-name: story_name })
+    openssl      = git_mit_themen_zweig('x/libopenssl')
+    libjpeg      = git_mit_themen_zweig('x/libjpeg')
+    libpng       = git_mit_themen_zweig('x/libpng')
+
+    godot_cpp_headers_4  = git:('x/godot_cpp_headers_4', upload_to: my_bare_location, master as story_name)
+    godot_cpp_headers_3  = git:('x/godot_cpp_headers_3', upload_to: my_bare_location, master as story_name)
+
+    godot_vnc_master = git_from_my_repo('xx', {initialize_from: 'github:a/b'})
+    hack_on_godot_3_vnc = godot_vnc_master.worktree_branch('fix_godot_3_vnc')
+    hack_on_godot_4_vnc = godot_vnc_master.worktree_branch('fix_godot_4_vnc')
+
+    packages = [
+      autoconf(openssl, ...),
+      cmake(libjpg, ...),
+      cmake(libpng, ...),
+      nixpkgs("scons")
+    ]
+
+    env_hack_on_godot_3 = solve(...)
+
+    env_hack_on_godot_4 = solve(...)
+
+    actions = {
+      "info": info about paths etc ?
+      build_all = build_all(env_hack_on_godot_3, env_hack_on_godot_4)
+    }
+
+4) Welche ähnlichen Lösungen gibt es schon und was wird dein Projekt anders
+   bzw. besser machen?
+
+   Gentoo: Nutzt Shell Scripte unterstützt aber nur das eigene Linux
+   scons/mamba. Die haben .yaml files. Konfigurationsdateien sind jedoch zu
+   kompliziert wenn man ganze Abhängigkeitsketten mit verschiedenen Toolchains
+   testen will.
+
+   Nixpkgs: Linux/Darwin only. Perfekte Distribution, nützt dem Entwickler aber nichts.
+
+   Github Build hooks. Diese vereinheitlichen aber nicht Abhängigkeiten.
+
+   Arduino IDE: Kein Vergleich
+
+   Maven/pip/...(20x) -> Nur Java/Python/...
+
+5) Wer ist die Zielgruppe und wie soll dein Tool sie erreichen?
+  Sie zeigen, dass die Projektideen potenziell eine große gesellschaftliche
+  Reichweite haben und dass die Bewerber*innen mit dem Wissen über die
+  Zielgruppe ein Verständnis dafür haben, was in der Entwicklung ihrer Software
+  besonders wichtig sein wird. Die Maßnahmen zur Erreichung der Zielgruppe
+  zeigen, dass die Bewerber*innen sich Gedanken um die Verbreitung und Nutzung
+  der Software machen.
+
+  Ich habe genau 3 Zielgruppen:
+
+  1) Nutzer, welche z.B. Tools wie Foocos einfach mal schnell ausprobieren wollen
+     und mit einem einfachen Script ans Ziel kommen wollen
+
+  2) Programmierer, welche sicherstellen wollen, dass die eigenen Tools einfach
+    installiert werden können egal auf welcher Platform
+
+  3) Eine zukünftige Dev-Umgebung, welche mehrere Sprachen untertstützen soll.
+
+6) Hast du schon an der Idee gearbeitet? 
+  Wenn ja, beschreibe kurz den aktuellen Stand und erkläre die Neuerung.
+  Wenn die Antwort hier “ja” lautet, ist es besonders wichtig deutlich zu
+  machen, was die Neuerung ist, die nun gefördert werden soll. Reine Updates,
+  Ausbesserungen und Maintenance sind nicht förderfähig.
+
+  JA: Ich arbeite seid 2+ Jahren an der Idee die Welt für Programmierer
+  einfacher zu machen. Und dies ist nur ein Teil.
+
+7) Wie viele Stunden willst du (bzw. will das Team) insgesamt in den 6 Monaten
+  Förderzeitraum an der Umsetzung arbeiten?
+
+
+8) Skizziere kurz die wichtigsten Meilensteine, die du (bzw. das Team) im
+   Förderzeitraum umsetzen willst.
+   Die Bewerber*innen zeigen, dass sie den Arbeitsaufwand einschätzen können und
+   welche Schritte notwendig sind, um ihr Ziel zu erreichen.
+
+    1) git clone
+
+    2) von git repositories "Paket" mit Version und wie kompiliert wird erstellen
+
+    3) Mit Paketliste und Umgebung (Toolchain Konfigurationen) Build dirs Namen
+       geben
+
+    4) Die Abhängigkeiten in einem Graph abbilden und dann an ein Ninja ähnliches
+       System weitergeben welches in nahe Echtzeit Aktualisierungen je nach Konfiguration
+       anzeigt oder direkt ausführt (git pull und oder rebuild)
+       inkl finalem Packaging/Hochladen zum Handy/VR Brille/Signieren was auch immer
+
+    5) Integration von Beispielen mit Tests
+
+    6) Integration mit Beispielen von sich selbst aktualisierenden Dev
+       Umgebungen und Scripten
+
+    7) TODO: Gegenseitige Abhängigkeiten automatisch erkennen implementieren so
+       dass man die Abhängigkeiten nicht mehr deklarieren muss.
+
+        Idee ist zu sagen;
+        repo1 = git_or_create("repo1")
+        repo2 = git_or_create("repo2")
+        repo3 = git_or_create("repo3")
+
+        mrg = mono_repo_gefuehl ([repo1, repo2 repo3])
+
+        {
+          actions: {
+            shell:
+            commit_and_push_all: ..
+            publish_all: ..
+            rebuild_all: ..
+          }
+        }
+
+
+9) Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir
+   über dich (bzw. euch) wissen und bei der Auswahl
+   berücksichtigen?
+
+   Ich bin Programmierer aus Leidenschaft, Ich bin aber der Meinung dass
+   Programmiersprachen immer noch nicht menschenähnlich genug sind und man
+   immer noch Viel zeit damit verliert Dinge zu tun, der der Computer schneller
+   und besser machen kann. Ich kenne z.B. Nixos seid 2007 aber manche Software
+   läuft unter Windows. Und Nixpkgs ist nur gut darin etwas was mal funktioniert
+   zu verwalten, aber nicht dies Funktionierende zu erreichen.
+   Beispiel nixpkgs-23 + update mit cadquery -> dependency hell.
+   Genau hier soll mein Tool helfen die Kontrolle zu bewahren.
+
+
+Additional pain points:
+  ERROR: Packages installed from PyPI cannot depend on packages which are not
+  also hosted on PyPI.

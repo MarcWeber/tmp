@@ -1,0 +1,542 @@
+
+https://nhahealth.com/brainwaves-the-language/
+-> how often and long you are in what brain states !
+
+
+==> Vorlage
+
+
+Impfschäden ..
+
+TODO: Rezepte integrieren !
+
+1) Beschreibe dein Projekt kurz
+  TITEL: my-personal-health
+  TITEL:
+  Sie stellen verständlich dar, welches Problem angegangen werden soll und
+  setzen die Projektidee in Bezug dazu.
+  NAME ACCOUNT:
+  Vorname/Nachname: Marc/Weber
+  E-Mail: marco-oweber@gmx.de
+  Github: https://github.com/MarcWeber/my-personal-health
+
+
+2) Projektbeschreibung
+
+  my-personal health verfolgt 2 Ziele:
+
+  1) Optimieren des persönlichen Gesundheitszustandes durch sinnvolles
+     Tracken von eigenem und äußerem Zustand Pollen, Ernährung, Leistung
+
+  2) Optional eine anonyme Datenbank, so dass globale Patterns wie z.B.
+     Effekte von Covid oder Glyphosat auf Gesundheit erkannt werden können ?
+
+  Gesundheit geht uns alle etwas an. Gerade Herausforderungen wie etwas veganer
+  werden bedeutet dass man etwas mehr auf die Zusammensetzung des Essens achten
+  muss sonst leidet die Gesundheit manchmal schleichend und leider nicht binär.
+  Wir sind nicht krank/gesund. Sondern wir verändern uns in kleinen Schritten.
+  Und genau diese gilt es zu erkennen und zu optimieren.
+
+
+3) Themenfeld
+  Data Literacy: Projekte, die Nutzer*innen dazu befähigen, mit
+
+4) Gesellschaftliche Herausforderungen
+
+  Uns wird nahegelegt Fleisch sei ein Klimasünder. Wir vergessen aber dabei,
+  dass Fleisch oft alle essentiellen Aminosäuren enthält. Reduzieren wir es
+  müssen wir um so genauer auf unsere Ernährung achten.
+  Gleichzeitig stehen wir neuen Krankheiten wie "CFS" / long covid gegenüber
+  und auch Ärzte verlieren manchmal den Überblick.
+  Bei der aktuellen Gesundheitsumfrage der Schweiz kam hearus, dass die
+  Senioren sich kränker fühlen.
+  Potentielle Einflüsse auf uns Menschen: Glyphosat, Tomatenmark aus China,
+  global Warming, veganer werden, Vitamine, leaky Gut, Allergien, Pollenflug,
+  Mikroplastik, wie Hormone wirkende Weichmacher in Plastik oder Brandschutzmittel,
+  Anti-Pilz-Farben welche Pilze verhindern aber noch schlimmeren Bakterien das
+  Feld überlassen, Wetterveränderungen, Spezielle Enzyme wie in Natto oder
+  Reiswasser die auf unser Microbiom wirken, Kontaktlinsen, Computerarbeit
+  bis hin zu Viren die uns schaden oder aufbauen.
+
+  Es ist sehr leicht seine eigene Stimmung an den falschen Auslösern
+  festzumachen.
+
+  Diese App soll helfen sich selbst aber auch Veränderungen im Kollektiv zu
+  erkennen so dass wir gemeinsam ein bestmögliches Miteinander in der Zukunft
+  haben werden
+
+
+5) Wie willst du technisch umsetzen
+  Profile (Mutter/Baby/..)
+
+  Die UI soll mit Flutter gemacht werden, so dass ein ansprechendes
+  Cross-Platform Erlebnis geboten werden kann. Die Oberfläche besteht
+  der Konfiguration der Daten-Eingaben, der Daten-Aufbereitungen, der
+  Daten-Anzeigen und Analysen bzw Vorhersagen.
+
+  Details den Screens der entsehenden Githubseite entnehmen.
+
+  Fitnesschecks können seniorengerecht einfach sein: "Wie fühlts du dich nach
+  dem aufstehen?" bis hin zu sportlich (Zeit Cooper-Test) oder praktisch:
+  Wie lange brauchst du kleine graue Nummern zu erkennen (Durchblutung
+  Gehirn/Auge/Infektion)
+
+  Das besondere ist, dass man die Standards, nach denen man sich bewerten will
+  selber aussuchen kann. Egal ob Weltgesundheitsorganisation (WHO) oder FDA
+  oder Zeitschrift "Men's Healtth"
+
+  Gleichzeitig wollen wir offen sein für die Verknüpfung mit Hardware wie
+  Blutzucker, Herzschlag, Atemfrequenz, Schrittzähler, Geiger Müller-Zählrohr
+  u.v.m.
+
+
+  Beispieleingabe per Sprache:
+
+    6:20   aufgestanden
+    7:00   200g Conflaken mit 100g Milch
+    7:30:  Mir gehts gut"  
+    8:30   Müde
+    12:00 "Steak": GPT ? "Mit Sosse, aufgewärmt ?"
+
+  Sosse, und aufgewärmt spielt z.B. Histaminintolleranz eine Rolle.
+
+6) Hast du schon an der Idee gearbeitet?
+
+  Ja, Ich habe einen Plan gemacht und eine Liste von Auswertungen, die ich
+  umsetzen will.
+
+7) Link zum Projekt
+  https://github.com/MarcWeber/my-personal-health
+
+8) Innovation
+  60 Wörter
+
+  Innovationen:
+
+  Die Eingaben sowohl der persönliche Fitnesscheck über optische Wahrnehmungen
+  bzw Erinnerungsvermögen als auch die optional AI basierte Analyse der
+  Sprachmemos setzen neue Maßstäbe in der Einfachheit und Geschwindigkeit der Bedienung.
+  Wichtige fehlende Informationen können auch nach Eingabe durch GPT-ähnliche
+  KI abgefragt und ergänzt werden.
+
+
+9) Zielgruppe und wie sie erreicht werden soll
+
+  Wir wollen Ärzte, Labore, Alternativmediziner anschreiben
+  und Win-Win Situationen erarbeiten.
+
+  Kurz: Jeder Mensch von 1 - 99+.
+  Babies: Mütter geben über Muttermilch bereits Stoffe weiter
+  Kinder können getrackt werden, so schlechte Stimmung auf Schlafmenge
+  zurückgeführt werden kann.
+  Schüler wollen lernen und ihr Mittagsloch minimieren. Vielleicht fehlt ja nur
+  eine Karotte ?
+
+10) Erfahrung Link zu bestehenden Open Source Projekten
+  https://github.com/MarcWeber/ z.B. vim-addon-manager
+
+11) Motivation
+  Einfach erklärt: Mir ging es selber eine Zeit lang schlecht. Keine Kraft. Konnte nicht aufstehen.
+  Und Geschichten wie Petersons zeigen dass viele betroffen sein können:
+  https://www.youtube.com/watch?v=3GO4uQaHsCo
+  Altersdiabetis (als Ursache von ..) betrifft fast jeden
+
+12) Team
+  Team bin Ich, weil Ich niemand anderem zumuten kann sein Einkommen und damit
+  seine Existenz durch blockieren seiner Zeit aufs Spiel zu setzen.
+  Deswegen werde Ich das Team wenn möglich spontan sinnvoll ergänzen.
+
+13) Arbeitsstunden
+ 250 < Zahl < 950
+
+14) Meilensteine
+  flutter project anlegen (10min)
+  templates suchen (70min)
+  50 Module inkl Dokumentationen und Beispielen * 6h = 300h
+
+  100 Wörter
+
+15) Bestätigungen
+
+  [ ] Ich habe die Checkliste für Bewerber*innen gelesen
+     [  ] TODO
+
+  [ ] Ich habe die Datenschutzvereinbarung gelesen und stimme der
+      Verwendung meiner Daten im Rahmen der Programmziele des
+      Prototype Funds zu
+
+  [ ] 
+      Ich bin über 18 Jahre alt und habe meinen Hauptwohnsitz in
+      Deutschland.
+
+  [ ]
+      Ich bin damit einverstanden, die Projektergebnisse unter einer
+      Open-Source-Lizenz (z. B. MIT Lizenz), öffentlich zugänglich (z. B.
+      über Github oder BitBucket) zur Verfügung zu stellen.
+
+
+
+
+
+
+
+
+
+
+
+
+============================= + + 
+
+8) Skizziere kurz die wichtigsten Meilensteine, die du (bzw. das Team) im
+   Förderzeitraum umsetzen willst.
+   Die Bewerber*innen zeigen, dass sie den Arbeitsaufwand einschätzen können und
+    welche Schritte notwendig sind, um ihr Ziel zu erreichen.
+
+9) Erfahrung, Hintergrund, Motivation, Perspektive: Was sollen wir
+   über dich (bzw. euch) wissen und bei der Auswahl
+   berücksichtigen?
+
+   Ich hatte selber gesundheitliche Probleme bis hin zu 'kann nicht aufstehen'
+   Viele meiner Freunde habe Allergien. Und es macht keinen Spass sie leiden zu
+   sehen. Da aber Allergien individuell erworben werden reichen einfache
+   "Carbs" tracker bei weitem nicht aus, weil z.B. auch der Pollenflug 
+   mit Daten aus dem Internet automatisch erkannt und gespeichert werden kann.
+
+
+
+Glutene -> 60 days antibodeies to leave your system
+https://www.youtube.com/watch?v=jnlZaMzZaSk
+
+
+
+
+  App/Desktop: Flutter als UI
+
+    [ ] Daten Eingabe
+        Formulare
+
+    [ ] Daten speichern
+        Datebanbank die ("datum", "was", "wert") speichern kann.
+        Z.b. sqlite oder was auch immer
+
+    [ ] Daten Analyse
+        Die Datenanalyse kann unendlich komplex gestaltet werden.
+        Deswegen ja Open-Source. Z.b. Vorhersage vom Blutzuckerspiegel
+        in Abhängigkeit von Herz- und Atemfrequenz ...
+
+     [ ] Option sich selbst eine anonyme Nummer zu geben (?) und zu übermitteln.
+         Bewusstmachen des Konflikts: Datenschutz vs Langzeitverfolgung.
+         Also auch die Option zu geben die ID zu ändern.
+
+  Wie auf den Screens auf Github zu sehen wird das mit Flutter umgesetze
+  Interface sehr individuell anpassbar und benutzerfreundlich:
+
+  1) Daten eingeben
+      Über Sprache
+      Wissenschaftlich Tabellarisch
+      Aus dem Internet (automatisch)
+      Befinden eingeben (einfach)
+      Befinden eingeben (3 Dimensionen müde, ..)
+      Wahrnehmungtest (hören/sehen) (vor 7 Tagen)
+      Wahrnehmungtest (sehen) (vor 7 Tagen)
+      Wahrnehmungtest (Erinnern) (vor 7 Tagen)
+      [ Konfigurieren ] (z.B. eigene Werte definieren wie Stunden Gartenarbeit)
+
+  2) TOP-Vorschläge, die mein Wohlbefinden verbessern könnten
+    -> Iss eine Manhdarine (Vitamin-C)
+    -> denke an deine Freunde und Lache
+    -> Geh in die Sonne
+    -> Heute noch keine Carbs gehabt
+
+  2) Auswertungen & Defizite
+      Ernährungsdefizite
+      Sport Abweichung Soll
+      Wenig-Carbs
+      [ Konfigurieren ]
+      einfach
+
+  3) Daten anzeigen
+      Gegessen 7 Tage:
+      grob (Fette, Kolenhydrate, Eiweiße)
+      Wissenschaftlich (Fette einfach/zweifach/mehrafch, Kolenhydrate, Eiweiße (grob), Aminosäuren, ..)
+      Eingekauft
+      Sport
+      Mental Health
+      Omega 3/6 Verhältnis
+      Herzfrequenz von Tracker holen (vor 7 Tagen)
+      [ Konfigurieren ]
+
+  Pollenflug, Wetter, Temperatur, Sonnezeit, kann aus dem Internet gezogen werden.
+  Essen muss Nutzer Balance finden zwischen wissenschaftlich exakt abwiegen und
+  Spracheingabe fertig sein.
+  Die App versucht dann nach konfigurierten Auswertungen zu erstellen und
+  Defizite zu erkennen
+
+  App/Desktop: Flutter als UI
+
+    [ ] Daten Eingabe
+        Formulare
+
+    [ ] Daten speichern
+        Datebanbank die ("datum", "was", "wert") speichern kann.
+        Z.b. sqlite oder was auch immer
+
+    [ ] Daten Analyse
+        Die Datenanalyse kann unendlich komplex gestaltet werden.
+        Deswegen ja Open-Source. Z.b. Vorhersage vom Blutzuckerspiegel
+        in Abhängigkeit von Herz- und Atemfrequenz ...
+
+     [ ] Option sich selbst eine anonyme Nummer zu geben (?) und zu übermitteln.
+         Bewusstmachen des Konflikts: Datenschutz vs Langzeitverfolgung.
+         Also auch die Option zu geben die ID zu ändern.
+
+  Wie auf den Screens auf Github zu sehen wird das mit Flutter umgesetze
+  Interface sehr individuell anpassbar und benutzerfreundlich:
+
+  1) Daten eingeben
+      Über Sprache
+      Wissenschaftlich Tabellarisch
+      Aus dem Internet (automatisch)
+      Befinden eingeben (einfach)
+      Befinden eingeben (3 Dimensionen müde, ..)
+      Wahrnehmungtest (hören/sehen) (vor 7 Tagen)
+      Wahrnehmungtest (sehen) (vor 7 Tagen)
+      Wahrnehmungtest (Erinnern) (vor 7 Tagen)
+      [ Konfigurieren ] (z.B. eigene Werte definieren wie Stunden Gartenarbeit)
+
+  2) TOP-Vorschläge, die mein Wohlbefinden verbessern könnten
+    -> Iss eine Manhdarine (Vitamin-C)
+    -> denke an deine Freunde und Lache
+    -> Geh in die Sonne
+    -> Heute noch keine Carbs gehabt
+
+  2) Auswertungen & Defizite
+      Ernährungsdefizite
+      Sport Abweichung Soll
+      Wenig-Carbs
+      [ Konfigurieren ]
+      einfach
+
+  3) Daten anzeigen
+      Gegessen 7 Tage:
+      grob (Fette, Kolenhydrate, Eiweiße)
+      Wissenschaftlich (Fette einfach/zweifach/mehrafch, Kolenhydrate, Eiweiße (grob), Aminosäuren, ..)
+      Eingekauft
+      Sport
+      Mental Health
+      Omega 3/6 Verhältnis
+      Herzfrequenz von Tracker holen (vor 7 Tagen)
+      [ Konfigurieren ]
+
+  Pollenflug, Wetter, Temperatur, Sonnezeit, kann aus dem Internet gezogen werden.
+  Essen muss Nutzer Balance finden zwischen wissenschaftlich exakt abwiegen und
+  Spracheingabe fertig sein.
+  Die App versucht dann nach konfigurierten Auswertungen zu erstellen und
+  Defizite zu erkennen
+
+  App/Desktop: Flutter als UI
+
+    [ ] Daten Eingabe
+        Formulare
+
+    [ ] Daten speichern
+        Datebanbank die ("datum", "was", "wert") speichern kann.
+        Z.b. sqlite oder was auch immer
+
+    [ ] Daten Analyse
+        Die Datenanalyse kann unendlich komplex gestaltet werden.
+        Deswegen ja Open-Source. Z.b. Vorhersage vom Blutzuckerspiegel
+        in Abhängigkeit von Herz- und Atemfrequenz ...
+
+     [ ] Option sich selbst eine anonyme Nummer zu geben (?) und zu übermitteln.
+         Bewusstmachen des Konflikts: Datenschutz vs Langzeitverfolgung.
+         Also auch die Option zu geben die ID zu ändern.
+
+  Wie auf den Screens auf Github zu sehen wird das mit Flutter umgesetze
+  Interface sehr individuell anpassbar und benutzerfreundlich:
+
+  1) Daten eingeben
+      Über Sprache
+      Wissenschaftlich Tabellarisch
+      Aus dem Internet (automatisch)
+      Befinden eingeben (einfach)
+      Befinden eingeben (3 Dimensionen müde, ..)
+      Wahrnehmungtest (hören/sehen) (vor 7 Tagen)
+      Wahrnehmungtest (sehen) (vor 7 Tagen)
+      Wahrnehmungtest (Erinnern) (vor 7 Tagen)
+      [ Konfigurieren ] (z.B. eigene Werte definieren wie Stunden Gartenarbeit)
+
+  2) TOP-Vorschläge, die mein Wohlbefinden verbessern könnten
+    -> Iss eine Manhdarine (Vitamin-C)
+    -> denke an deine Freunde und Lache
+    -> Geh in die Sonne
+    -> Heute noch keine Carbs gehabt
+
+  2) Auswertungen & Defizite
+      Ernährungsdefizite
+      Sport Abweichung Soll
+      Wenig-Carbs
+      [ Konfigurieren ]
+      einfach
+
+  3) Daten anzeigen
+      Gegessen 7 Tage:
+      grob (Fette, Kolenhydrate, Eiweiße)
+      Wissenschaftlich (Fette einfach/zweifach/mehrafch, Kolenhydrate, Eiweiße (grob), Aminosäuren, ..)
+      Eingekauft
+      Sport
+      Mental Health
+      Omega 3/6 Verhältnis
+      Herzfrequenz von Tracker holen (vor 7 Tagen)
+      [ Konfigurieren ]
+
+  Pollenflug, Wetter, Temperatur, Sonnezeit, kann aus dem Internet gezogen werden.
+  Essen muss Nutzer Balance finden zwischen wissenschaftlich exakt abwiegen und
+  Spracheingabe fertig sein.
+  Die App versucht dann nach konfigurierten Auswertungen zu erstellen und
+  Defizite zu erkennen
+
+  App/Desktop: Flutter als UI
+
+    [ ] Daten Eingabe
+        Formulare
+
+    [ ] Daten speichern
+        Datebanbank die ("datum", "was", "wert") speichern kann.
+        Z.b. sqlite oder was auch immer
+
+    [ ] Daten Analyse
+        Die Datenanalyse kann unendlich komplex gestaltet werden.
+        Deswegen ja Open-Source. Z.b. Vorhersage vom Blutzuckerspiegel
+        in Abhängigkeit von Herz- und Atemfrequenz ...
+
+     [ ] Option sich selbst eine anonyme Nummer zu geben (?) und zu übermitteln.
+         Bewusstmachen des Konflikts: Datenschutz vs Langzeitverfolgung.
+         Also auch die Option zu geben die ID zu ändern.
+
+  Wie auf den Screens auf Github zu sehen wird das mit Flutter umgesetze
+  Interface sehr individuell anpassbar und benutzerfreundlich:
+
+  1) Daten eingeben
+      Über Sprache
+      Wissenschaftlich Tabellarisch
+      Aus dem Internet (automatisch)
+      Befinden eingeben (einfach)
+      Befinden eingeben (3 Dimensionen müde, ..)
+      Wahrnehmungtest (hören/sehen) (vor 7 Tagen)
+      Wahrnehmungtest (sehen) (vor 7 Tagen)
+      Wahrnehmungtest (Erinnern) (vor 7 Tagen)
+      [ Konfigurieren ] (z.B. eigene Werte definieren wie Stunden Gartenarbeit)
+
+  2) TOP-Vorschläge, die mein Wohlbefinden verbessern könnten
+    -> Iss eine Manhdarine (Vitamin-C)
+    -> denke an deine Freunde und Lache
+    -> Geh in die Sonne
+    -> Heute noch keine Carbs gehabt
+
+  2) Auswertungen & Defizite
+      Ernährungsdefizite
+      Sport Abweichung Soll
+      Wenig-Carbs
+      [ Konfigurieren ]
+      einfach
+
+  3) Daten anzeigen
+      Gegessen 7 Tage:
+      grob (Fette, Kolenhydrate, Eiweiße)
+      Wissenschaftlich (Fette einfach/zweifach/mehrafch, Kolenhydrate, Eiweiße (grob), Aminosäuren, ..)
+      Eingekauft
+      Sport
+      Mental Health
+      Omega 3/6 Verhältnis
+      Herzfrequenz von Tracker holen (vor 7 Tagen)
+      [ Konfigurieren ]
+
+  Pollenflug, Wetter, Temperatur, Sonnezeit, kann aus dem Internet gezogen werden.
+  Essen muss Nutzer Balance finden zwischen wissenschaftlich exakt abwiegen und
+  Spracheingabe fertig sein.
+  Die App versucht dann nach konfigurierten Auswertungen zu erstellen und
+  Defizite zu erkennen
+
+  App/Desktop: Flutter als UI
+
+    [ ] Daten Eingabe
+        Formulare
+
+    [ ] Daten speichern
+        Datebanbank die ("datum", "was", "wert") speichern kann.
+        Z.b. sqlite oder was auch immer
+
+    [ ] Daten Analyse
+        Die Datenanalyse kann unendlich komplex gestaltet werden.
+        Deswegen ja Open-Source. Z.b. Vorhersage vom Blutzuckerspiegel
+        in Abhängigkeit von Herz- und Atemfrequenz ...
+
+     [ ] Option sich selbst eine anonyme Nummer zu geben (?) und zu übermitteln.
+         Bewusstmachen des Konflikts: Datenschutz vs Langzeitverfolgung.
+         Also auch die Option zu geben die ID zu ändern.
+
+  Wie auf den Screens auf Github zu sehen wird das mit Flutter umgesetze
+  Interface sehr individuell anpassbar und benutzerfreundlich:
+
+  1) Daten eingeben
+      Über Sprache
+      Wissenschaftlich Tabellarisch
+      Aus dem Internet (automatisch)
+      Befinden eingeben (einfach)
+      Befinden eingeben (3 Dimensionen müde, ..)
+      Wahrnehmungtest (hören/sehen) (vor 7 Tagen)
+      Wahrnehmungtest (sehen) (vor 7 Tagen)
+      Wahrnehmungtest (Erinnern) (vor 7 Tagen)
+      [ Konfigurieren ] (z.B. eigene Werte definieren wie Stunden Gartenarbeit)
+
+  2) TOP-Vorschläge, die mein Wohlbefinden verbessern könnten
+    -> Iss eine Manhdarine (Vitamin-C)
+    -> denke an deine Freunde und Lache
+    -> Geh in die Sonne
+    -> Heute noch keine Carbs gehabt
+
+  2) Auswertungen & Defizite
+      Ernährungsdefizite
+      Sport Abweichung Soll
+      Wenig-Carbs
+      [ Konfigurieren ]
+      einfach
+
+  3) Daten anzeigen
+      Gegessen 7 Tage:
+      grob (Fette, Kolenhydrate, Eiweiße)
+      Wissenschaftlich (Fette einfach/zweifach/mehrafch, Kolenhydrate, Eiweiße (grob), Aminosäuren, ..)
+      Eingekauft
+      Sport
+      Mental Health
+      Omega 3/6 Verhältnis
+      Herzfrequenz von Tracker holen (vor 7 Tagen)
+      [ Konfigurieren ]
+
+  Pollenflug, Wetter, Temperatur, Sonnezeit, kann aus dem Internet gezogen werden.
+  Essen muss Nutzer Balance finden zwischen wissenschaftlich exakt abwiegen und
+  Spracheingabe fertig sein.
+  Die App versucht dann nach konfigurierten Auswertungen zu erstellen und
+  Defizite zu erkennen
+
+
+
+4) Welche ähnlichen Lösungen gibt es schon und was wird dein Projekt anders bzw. besser machen?
+
+
+alternative solutions
+https://medicalxpress.com/news/2023-08-tracker-brain-health-headband-early.html
+
+https://gadgetbridge.org/
+
+
+https://www.youtube.com/watch?v=zECoaEZRRFU
+-> tric oxide -> healde wounds of father within 6 month
+-> cause of many alzheimer, diabetis, ...
+
+
+https://www.facebook.com/reel/1018853816966675
+-> 80% of suggar is stored in muscles ? So its more important for regulaction than liver? Is this correct?
+
+-> vagus nerve -> Herzratenvariabilität .. training / as indicator / eventually improves recovery
