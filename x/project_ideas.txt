@@ -1,0 +1,4400 @@
+
+// TODO change typing to come closer to itemstorage.
+// Thus assign loose typed objects rather than properties
+// this data will be used to bootstrap
+
+export type PIId = string
+
+export type PIPriority = {
+    prio: "H" | "h" | "m" | "l"
+    reasoning?: string
+}
+
+export type PIStatus = 
+     "ready_for_brainstorming", 
+   | "ready_for_markettest" 
+   | "ready_for_scaling" 
+
+export type PIMarkettest = {
+    title: string,
+    text: string,
+    result?: string
+}
+
+export type PIRelationship =
+      { requires: PIId }
+    | { used_by_all: true 
+    | { commercial_service_for: PIId }
+    | { wingmanfor: PIId } // means could help draw customers to payed service
+    | { uses: PIId }
+    | { integrates: PIId }
+    | { proofs_its_best: PIId }
+    | { offers_service_to: PIId }
+
+export type PIMarketSizeVision = {
+    teur_per_year?: number,
+    reasoning?: string
+}
+
+export type PIMarketTest = {
+    teur?: number,
+    reasoning?: string
+}
+
+export type PICustomerStory = {
+    title: string,
+}
+
+export type ScienceLink = {
+    title: string,
+    link: string
+}
+
+export ProjectIdea = {
+
+    idea_id: PIId,
+    old_ids?: string[],
+
+    priority: PIPriority,
+
+    execution_summary: string,
+
+    science_links?: ScienceLink[]
+
+    tags?: string,
+
+    relationships: PIRelationship,
+
+    market_sizes_visions: PIMarketSizeVision,
+
+    description_for_5_year_old?: string,
+
+    description_for_humans_and_ai: string,
+
+    customer_stories: PICustomerStory[],
+
+    market_tests: string | PIMarkettest[]
+
+    market_tests_results?: string[]
+
+    additional_long_internal_memo?: string
+
+}
+
+export const projects = [
+
+    {
+        idea_id: "it_glue",
+
+        priority: "h",
+
+        execution_summary: `
+        Machine readable recipes describing development and production setups
+        of internet-of-thing-stuff like development environments servers pcs and more
+        `,
+
+        monetization_ideas: [
+            "wingman for data first cloud",
+            "code hosting for companies",
+            "education",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+            { teur: , reasoning: "Potentially any dox whatever company will be using parts of the service" }
+        ],
+
+        description_for_5_year_old?: `
+            Every computer requires some guides what to do.
+            There are many pieces which must work together.
+            And that's what this does.
+        `,
+
+        description_for_humans_and_ai: `
+            None of the well known existing dependency solutions gets it right for all cases:
+            Nix(os) is perfect for distribution, but fails on development.
+            PIP/NPM/.. like don't care about C dependencies well enough.
+            RPM based distributions are never up to date
+            brew has hard time to insall older software
+
+            So we need a solution allowing to declare dependencies which then
+            build either the production system or a development environment along with
+            build all scripts
+        `,
+
+        customer_stories = [
+                {
+                        title: "Install from github copy paste ",
+                        story: `
+User copy pastes project description from Github.
+it-glue sets it up along with dependencies and tries to talk about potential issues early.
+User happy.
+
+`
+                }
+        ],
+
+        market_tests: [
+                "target developers"
+                "target devops"
+                "target users"
+                "target it companies"
+                "target hosting companies"
+        ]
+
+    },
+
+
+    {
+        idea_id: "gradualc_ide",
+
+        priority: "h",
+
+        execution_summary: `
+            Most projects use multiple languages which interact with each other.\
+            For instance Js calls into PHP (API) using SQL and git command line tools.
+            Now if you know the database tables you can generate the PHP code which can provide an API and typing for JS.
+        `,
+
+
+        monetization_ideas: [
+            "monthly fee or ads for related services",
+        ],
+
+        relationships: [
+            ["uses", "gradualc"],
+            ["uses", "datafirstcloud"],
+            ["uses", "it-glue"],
+            ["proofs_its_best", "speed_coding_contents"],
+        ],
+
+        market_sizes_visions: [
+            { teur_per_year: 1.2e7, reasoning: "SAP is world leader and provides education" }
+        ],
+
+        description_for_5_year_old?: `
+            There are different tools to go shopping: Walk by food, use a bike,
+            motorcycle, car, plane, helicopter or a rocket. Owning all and
+            having people to support all of them is very expensive.
+            So this implements a tool which can turn into a car bike rocket and
+            can be used by one person. Now the tool doesn't go shopping it
+            makes a tablet do something.
+        `,
+
+        description_for_humans_and_ai: `
+            Learning one language is about learning the specs (500+ pages),
+            core libraries (20+ modules), the dependency systems with foreign language suppors
+            along with specialized libraries. This takes much time.
+            We want this process to enable the programmer to produce best
+            possible outputs in all important situations targeting the web mobile desktop and embedded.
+            Allowing compiled interpreted jitted (same language) and dynamic
+            (similar language) all requirements should be met for devs and for
+            production allowing less expensive hardware while still saving time.
+
+            The current world divides dev communities into many languages making each less powerful.
+            This unites them again making it a safe long term bet even if start
+            is slow cause the future is always longer than the past.
+
+            By providing compiled and interpreted and dynamic modes and an
+            esperanto like language to target both JS and backends while
+            allownig to interface with existing languages and code it will
+            allow gradual adoption.
+        `,
+
+        customer_stories = [
+            {
+                title: "completing local vars turning user into a ninja coder",
+                story: `
+                If you define a local var its very likely that you're going to use it.
+                So put local vars first in completion. Also by allowing O(1)
+                selection using meta-1- meta-2 of items coding feels like racing now
+                `
+            }
+        ],
+
+        market_tests: [
+                "target developers"
+                "target devops"
+                "target users"
+                "target it companies"
+                "target hosting companies"
+        ]
+
+    },
+
+
+    {
+        idea_id: "gradualc_ide",
+
+        priority: "h",
+
+        execution_summary: `
+            Most projects use multiple languages which interact with each other.\
+            For instance Js calls into PHP (API) using SQL and git command line tools.
+            Now if you know the database tables you can generate the PHP code which can provide an API and typing for JS.
+        `,
+
+
+        monetization_ideas: [
+            "monthly fee or ads for related services",
+        ],
+
+        relationships: [
+            ["uses", "gradualc"],
+            ["uses", "datafirstcloud"],
+            ["uses", "it-glue"],
+            ["proofs_its_best", "speed_coding_contents"],
+        ],
+
+        market_sizes_visions: [
+            { teur_per_year: 1.2e7, reasoning: "If one percent of 10 million programmers payed 10 EUR / month" }
+        ],
+
+        description_for_5_year_old?: `
+            AI and humans write code.
+            To do so efficiently they use tools like this.
+            Existing tools still miss out on smart completions and more
+        `,
+
+        description_for_humans_and_ai: `
+        `,
+
+        customer_stories = [
+                {
+                        title: "fast completion local first",
+                        story: `
+User presses i and completes local var cause what you define you're likely to need.
+The completion menu items can be selected with O(1) such as meta-2 meaning 2nd
+items speeding up speed coding very much.
+`
+                },
+                {
+                        title: "code extends database",
+                        story: `
+user types echo row.age age is not on database IDE suggests adding that field to table eg by writing migration files
+
+`
+                },
+                {
+                        title: "Mixing PHP and JS with typing",
+                        story: `
+User types 
+$x = "() => 7" /* als String<JSTypeIfEvaled<() => number>>.
+echo "const z = $x; const y  = $x"; // y has proper type
+`
+                },
+                {
+                        title: "Proper typing for other execution contexts",
+                        story: `
+    x = sql: FROM users WHERE id = $id
+    x = command[git]: git log
+
+`
+                },
+                {
+                        title: "Collaborative editing code changes and database changes are just patches",
+                        story: `
+User changes DB -> patchset
+User changes code -> patchset
+User applies both to other machine and everything is up to date.
+`
+                }
+        ],
+
+        market_tests: [
+                "target developers"
+                "target devops"
+                "target users"
+                "target it companies"
+                "target hosting companies"
+        ]
+
+    },
+
+
+    {
+        idea_id: "gradualc",
+
+        priority: "h",
+
+        execution_summary: `
+            There are many specialised programming languages like JS, PHP, Rust.
+            Rewiting existing software is expensive. You cannot get the choice
+            of language right because you'll always find a sweet spot in a
+            different language. By making specialized features optional this solution 
+            will be general purpose and allow competing with specialists
+            without the high cost in labour and maintainance and without compromising.
+        `,
+
+        monetization_ideas: [
+            "Companies will pay millions once its up and running",
+            "Educaction will pay for it.",
+        ],
+
+        relationships: [
+            ["uses", "gradualc_ide"],
+            ["uses", "datafirstcloud"],
+            ["uses", "it-glue"],
+            ["proofs_its_best", "speed_coding_contents"],
+        ],
+
+        market_sizes_visions: [
+            { teur_per_year: 1.2e7, reasoning: "If one percent of 10 million programmers payed 10 EUR / month" }
+        ],
+
+        description_for_5_year_old?: `
+            AI and humans write code.
+            To do so efficiently they use tools like this.
+            Existing tools still miss out on smart completions and more
+        `,
+
+        description_for_humans_and_ai: `
+        `,
+
+        customer_stories = [
+                {
+                        title: "fast completion local first",
+                        story: `
+User presses i and completes local var cause what you define you're likely to need.
+The completion menu items can be selected with O(1) such as meta-2 meaning 2nd
+items speeding up speed coding very much.
+`
+                },
+                {
+                        title: "code extends database",
+                        story: `
+user types echo row.age age is not on database IDE suggests adding that field to table eg by writing migration files
+
+`
+                },
+                {
+                        title: "Mixing PHP and JS with typing",
+                        story: `
+User types 
+$x = "() => 7" /* als String<JSTypeIfEvaled<() => number>>.
+echo "const z = $x; const y  = $x"; // y has proper type
+`
+                },
+                {
+                        title: "Proper typing for other execution contexts",
+                        story: `
+    x = sql: FROM users WHERE id = $id
+    x = command[git]: git log
+
+`
+                },
+                {
+                        title: "Collaborative editing code changes and database changes are just patches",
+                        story: `
+User changes DB -> patchset
+User changes code -> patchset
+User applies both to other machine and everything is up to date.
+`
+                },
+                {
+                        title: "Fast dev time on esp32",
+                        story: `
+By compiling dependencyies as modules and only uploading what changed you'll
+get fastest dev cycles possible while allowing to use compiled code such as mp3
+decoding without filling up all memory or having to switch languages if requirements change
+
+`
+                },
+                {
+                        title: "Best performance for websites and backend",
+                        story: `
+Ocaml/Rust/C like languages are known to be faster than JS. Many companies rewrite Haskell to Rust.
+Rust (webassembly) provides slower load times on Web. We'll provide an esperanto like subset of language features
+unifying hashes and structs depending on usage targeting both backends and JS
+to provide a truly universal experience without compromises the first time.
+
+`
+                },
+                {
+                        title: "Targeting the Web and GPU",
+                        story: `
+By targeting web and GPU (both on the web and native) we'll yield a truly write
+once use everywhere experience somewhat like Flutter/Dart but without the
+limitations of OO based languages.
+
+`
+                },
+                {
+                        title: "Java vs Rust",
+                        story: `
+Look at Buck2 vs Bazel. The Java version will never come close performance wise
+simpliy because Strings verify UTF-8 always and due to GC. You can code Java in
+a memory aware away but its easy to mess up and you have to take care a lot.
+`
+                },
+                {
+                        title: "Targeting GPU and vector registers while dissolving barriers what's compiled and jitted",
+                        story: `
+The JS engine used by Safari shows off how gradual optimizations can be implemented by 3 modes:
+Interpreted, Simple compiled version (> 100 runs), complex compiled version
+with heavy optimization (> 1000 runs). Popularity of vscode shows that
+interpreted versions get a long way. Python chiati like libraries compile on
+the fly to the available GPUs on the target allowing faster dev times compared to Rust.
+And Lips like languages show off that having code generating code at runtime
+can sometimes solve some tasks very easily. So we want to allow both and give
+the user the choice by being gradully
+`
+                },
+                {
+                        title: "Escaping dependency hell by having compiled version to allow easy system programming",
+                        story: `
+Like C/Zig/C++ we'll allow compiling to a binary which just works. Thus
+enabling sytsem programming as well unifying system languages and scripting languages.
+`
+                },
+
+                {
+                        title: "Unifying shell scripting",
+                        story: `
+Shell scripts exist to run shell commands.
+Shell commands exist to have a simple human readable way to express actions. 
+So bascially shell commands are a DSL. By treating DSLs as first class citizens
+allowing cross language typing we disslove the needs to have multiple interfaces.
+`
+                },
+                {
+                        title: "Typing experience with least amount of typing",
+                        story: `
+Have a smart compiler which includes a simple proof engine to allow verifying
+SQL strings. Cyclic lists as in Rust etc. By having bidirectional typing as in
+Haskell eliminate much typing while still getting typing benefits.
+Nim/Rust are somewhat slower to write because you have to give every function
+argument even if its triviual. Also type holes will help
+`
+                },
+                {
+                        title: "Automatic await",
+                        story: `
+a,b = promise(1), promise(2)
+log(a + b) // automatic await
+
+`
+                },
+                {
+                        title: "macro support",
+                        story: `
+Of course you can generate frontend code automatically from database schemes
+without sending all your scheme details to the client.
+`
+                }
+        ],
+
+        market_tests: [
+                "target developers"
+                "target devops"
+                "target users"
+                "target it companies"
+                "target hosting companies"
+        ]
+
+    },
+
+
+    {
+        idea_id: "personal_health",
+
+        priority: "h",
+
+        execution_summary: `
+        Your health and well being is most important. However tools to measure
+your welll being are not well known and dementia tests can be satisfied by
+counting a clock. However loss of concentration and memory is gradual process.
+We provide tools to check up on yourself in the cheapest way possible so that
+you know when you should get help eventuallly also suing machine learning to
+learn how to behave to perform the best.
+
+Additionally big huaminatrian questions such as what influence do covid,
+vitamin-d, vaccinations, lithium, fluoride have on our health.
+
+Will provide personal answers about how much to walk exercise meditate see friensd laugh relax
+or influence of pollinations on you.
+
+        `,
+
+        monetization_ideas: [
+            "Subscription model",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+            { teur_per_year: 1.2e7, reasoning: "humanity" }
+        ],
+
+        description_for_5_year_old?: `
+            By playing simple games the system examines how well your brain works.
+            The gut reply of machine learning will try to tell you what
+            behavior will cause what results.
+        `,
+
+        description_for_humans_and_ai: `
+Everybody is telling you hat's best. Nutrition specialists. Exercise/sleep
+coaches. Big pharam industry. Friends. Everybody is different.
+personal_health will provide some minimal games and tests to regularly measure
+your performance. So if you get off you know when to seek help or investigate.
+
+        `,
+
+        customer_stories = [
+                {
+                        title: "Finding immune response to food",
+                        story: `
+By looking at what was eaten system detects your react upon X. So avoid X and you might feel better.
+`
+                },
+                {
+                        title: "Catching early dementia before its visible",
+                        story: `
+User plays regularly once a week a brain game and notices he turns much faster
+worse than he should according to his age. So goes seeks a doctor and finds
+cause X and fixes Y to keep more brain longer.
+`
+                },
+                {
+                        title: "Finding perfect amounnt of sports and over training",
+                        story: `
+Person does too much sport.
+Adds some variation and regeneration and starts feeling much better.
+`
+                },
+                {
+                        title: "people near ZIP all turn worse at the same time",
+                        story: `
+local goverment investigates and finds too much poisson has been put on farm land.
+`
+                },
+        ],
+
+        market_tests: [
+                "For each story create a small advertising campaign"
+        ]
+
+        market_tests_results: [
+        `gutefrage.net -> 8 replied no, no yes`,
+        `de.quora.de -> 4 replied no, no replied yes`
+        ],
+
+        additional_long_internal_memo: `
+            https://www.sciencealert.com/your-vision-can-predict-dementia-12-years-before-a-diagnosis-study-discovers
+            Recall big small and characters
+            timing ask to time 20 seconds -> measure how well it works ?
+            mix sensory inputs and speed or such ?
+
+            https://www.parkinson.org/blog/science-news/golf-courses#:~:text=People%20living%20in%20a%20public,routinely%20used%20on%20golf%20coursesI.
+
+            https://youtu.be/bMQeP4bsGQY?t=679
+            -> Schadstoffe wie Pestizide, Schwermetalle und Feinstaub beeinträchtigen das Immunsystem. Studien zeigen Korrelationen zwischen Umweltbelastung und schweren Corona-Verläufen, z. B. in Regionen mit hoher Stickoxidbelastung.
+            -> 18:28 Munich  second row  houses less particular matter more healthy people
+        `
+    },
+
+
+    {
+        idea_id: "judgeit",
+
+        priority: "h",
+
+        execution_summary: `
+            Give parties a platform to make more or less confident bids on things to create new markets.
+            AI is welcome.
+        `,
+
+        monetization_ideas: [
+            "Subscription model",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+            // { teur_per_year: 1.2e7, reasoning: "humanity" }
+        ],
+
+        description_for_5_year_old?: `
+            You have anything but cannot determine market value easily because
+            you don't know where to look or because its time consuming.
+            This tool allows you to craete a picture and allow parties to make
+            confident and maybe confident offers. So you  fast a idea about how
+            much ice cream you can buy if you sell it.
+        `,
+
+        description_for_humans_and_ai: `
+Everybody is telling you hat's best. Nutrition specialists. Exercise/sleep
+coaches. Big pharam industry. Friends. Everybody is different.
+personal_health will provide some minimal games and tests to regularly measure
+your performance. So if you get off you know when to seek help or investigate.
+
+        `,
+
+        customer_stories = [
+                {
+                        title: "Understanding value of tech",
+                        story: `
+User makes foto of iphone. AI detects Apple macbook air. Ask for details.
+Lookup price on ebay about sold items the last 2 month and estimates price.
+Neighbour needs exactly this device today because going on holidays tomorrow.
+Bidding 200 USD more than its worth. So user sells and orders a second one
+having earned 200 bucks. Easy money.
+`
+                },
+                {
+                        title: "Understanding valsue of estate",
+                        story: `
+User put estate location. McDonalds has setup AI and notes that it dosen't have any store nearby yet.
+Makes highest offer because selling food and saving taxes cause its both estate
+and food business at the same time. User sells buys smaller home and is happy.
+`
+                },
+        ],
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "warehouses_everywhere",
+
+        priority: "h",
+
+        execution_summary: `
+            RAM allows programs to share memory.
+            Program who needs it can use it.
+            Offering warehousse to all online sellers also paving the way for
+            new business models such as allowing autonomous cars to deliver goods
+            or put items for sale immediately without having to care about
+            making appointments with possible buyers.
+        `,
+
+        monetization_ideas: [
+            "If you put somethingt in the warehouse you're the owner and you pay.",
+        ],
+
+        relationships: [
+            // TODO 
+            {offers_service_to: "sell_place_on_the_spot" /* TODO naming },
+            {offers_service_to: "lending platoforms such as groover" /* TODO naming */ }
+            {offers_service_to: "online stores like post boxes" /* TODO naming */ }
+            {offers_service_to: "qr_code_based_delivery" /* TODO naming */ }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Local warehouses allow to exchange goods.
+            it's like putting chocolate on a kitchen table.
+            Somebody will come and pick it up or if turns stale will be thrown
+            away. This safes time for everybody.
+            You can place a destination address on top of the chocolate and
+            delivery will take place by some trucks.
+            Because last mile is expensive offers a cheap alternative to
+            receive goods.
+        `,
+
+        description_for_humans_and_ai: `
+
+        `,
+
+        customer_stories = [
+                {
+                        title: "Understanding value of tech",
+                        story: `
+User makes foto of iphone. AI detects Apple macbook air. Ask for details.
+Lookup price on ebay about sold items the last 2 month and estimates price.
+Neighbour needs exactly this device today because going on holidays tomorrow.
+Bidding 200 USD more than its worth. So user sells and orders a second one
+having earned 200 bucks. Easy money.
+`
+                },
+                {
+                        title: "Getting new USB-C Cable within 5min",
+                        story: `
+User break his USB-cable.
+Because customers of the warehouse such as Amazon or otto.de know that USB-C
+cables get bougth once in a while they are in stock locally. Happy customers
+fastest and best price.
+`
+                },
+                {
+                        title: "post delivery in multy family housse in big cities is a pain for all sides",
+                        story: `
+User is never at home when package arrives. Postman always spends time ringing
+never reaching anyone taking back the package to next post office. User altways
+has to spend 10 minutes waiting for service to get his package and walk there.
+Now local warehouses change everything. A student or pupil is sporty and loves serving others.
+Same about a senior. So both wait for delivering packages locally. They go and pick it and
+for the user and deliver it to him. That is grateful having been worknig all
+day being very tired in the evening.
+`
+                },
+                {
+                        title: "rent stuff don't buy",
+                        story: `
+Need no lamps. No holes. Ordering drilling machine with sharp drills.
+autonomous driving car picks it up and delivers for some cents.
+
+`
+                },
+
+        ],
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "datafirst_cloud",
+
+        priority: "h",
+
+        execution_summary: `
+            commercial service for datafirst. Meaning you have data distributed
+            and can access it online offline and it syncs in a smart user configured way
+            automatically.
+        `,
+
+        monetization_ideas: [
+            "Charge for money for suing the service",
+        ],
+
+        relationships: [
+            {commercial_service_for: "datafirst" }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            People don't want to manage the cloud for datafirst data. So this
+            is a commercial provider doing this
+        `,
+
+        description_for_humans_and_ai: ``,
+
+        customer_stories = [
+
+                {
+                        title: "Customer PC then mobile phone then tablet. datafirst manages the data", 
+                        story: `
+                            User buys PC. then mobile phone then a tablet. Now data is a mess.
+                            Storing all data in datafirst on datafirst_cloud makes everything clean again.
+`
+                },
+
+
+                {
+                        title: "Slow and faster but more expensive remote storage sharing same filesystem.",
+                        story: `
+Family has a rasperry PI eg moodeaudio and a Synology which is stronger and faster but being more expensive to operate.
+Thanks to the shared distributed filesystem the PI will cache what it should cache but can access all files.
+So Synology can switch of disks almost all of the time. Thus perfect experience
+while extending life span of mechanical disks.
+`
+                },
+
+
+                {
+                        title: "Controlling home media needs perfectly with personalized ratings and rating transfer using AI",
+                        story: `
+While mp3,opus,ogg,flac can store meta tags its the many different
+specifications and having custom tags such as "benjamins-rating" while
+eventually posible doesn't have support from common palyers such as VLC on
+Android. Cover images are stored multiple times so coping music also takes
+longer than it should. Same about updating meta data.
+
+By creating a media filesystem which allows JSON like custom tags users and
+players will be more happier.
+Because it's a filesystem it can offer special views and generate
+opus/ogg/flac/mp3/wav/... on the fly if you want to export music for special
+use cases such as *OLD car radio* while downsampling the cover image.
+So you get /music-export-for-car-x-radio and once you acceess it the PC will
+convert on the fly. Once setup easy to work with for everyone.
+
+For changing music such as radio stations each family member can add multiple likes/dislike.
+So that its easy to say play what Ben & Anna liked in the past.
+Radio stations are special because judgment might only be possible after 3-5
+ratings because music can change.
+
+Moreover with machine learning that rating can be used to rate the remaining music.
+
+Please mind that this is only one specialized use case as example what will be
+possible.
+
+`
+                },
+
+        ],
+
+        market_tests: [
+        ],
+
+        additional_long_internal_memo: `
+            Maybe biofeedback devices can yield results, too
+        `
+    },
+
+
+
+    {
+        idea_id: "vr_glasses_to_allow_walking",
+
+        priority: "h",
+
+        execution_summary: `
+            Moving your body is healthy to your body and brain because it removes waste which is linked to dementia.
+            So hav a Macbook Air in your bagpack and VR on your head and start walking around while working.
+
+        `,
+
+        monetization_ideas: [
+            "As App in VR glasses stores",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Moving is fun activates your brain and is healthy. Sitting all the
+            time lets you age earlier. You want to live long so you start
+            moving while doing your desk IT job.
+        `,
+
+        description_for_humans_and_ai: ``,
+
+        customer_stories = [
+                {
+                        title: "User starts walking couple of hours a day and mood and output improves.",
+                        story: ``
+                },
+
+        ],
+
+        market_tests: [
+        ]
+
+
+    },
+
+
+    {
+        idea_id: "vr_controller_as_drawing_tablet_or_mouse",
+        // #[project:look_at_window_and_select]
+
+        priority: "h",
+
+        execution_summary: `
+VR controlles can be moved in 3 and rotated. So you have 6+ axes for each hand
+to control your PC or attributes eg of perns while painting. Enjoy
+        `,
+
+        monetization_ideas: [
+            "As App in VR glasses stores",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Moving is fun activates your brain and is healthy. Sitting all the
+            time lets you age earlier. You want to live long so you start
+            moving while doing your desk IT job.
+        `,
+
+        description_for_humans_and_ai: `
+  https://appfigures.com/top-apps/mac-app-store/united-states/top-overall
+  -> Krita as payed app position 38 !? So people spend money on it
+`,
+
+        customer_stories = [
+                {
+                        title: "User is a painter and has to deliver work fast.",
+                        story: `
+                    So he puts a VR controller in left hand using Wacom tablet in right hand.
+                    With left controller he juggles different pens like eg shooter players.
+                    Once selected with X/Y/Z position he has total control over the color.
+                    With rotation he controls ben porperties like size and transparency.
+                    With thumb he controlls density of cloud pattern.
+                    So he manages to paint the clouds fast and finishes in time
+`
+                }
+        ],
+
+        market_tests: [
+
+              // https://appfigures.com/top-apps/mac-app-store/united-states/top-overall
+              // -> Krita as payed app position 38 !?
+
+
+              // https://devtalk.blender.org/t/issues-porting-blender-to-android-tablets/35419/105
+              // an audience
+//             I’m glad that someone talented like epai demonstrated a valid proof of concept on something many people want
+
+        ]
+
+    },
+
+
+    {
+        idea_id: "better_cnc_3d_printer",
+
+        priority: "h",
+
+        execution_summary: `
+            CNC which halts automatically without destroying hardware if
+            something feels wrong by 3d scanning the situation and measuring expected force
+            on step motors
+       `,
+
+        monetization_ideas: [
+            "sell product",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            If you drive CNC too fast or something unforseen happens its best
+            to stop before there is bigger more expensive damage.
+            If you move your hand you experience the forces and can adjust to the situation.
+            This CNC does the same. If something feels od it stop automatically
+            assisted by vision.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [ ],
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "disrupting_package_delivery",
+
+        priority: "h",
+
+        execution_summary: `
+       `,
+
+        monetization_ideas: [
+            "sell product",
+        ],
+
+        relationships: [
+            ['uses', warehouses_everywhere]
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            If send a package it takes time. You need the box. You have to put a label on it.
+            You have to drive to post or wait till its your turn or order a pick up.
+            Small things are expensive which should no longer be because robots
+            can handle much of the delivery job. So you instead you grab a box put it in.
+            Scan QR code with your phone and you're done. To have a clean
+            environemnt you wrap your thing in paper before butting it into the box
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [ ],
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "ai_talking_box", # doll
+
+        priority: "h",
+
+        execution_summary: `
+       `,
+
+        monetization_ideas: [
+            "sell product",
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            You should not be using screen for too long. Audio has the
+            advantage that you can get asm uch stimuly as you can process. So have a
+            digital AI driven friend which replies to you supervised by your parents.
+            It can balance relaxation vs sport vs listening to your questions
+            and teach you what your parents know is best for you.
+            So you can learn many languages and everything abouth the world and
+            turn wise without even knowing it.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [ ],
+
+        market_tests: [
+            { title: "German parents", text: "Having asked 3 German parents", result: "want children to talk to them"},
+            { title: "Indian parents", text: "Having asked 1 German parents", result: "would be fine"},
+            { title: "TODO: mobile phone version", text: ""},
+            { title: "gutefrage.net - phone only", text: " 5 nos - but was off"}, 
+        ]
+        // https://thehill.com/changing-america/well-being/prevention-cures/478830-how-reading-and-screen-time-affect-the-brains-of/
+        // not more than 1 hour / day
+    },
+
+
+    {
+        idea_id: "easy_piano",
+
+        priority: "h",
+
+        execution_summary: `
+        Learn the piano 10 times faster by simplifying the keyboard
+
+       `,
+
+        monetization_ideas: [
+            "sell product and education also app",
+        ],
+
+        relationships: [
+            {uses: "learning_music_patterns_faster"}
+            // maybe use VR based keyboard playing
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            The piano has a long history. Historically the same gap on the
+            keyboard didn't mean the same gap in music. The well tempered piano changed
+            that but the complicated keyboard forcing 12x the amount of muscle memory
+            training staid. So this project makes playing the piano and connecting hand
+            gestures to music easiest. So learning the piano and being able to
+            play along with others or from memory takes less time.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [
+                {
+                        title: "User learns to play songs on the piano fast",
+                        story: `
+User buys piano and some guides.
+He then memorizes some patterns and chords.
+Because the same pattern is always the same chord he learns fast.
+Starts playing from paper memory and along others easily.
+
+                            `
+                }
+        ]
+
+        market_tests: [
+        ]
+
+        // play alongs with right/left hand side recorded only ?
+    },
+
+
+    {
+        idea_id: "learning_music_patterns_faster",
+
+        priority: "h",
+
+        execution_summary: `
+        Give musical patterns colors and images so that trainee recognizes them faster and has more fun
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            // maybe use VR based keyboard playing
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Western music is based on scales and chord changes. Make them colorful so that patterns are easier to learn.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [
+                {
+                        title: "I IV V I  blues lke scheme",
+                        story: `
+        The levels of blues schema get colored. So user starts improvising without even thinking about it.
+
+                            `
+                }
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "digitalbuttler",
+
+        priority: "h",
+
+        execution_summary: `
+            Have a website with many simple words helping you to get your job
+            done with personalized memory.
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            { uses: "datafirst" }
+            { uses: "it_glue" }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Western music is based on scales and chord changes. Make them colorful so that patterns are easier to learn.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [
+
+/*
+    (human accessible helper for most stuff)
+
+    lookup: word (eg wikipedia and alternatives)
+    buy: name / product
+        with clickpick like views
+        kleinannzeigen
+        shpock
+        amazon
+        ...
+    weather; location
+    route: from a to b to c
+    events
+        - facebook
+         - meine stadt
+
+    Then for each click / view allow rating
+
+    search for mobile phone
+
+    search google de->en blah
+
+    translate de->en->de blah
+
+    ai(chat-gpt, alterantatives): .. foo
+
+    domain age/whois ip revers information
+
+    tap those which helped you the most
+         [ ] amazaon
+         [ ] otto.de
+         [ ] kleinnazeigne / shopck ..
+        ...
+
+        get: any of find-product borrow ..
+
+
+        find-product: red shoe
+        find-second-hand-product: car
+        route-planning: London to Yorkshire by car
+        food: salami pizza and Coke
+        work: payed outdoor activity (= garden work at neighbours :)
+        judge-price: this photo / this thing / iphone 7.0 -> forward to ebay past sold article query
+        somebody: mowe my garden / go shopping / plan a new house/ do my taxes /
+                 whatever you need to get done
+        doctor: use google maps or the existin platforms
+        random-holiday from to .. -> get suggestions
+        appartment: ..
+        lend: PC/ bike / ..
+        borrow: "
+        add-personal-goal
+          - learn guitar
+          - learn Spanish
+          - do sports once a week
+          - ..
+
+    AI can get data to sort by
+        - your position
+        - what you liked in the past
+        - what others (maybe even friends) liked ..
+        - whats available
+        - what matches your personal goals
+
+    IT/Software:
+
+        install software
+            editor with templates and plugnis
+            (Vim,Emacs,Eclipse,Vscode,..)
+            (eg own templates /editors/ .. ) setup your dev env
+        if required use automation software like Python & AutoHotkey
+
+        optimize systems for power users
+            windows -> remove effects
+            osx -> remove effects
+            chrome -> remove scroll effect
+            by having helper application :-! :-P
+
+*/
+        
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "dragoniswatching",
+
+        priority: "h",
+
+        execution_summary: `
+            All IT systems are responsible for doing tasks.
+            Setting up supervision takes time. dragoniswatching minimizes the time by
+            systems only telling "I have run task X and it should be run all X minutes"
+            Then the dragon takes over :-)
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        In order to ensure a service is run you typically have to take notes that it should be done.
+        dragoniswatching is easing this by allowing one place in the code to
+        tell >> I have tidied up my room and I should be doing so once a week<<.
+        This action registers the task to be watched by the dragon at the same time as signaling it was done.
+        So the dragon knows when a task is late. So bugs and problems get caught before they turn severe.
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [
+                {
+                        title: "Webshop cron update product pricing",
+                        story: `
+            Customer adds one line DragonIsWatching::watch(['title' => 'updating prices should have succeeded', 'every' => 'once-a-day']);
+            Due to server update the cron fails running. Because mails are setup incorrectly those fail, too.
+            But the dragon looks at its list identifies that the job didn't run as expected and notifies the owner early before his pricing gets out of sync with the world.
+            One line made the difference between catching the problem early or maybe when its to late.
+
+`
+                }
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "mockitlater",
+
+        priority: "h",
+
+        execution_summary: `
+  Have links to actions and tell user >>not yet done, want to be notified once te have it?<<
+  to get out with ideas faster. 
+  Internally the people who want to get notified will be sent emails once the
+  feature has been implemented.
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            In movies only the facade thus the skin is rendered because its all you see.
+            If you plan a project getting on the market fast is important and
+            this helps to only create the facade but take notes about people who want to
+            look behind. Once there are sufficient people you can implement and notify them
+        `,
+
+        description_for_humans_and_ai: ` `,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "monatliche_freude",
+
+        priority: "h",
+
+        execution_summary: `
+            German employees can get tax exepmt gifts per month.
+            Help them choose what they like the most maximziing happiness.
+            So employers and employees have easiest time exploiting this tax exemption
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        // TODO many. Maybe all products/services can be turned into one
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            German tax system allows employers to gift emtployees once a month.
+            However finding the perfect product can take time.
+            So offer a solution for this
+        `,
+
+        // description_for_humans_and_ai: ``,
+
+        customer_stories = [
+                {
+                        title: "Story employee",
+                        story: `
+    Employee learns about Mitarbeiter-Benefits. Wonders how to talk to his boss about it.
+    Finds monatliche_freude. Sends a link to his/her boss. He signs up. Employee chooses.
+    And all processes are automated and easied. Employee is happy because everything is so smooth. Employer is happy because monatliche_freude automates all processes including the offering of the products for him so he's done fast.
+`
+                }
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "oocload",
+
+        priority: "h",
+
+        execution_summary: `
+            German employees can get tax exepmt gifts per month.
+            Help them choose what they like the most maximziing happiness.
+            So employers and employees have easiest time exploiting this tax exemption
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+
+            datafirstcloud
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            German tax system allows employers to gift emtployees once a month.
+            However finding the perfect product can take time.
+            So offer a solution for this
+        `,
+
+        // description_for_humans_and_ai: ``,
+
+        customer_stories = [
+                {
+                        title: "Story employee",
+                        story: `
+                        Employee learns about Mitarbeiter-Benefits. Wonders how to talk to his boss about it.
+                        Finds monatliche_freude. Sends a link to his/her boss. He signs up. Employee chooses.
+                        And all processes are automated and easied. Employee is happy because everything is so smooth. Employer is happy because monatliche_freude automates all processes including the offering of the products for him so he's done fast.
+`
+                }
+                // TODO all stories from datafirst
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+
+    {
+        idea_id: "microeducation_and_services",
+
+        priority: "h",
+
+        execution_summary: `
+            Everybody wants to make more money by turnin into a specialist. We
+            allow exactly this. We provide micro eduaction and build a market place for
+            using these services at the same time.
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            { uses: "google_maps_as_advertising" }
+            // see all the individual microeducation_and_services>* idea_id s
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            If you don't know yourself you want to ask somebody. Whom to trust ?
+            We will help you find the specialist knowing just enough to get your task done on budget.
+        `,
+
+        // description_for_humans_and_ai: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+    //  [#project:microeducation_and_services>pc_services]
+    //  [#project:microeducation_and_services>babysitting]
+    //  [#project:microeducation_and_services>yoga]
+    //  [#project:microeducation_and_services>singing]
+    //  [#project:microeducation_and_services>cleaning_services]
+
+    {
+        idea_id: "google_maps_as_advertising",
+
+        priority: "h",
+
+        execution_summary: `
+            Google maps is a powerful wingman because free ads.
+            So find poeple who are willing to provide their address to forward
+            busines to the specialized platforms.
+
+       `,
+
+        monetization_ideas: [
+            "each forwarded lead will make money"
+        ],
+
+        relationships: [
+            {'wingmanfor': 'microeducation_and_services' }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            THere are many servicse 
+          - Websites
+          - baby sitting
+          - lawn mowing
+          - water pressuring
+          - webscraping
+          - Neue Ideen wie Chats / blah etc
+          - chat systeme/ telefonierverlage
+          - Autoverleih / Leasing Fahrräder/computer/sim karten
+          - Reisebüro
+          - Verleih
+          - Jobvermittlung
+          - Mediation / Yoga/  ..
+          - Investments
+          - PC support
+            (downsize your images)
+
+        // description_for_humans_and_ai: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "identity",
+
+        priority: "h",
+
+        execution_summary: `
+          purpose: Have an identity better than mobile phone number sticking to your
+          - private
+          - business / German Verein / Stiftung whatever
+       `,
+
+        monetization_ideas: [
+            "even if its free it will be a wingman for all other services"
+        ],
+
+        relationships: [
+            {'wingmanfor': 'almost all projects an identity can relate oto' }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            It's hard to manage the many things you have going on.
+            So allow to create one identity and connecw with other services and
+            track everything you care about.
+        `,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "education_to_the_world",
+
+        // https://openedx.org/
+        // https://www.edx.org/
+        // https://www.fun-mooc.fr/en/
+        // https://onlinelearning.hms.harvard.edu/hmx/
+
+
+        priority: "h",
+
+        execution_summary: `
+            Provide word wide micro certificates about topics and allow people to learn.
+            passive and mulitple ways to be tested.
+            By learning how fast people learn make suggestion what might be best profession / task whatever
+       `,
+
+        monetization_ideas: [
+            "each forwarded lead will make money"
+        ],
+
+        relationships: [
+            {'wingmanfor': 'microeducation_and_services' }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            THere are many servicse 
+          - Websites
+          - baby sitting
+          - lawn mowing
+          - water pressuring
+          - webscraping
+          - Neue Ideen wie Chats / blah etc
+          - chat systeme/ telefonierverlage
+          - Autoverleih / Leasing Fahrräder/computer/sim karten
+          - Reisebüro
+          - Verleih
+          - Jobvermittlung
+          - Mediation / Yoga/  ..
+          - Investments
+          - PC support
+            (downsize your images)
+
+        // description_for_humans_and_ai: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+            // Has done a great job for one of my csutomers
+        ]
+
+    },
+
+
+    {
+        idea_id: "education_to_the_world", // TODO dupliacte !?
+
+        priority: "h",
+
+        execution_summary: `
+          purpose: Have an identity better than mobile phone number sticking to your
+          - private
+          - business / German Verein / Stiftung whatever
+       `,
+
+        monetization_ideas: [
+            "
+                Better HR services
+                Suggest people what to learn to make more money.
+            "
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            THe world is bigger than you can learn. There are many countries.
+            So automated services might know better what's required within a profession and can guide people around the globe.
+            At the same time employers can set priorites and find the perfect
+            match faster or calcualte the knowledge gap somebody has and requires to join a
+            company.
+        `,
+
+        customer_stories = [
+            {
+                title: "Employee: Indian turns doctor",
+                story: `
+                    Indian guy learns early that Germany is short on doctors. So he starts learning German and preparing and gets an employment.
+                `
+            },
+
+            {
+                title: "Employee: Indian programmers changes direction",
+                story: `
+                Indian programmer learns that in Germany Cobol developers are
+                retiring. The systme catches it and and hints learning cobol might be helpful.
+                So he learns cobol and finds employemnt.
+                `
+            },
+            {
+                title: "Employer finds 2000 profiles matching is job profile. By having more options to filter he can presort and find his perfect match",
+                story: `
+                Employer goes on famous platform X on the internet. Posts his
+                job. 300 people apply. Becuase he has done a good profile about what he needs
+                he can sort by match score  only interviews 10 and finds his perfect match
+                `
+            },
+            {
+                title: "African lady builds water well",
+                story: `
+                    African lady wants to do somethnig about her siutation. Lerans all about how to build wells.
+                    And then builds one. Village happyI
+
+                `
+            }
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "tellyourstory",
+
+        priority: "h",
+
+        execution_summary: `
+        If you want to find business partners investors customers everything starts with who are you.
+        This platforms will create a market for telling stories in different ways so that customers can choose the one they like the most.
+       `,
+
+        monetization_ideas: [
+            "charge for service"
+        ],
+
+        relationships: [
+            | {uses: "multispeedvideohosting" }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Ben has startup idea tells his story and finds early adopters",
+                story: `
+                    Ben wants to fly to the moon. So he selects a communication style he likes the most and tells his story.
+                    He shares on Facebook and finds early adopors
+
+                `
+            },
+
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+    {
+        idea_id: "multispeedvideohosting",
+
+        priority: "h",
+
+        execution_summary: `
+        Peoples brain speed depends on many factors such as age temperature and more.
+        So allow the density of a video to adopt to the watcher.
+       `,
+
+        monetization_ideas: [
+            "charge small fee for hosting the videos"
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Ben has business",
+                story: `
+
+                    An old lady with sharp but little bit slower brain watches the video and slows it down.
+                    Now she perfectly understands how to interact with the
+                    business and everyone has a smooth ride when she turns into a customer like
+                    best old friends.
+                `
+            },
+
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "watering_plants_with_some_precise_canons",
+
+        priority: "h",
+
+        execution_summary: `
+        Humans time and water are both important scarce resources.
+        So have robot be smart determine when and how much to water and send water there.
+        So one but for 25 to 50 square meters
+       `,
+
+        monetization_ideas: [
+            "sell the product"
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Ben goes on holiday and knows his garden will be taken care of",
+                story: `
+            Orders the watering bot.
+            Tells him where to water how long if it doesn't rain.
+            Goes on holiday comes back and everything is still reasonably green
+            Looks at the water bill and not much water wasted cause robot targeted the plants directly
+                `
+            },
+
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "happy-connect-adapter",
+
+        priority: "h",
+
+        execution_summary: `
+        If you plug USB-C into a mobile phone tablet laptop or PC and something unexpected happens
+        such as cat jumping on it it falling down human running and not seeing
+        a cable the result often is a diseaster beacuse the usb plugs get damaged often
+        also damaging the main board which is expensive to replace.
+        Magnetic connectors dont work well for disks because if it disconnects it might break the journal.
+        So this connection only disconnects and breaks on high impact protecting mor evaluable assets
+       `,
+
+        monetization_ideas: [
+            "sell the product"
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+            // everybody having a mobile phone or pc because its standardized
+            // every euorpean or USA customer might be a potential customer.
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "ben has connected his disk and sits on the couch",
+                story: `
+                His young son comes and forgets about the cable. So the plug the mainboard the disk are broke.
+                So Ben orders a magnetic connection from China. Now it works.
+                But whenever he moves the operating system reconnects cause the connection is flaky.
+                So his workflow gets disturbed on every move worse because
+                disconnection happned while repairing the journal he has to fetch his backup.
+                Then he finds happy-connect which is stable enough to not be flaky but can break on high impact
+                which it dose once his joyful dog jumps upon him - but he has
+                recoverable trouble only once every couple of month thus orders a couple of
+                happy-connectors and enoys his family dog and life.
+                `
+            },
+
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "book_like_website",
+
+        priority: "h",
+
+        execution_summary: `
+            Humans don't want change. Provide a simple book like reading
+            experience. Thus a big image some title. An index and content.
+            So users feels at home while learning about the company or person behind the website.
+            Because everybody loves it and is simple to use it even replaces Wordpress.
+       `,
+
+        monetization_ideas: [
+            "SAS like WIX"
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+            // everybody having a mobile phone or pc because its standardized
+            // every euorpean or USA customer might be a potential customer.
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Anna wants to tell about herslf.",
+                story: `
+                But doesn't want to be specail. Doesn't want to spend time on learning about HTML and Websites.
+                Wants basic seo be done which is enough. Thus turns into a
+                customer follows the guide uploads some images and fills
+                content and can tell people easily now who she is and what she does.
+                Everybody loves the simplicity of her webisite because they've seen this navigation style before.
+                No searching or distraction.
+                `
+            },
+
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+    {
+        idea_id: "best_possible_speaker_experience",
+
+        priority: "h",
+
+        execution_summary: `
+            Speakers have identities. Some destortions can be softened by adopting the signal
+            Have a PC learn about the room and the speakers and allow least destorted expercience
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+
+    {
+        idea_id: "smart_cooking_plate",
+
+        priority: "h",
+
+        execution_summary: `
+            Have cooking plates with buttons: [cook] [ fry then cook ] and
+            mobile phone support and allowing to weigh the pot with incerdients to always
+            find the perfect cooking behavior.
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            { title: "Anna anfreezes her soup",
+              story: `
+            Anno gets soup out o fthe freezes puts it on and presses [cook].
+            Because the temperature sensor detects frosen content and the weight is known
+            It predicts to take 14 minutes and is done. Anna is happy enjoying her soup
+            cause she wase able to take care of her baby.
+              `}
+            { title: "Ottos perfect steak",
+              story: `
+                Ottos loves steak. So he puts the steak a very thick piece this time.
+                He uses the smartphone to take a foto sideways. The cooking
+                plate estimates weight and thickness and predicts turn and ready times.
+                Otto loves the perfectly medium rare cooked steak thinking he
+                would have had to check on the steak often to get close.
+
+              `}
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "speed_coding_contents", // was maybe 
+        old_ids: ['programmer_speed_typing']
+
+        priority: "h",
+
+        execution_summary: `
+            If you are the best you have to proof it.
+            So by asking people to compete with technology you'll find the best team AI, human, tools, languages, IDE
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            {wingmanfor: "datafirstcloud" },
+            {wingmanfor: "gradualc" }
+            {wingmanfor: "ide" } // todo create projectw
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+        ]
+
+
+              // Similar to https://play.typeracer.com/
+              // announce:
+              // https://www.facebook.com/groups/991449647872534/
+
+    },
+
+
+    {
+        idea_id: "by_keywords",
+
+        priority: "h",
+
+        execution_summary: `
+            Context is setup by multiple assumptions.
+            This platform allows given some assumptions to attach information.
+            Thus it formalizes fining information.
+            Example: buy bosch battery
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            {wingmanfor: "datafirstcloud" },
+            {wingmanfor: "gradualc" }
+            {wingmanfor: "ide" } // todo create projectw
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+
+        {
+            title: "find battery alternative",
+            story: `
+                Mr X asks for mercedes model X battery replacement and finds the only repair shop specializing on it.
+            `
+              // better than Google ?
+              // mercedes XY / batteries
+              // https://www.chip.de/news/Fataler-Engpass-Mercedes-kann-E-Autos-nicht-mehr-reparieren_186038166.html
+              // -> eg show that repair station
+            }
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+    {
+        idea_id: "one_ai_api_for_all",
+
+        priority: "h",
+
+        execution_summary: `
+            There are many different AI solutions out there.
+            You want to try them all to find the best without having the burden to create accounts setup accounting for all.
+            This is what we do. We create playground layer allowing to use all APIs.
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            {wingmanfor: "datafirstcloud" },
+            {wingmanfor: "gradualc" }
+            {wingmanfor: "ide" } // todo create projectw
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+
+        {
+            title: "find battery alternative",
+            story: `
+                Mr X asks for mercedes model X battery replacement and finds the only repair shop specializing on it.
+            `
+              // better than Google ?
+              // mercedes XY / batteries
+              // https://www.chip.de/news/Fataler-Engpass-Mercedes-kann-E-Autos-nicht-mehr-reparieren_186038166.html
+              // -> eg show that repair station
+            }
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+
+    {
+        idea_id: "dream_pair",
+
+        priority: "h",
+
+        execution_summary: `
+            A mobile phone and attaching a display is all you need. Because its fast enough
+            So provide a phone which can replace the computer easily.
+       `,
+
+        monetization_ideas: [
+            "selling the phone"
+        ],
+
+        relationships: [
+            {wingmanfor: "datafirstcloud" },
+            {wingmanfor: "gradualc" }
+            {wingmanfor: "ide" } // todo create projectw
+            {uses: "voice_control" }
+            // many more
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+
+    {
+        title: "family payes less",
+        story: `
+Parents and chilrden want to have their own phone.
+So they bulk buy phones for all family members.
+Now some have to do serious work sometimes.
+So they buy cheap HDMI connected monitors, keyboards and mice.
+Additionally if they want to look at family images and videos 
+they just connect their phone to the TV and enjoy.
+        `
+
+    },
+
+    {
+        title: "African internet cafee",
+        story: `
+            You buy the phone. Tehn you join a cafee occassionally which has the monitor keyboard and mice.
+            You pay for using it as long as you need it. Then you go hope with your phone and your data.
+            Clean solution avoiding having to pay for a PC and a phone.
+        `
+
+    },
+
+    {
+        title: "Startup",
+        story: `
+            A startup needs to save money. So they negotiate paying for phones and monitors but pay little less salary.
+            Everobdy is happy about sharing the hardaware.
+        `
+
+    },
+
+    {
+        title: "Camper",
+        story: `
+        A person goes on a journey with his mobile phone. He loves the sun. So
+        he payes a special einks display which dosen't require a background light.
+        The very strong sun falls on his skin and device making him feel relaxed and happy
+        while planning his day.
+        `
+    },
+    {
+        title: "Biker",
+        story: `
+        A biker buyes a small eink display and enables navigation. Because it
+        doesn't require background light his battery will last very long.
+        The sun illuminates the map and he can always look at it whenever he wants.
+        `
+    },
+
+    {
+        title: "Anna wants to use it as tablet",
+        story: `
+        Anna wants to do a product research on Amazon.
+        Thus she attches her phone at the back of the display literally turing her phone into a tablet.
+        `
+    }
+        ]
+
+        market_tests: [
+        ]
+
+
+        additional_long_internal_memo: `
+
+            Cold be that USBC takes much energy to send screen data.
+            So for close screens maybe own pluggable cable must be used ?
+            USBC can be supported additionally.
+
+            How to provide multiple identities (busniess / private) for all ?
+
+            Checkout 
+                - fuchsia os (has solved software distribution by hashing !)
+                - open harmony (harmony os) / huawai
+                  cluster of devices
+
+
+
+        to be useful for developers
+          - need big flash
+          - docker (thus custom andorid kernel)
+
+
+  mobile phone & display might be the future for occasional users such e as
+
+  computer with 
+  - mobile features and screen
+  - good color
+  - e ink (saving battery less colors) https://www.youtube.com/watch?v=VVqit34DVi0
+    eg for navigation
+  - tablet like big screen
+  - 4K sometimes or TV
+  is all you need
+
+
+  families and evenybody else.
+  4K monitor costs 200 EUR
+  Mobile phone less than 300 EUR (second hand one)
+  500 EUR for both mobile phone which behaves like a PC
+
+  gemini -> white label solution for sim cards {{{
+
+  Yes, there are white label solutions available in Germany for SIM cards, particularly in the context of IoT/M2M connectivity and for companies looking to become Mobile Virtual Network Operators (MVNOs) or resellers.
+
+  Here's a breakdown of what that entails and some providers:
+
+  What is a White Label SIM Card Solution?
+
+  A white label SIM card solution allows a company to offer mobile connectivity services (data, SMS, sometimes voice) under their own brand, without owning or operating the underlying network infrastructure. This is typically achieved by partnering with:
+
+  MVNO Enablers (MVNEs) or Aggregators (MVNAs): These companies provide the platform, technology, and often the wholesale agreements with mobile network operators (MNOs) that allow you to launch your own branded mobile service. They handle the backend complexities like network integration, billing, and technical support.
+  IoT Connectivity Providers: Many companies specializing in IoT (Internet of Things) connectivity offer white label SIM solutions for businesses that need to connect their devices (e.g., smart devices, machines, sensors) and want to brand the connectivity as their own.
+  Key Aspects of White Label SIM Solutions in Germany:
+
+  Network Access: White label providers typically have agreements with major German network operators (like Telekom, Vodafone, O2) or can aggregate across multiple networks, ensuring broad coverage.
+  SIM Management Portals: You'll usually get access to a portal to manage your SIM cards, monitor data usage, activate/deactivate services, and handle billing.
+  Customization: The degree of "white label" can vary. It can range from simply reselling a service under your own name to having your logo printed on the SIM cards and a fully branded customer journey.
+  eSIM Solutions: Many providers are also offering white label eSIM solutions, which provide even greater flexibility for managing connectivity remotely.
+  Focus Areas: While some providers cater to general mobile services, many specialize in IoT/M2M, offering features like static IP addresses, VPN solutions, and flexible data pools tailored for device connectivity.
+  Examples of Providers/Concepts in Germany (or with a strong presence/offering in Germany):
+
+  Epsilon (FUSION IoT): They offer "Connectivity-as-a-Service" as a white label solution for manufacturers, allowing them to resell connectivity under their own brand for IoT devices. They highlight independence from traditional network operators and a comprehensive SIM management portal.
+  newSIM: Explicitly mentions "White Label Mobilfunk" (White Label Mobile Communications) and "Branded Reseller" on their German website, indicating their focus on enabling other companies to offer mobile services under their own brand.
+  White Label SIM (whitelabelsim.com): While they have a global presence, they mention expanding their private-label wireless MVNO programs to numerous countries, including native services, making them a potential option for Germany. They offer a hosted SaaS platform for various mobile services.
+  Boxo: Focuses on white label eSIM solutions, allowing mobile apps to embed an eSIM store for their users, providing connectivity in over 200 countries, including Germany.
+  eSIM Access: Offers white label eSIM solutions with quick start options, including pre-built eSIM shops and API access for custom sales experiences, operating with global Tier 1 operators (including Deutsche Telekom).
+  Things Mobile: While they also sell directly on Amazon.de, they offer SIM cards for IoT and M2M with multi-network connectivity in many countries (including Germany) and APIs for custom integrations, which can be leveraged for white label solutions.
+  TNF Solutions: They are an integrated MVNO and IoT solutions partner that offers MVNO white label reseller opportunities, allowing businesses to offer mobile voice, SMS, data, and IoT services under their own brand.
+  1GLOBAL: Offers "Telco as a Service" and white-label eSIM plans via their Connect-API or fully branded QR codes, with coverage in over 190 countries, indicating strong support for white label solutions in markets like Germany.
+  When looking for a white label SIM solution in Germany, consider:
+
+  Your specific needs: Are you looking for consumer mobile services, IoT/M2M, or something else?
+  Network coverage: Which German networks do you need access to (Telekom, Vodafone, O2)?
+  Pricing model: Do they offer flexible tariffs, pay-as-you-go, or bundled packages?
+  Management tools: How robust is their SIM management portal and API?
+  Support: What kind of customer and technical support do they offer?
+  It's recommended to contact these providers directly to discuss your specific requirements and receive tailored offers.
+  }}}
+
+  {{{ 
+  https://www.fairphone.com/wp-content/uploads/2015/09/Fairphone2-Cost-Breakdown.pdf
+  gemini -> fairphone -> how they manage it
+
+        It is not easy for any company to enter the smartphone market without potentially encountering many patents. The industry is rife with "standard essential patents" (SEPs) which cover technologies deemed essential for a product to comply with industry standards (like 5G or Bluetooth). Holders of SEPs are generally obliged to license them on "Fair, Reasonable, and Non-Discriminatory" (FRAND) terms. However, obtaining these licenses can be challenging and lead to disputes.
+
+        Fairphone has acknowledged this challenge:
+
+        Fairphone's CEO, Eva Goudens, stated that the company has "struggled in the past to obtain FRAND licenses and faced litigation threats from patent intermediaries." This highlights the difficulty even for companies with a specific mission like Fairphone.
+        Fairphone explicitly mentions "Royalties to patent holders, IP licenses" as part of their cost breakdown, indicating they engage in licensing agreements.
+        They also proactively work to manage intellectual property rights within their supply chain and create reserves for potential future royalty payments and legal costs.
+        Fairphone has also applied for their own patents (five design patents and two utility patents) for their modular architecture and connectors, showing a defensive and strategic approach to IP.
+        Their modular design, which emphasizes repairability and longevity, also indirectly helps in a patent-heavy environment. While not directly avoiding patents, it differentiates them by focusing on product lifecycle rather than rapid feature iteration, which is often a driver of new patenting by larger competitors.
+
+        In what countries do they operate?
+        Fairphone primarily operates in Europe. They ship to a wide range of European countries, including:
+
+        Austria
+        Belgium
+        Bulgaria
+        Croatia
+        Czech Republic
+        Denmark
+        Estonia
+        Finland
+        France
+        Germany
+        Greece
+        Hungary
+        Ireland
+        Italy
+        Latvia
+        Liechtenstein
+        Lithuania
+        Luxembourg
+        Monaco
+        Netherlands
+        Norway
+        Poland
+        Portugal
+        Romania
+        San Marino
+        Slovakia
+        Slovenia
+        Spain
+        Sweden
+        Switzerland
+        United Kingdom
+        While their primary focus is Europe, they have made some tentative steps into other markets, such as the USA through a partnership with Murena for the Fairphone 4. Some authorized resellers also ship Fairphones to other places, like Vireo (worldwide) and Palcom (Taiwan). However, they note that their devices are optimized for European cellular and 4G/LTE networks, and 5G is optimized for European 5G (Sub-6GHz), meaning mmWave 5G used in some other countries is not supported.
+
+
+        How do they cope with bigger competition which might have more patents?
+        Fairphone copes with bigger competition and their extensive patent portfolios by:
+
+        Differentiating through their core mission: Fairphone's primary differentiator is its commitment to sustainability, ethical sourcing, modular design for repairability, and longevity. This appeals to a niche market of consumers who prioritize these values over having the latest, most feature-rich device. This focus shifts competition away from a "specs race" (where larger companies with vast R&D budgets and patent portfolios excel) to a values-based proposition.
+        Focusing on a "fair" ecosystem: They actively work to establish transparent supply chains, source conflict-free and fair materials (tin, tantalum, tungsten, gold, cobalt, etc.), and improve working conditions. This ethical stance is a powerful brand differentiator.
+        Modular Design and Longevity: By designing phones that are easy to repair and upgrade, Fairphone extends the lifespan of their devices. This directly counters the industry trend of rapid obsolescence and encourages consumers to keep their phones longer, reducing the environmental footprint. This also means less pressure to constantly innovate with entirely new, potentially patent-infringing, features.
+        Strategic Licensing and IP Management: As mentioned, Fairphone acknowledges the need to pay royalties for essential patents. They actively manage their intellectual property, applying for their own patents to protect their unique design and architecture, and working with suppliers to understand and navigate the complex IP landscape. They also create financial reserves for potential legal costs related to patent negotiations.
+        Community Engagement: Fairphone fosters a strong community of users who are invested in their mission. This loyalty and advocacy provide a strong base that is less susceptible to the marketing efforts of larger competitors.
+        Operating within a specific niche: Instead of trying to compete head-on with giants like Apple and Samsung across all segments, Fairphone focuses on a segment of the market that values ethical consumption and repairability. This allows them to build a viable business model without needing to match the scale or patent breadth of the largest players.
+
+         Quellen
+
+
+  }}}
+        `
+
+    },
+
+
+    {
+        idea_id: "upload_video_and_get_improvement_suggestions",
+
+        priority: "h",
+
+        execution_summary: `
+            The wordl is changing faster than you can think.
+            Users rarely know all tricks.
+            So allow PC or mobile phone users to upload a short video about what they were doing
+            and let specialists provide suggestionts about how to speed up the given workflow
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+
+        {
+            title: "User X has to edit 500 images",
+            story: `
+            But struggles because he never has heard about keyboard shortcuts.
+            So after 10 images he thinks there must be a better way.
+            He uploads what he did along with a description.
+            10 minutes later gets suggested an AI workflow comfyui which does
+            exactly what he wants but faster.
+            `
+            }
+        ]
+
+        market_tests: [
+        ]
+
+    },
+
+
+    {
+        idea_id: "boatomobile",
+
+        priority: "h",
+
+        execution_summary: `
+        If you're living in sea region or want to have a unforgettable holiday
+        this is for you: Travel fast on land and water saving the environment
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Anna crosses lake Bodensee",
+                story: `
+                Anna lives in Germany but works in Switzerland.
+                So she buyes the boatomobile and is protected from rain wind and cold weather.
+                If its very stormy she uses the ferry.
+                `
+            }
+        ]
+
+        market_tests: [
+        ],
+
+        additional_long_internal_memo: `
+  Bodensee, CH lakes .. have velomobil like bike which can also swim.
+  Would be so much fun
+  probably small market
+
+https://www.reddit.com/r/velomobile/comments/1gjwoqx/any_amphibious_velomobiles_or_ideas_for_such_a/
+https://www.reddit.com/r/bikecommuting/comments/1aje841/saw_this_person_velomobile_commuting_in_the_rain/
+https://youtu.be/sw6u-gU4xr0?t=97
+https://www.youtube.com/watch?t=1030&v=soMV--uBHZ4&feature=youtu.be
+        `
+
+    },
+
+
+    {
+        idea_id: "shop_search_with_ai",
+
+        priority: "h",
+
+        execution_summary: `
+        You know what you want - but finding what you look for can be challinging bechause because setting up filters requires much scrolling.
+        With help of AI the known attirubtes of your text query turn into preicse queries
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+            {
+                title: "Anna crosses lake Bodensee",
+                story: `
+                Anna lives in Germany but works in Switzerland.
+                So she buyes the boatomobile and is protected from rain wind and cold weather.
+                If its very stormy she uses the ferry.
+                `
+            }
+        ]
+
+        market_tests: [
+        ],
+
+    },
+
+
+
+    {
+        idea_id: "dating_app_by_money",
+
+        priority: "h",
+
+        execution_summary: `
+            Women want men which can support their children.
+            So allow money to be payed which the children will get if there are any.
+       `,
+
+        description_for_5_year_old: `
+        If women choose a partner they bet on the future. Bot today you go
+        grocery shopping to pay for results not a maybe uncertain future.
+        This platform allows women to choose men like you choose toys in a shelf.
+        For Geramny / Europe ther can be softer version such as do you have a job ?
+        `
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+        ],
+
+    },
+
+    {
+        idea_id: "programmer_fitness_score",
+
+        priority: "h",
+
+        execution_summary: `
+            Check your fitness (typnig speed, memory, understanding of topics) and copmare with others
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            { wingmanfor: "datafirst_cloud" },
+            { wingmanfor: "gradualc" },
+            { wingmanfor: "gradualc_ide" }
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        // description_for_5_year_old?: ``,
+
+        customer_stories = [
+        ]
+
+        market_tests: [
+        ],
+
+    },
+
+    {
+        idea_id: "voice_control",
+        old_ids: ["speech_to_text_with_pitch"],
+
+        priority: "h",
+
+        execution_summary: `
+            Allow users to control pcs or mobile phones using voice and pitch for disambuigation
+       `,
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+
+        market_sizes_visions: [
+        ],
+
+        customer_stories = [
+            {
+            title: "fixing RSI",
+                story: `
+                Having used Emacs and pressed meta way too often cause injury to yearns.
+                So using micrphone to allow healing while keeping working.
+                Famous example Tavis Rodd: https://www.youtube.com/watch?v=8SkdfdXWYaI
+                `
+            },
+
+            {
+                title: "Ben having ADHD talking to himself to help him focus setting goals keep synchronized",
+                story: `
+                    Ben starts using voice controls and notices more focus more target driven behavior and is very happy.
+                    He then recalls that even brain split people use this technology to synchronize both hemispheres.
+                `
+            },
+
+            {
+                title: "emma is a true supertasker",
+                story: `
+        Emma is  typical true super tasker. Her mind can learn vocabluary while driving without performance loss.
+        She belongs to the 2 percent of people who have learned to do so. However the PC is always slowing her down.
+        Precise images come in her mind faster than her muscles can
+        type. Even then thoughts like Within firefox open google is one picture but a
+        slow serialize action. So she starts voice coding cause she
+        speaks very fast and starts doing multiple tasks at the same time. She never
+        felt that relaxed while working cause pure focus and speed no constant
+        repeating of thoughts in her brain to slow down to the keyboard.
+        Her efficiency increased maybe by 3x. Maybe fighting ADHD is
+        not about staying concentrated but about getting thoughts out as fast as the
+        brain can generate them ? After all its proven today that if
+        you interrupt by training the wrong hand you get dyslexia due to constant
+        interruption. Its the first time in her life that working actually is fun relaxing.
+        Actually after having her work done she's calmer than ever and
+        more loaded with energy she could ever have imagined.
+        `
+            }
+        ]
+
+        market_tests: [
+        ],
+
+    additional_long_internal_memo: `
+      submitted: https://www.awesomefoundation.org/en
+      submitted: some more ..? Forgot
+      submitted: sidnfunds.nl
+      submitted: wauland.de
+      submitted: https://www.sidnfonds.nl/aanvragen/pitchjeidee/bedankt
+      https://github.com/gcambara/wav2letter/tree/wav2letter_pitch
+      https://github.com/dictation-toolbox/aenea
+
+      Why we need pitch ? because it doesn't always get the difference
+      end of function |  paste
+      vs 
+      end of | function paste
+      https://youtu.be/OS900edsiB0?t=1138
+      So by changing pitch for it there are less missunderstandings which are always annoying
+    `
+    },
+
+
+    {
+        idea_id: "passive_moving_bed",
+
+
+        priority: "h",
+
+        execution_summary: `
+            On average you spend 8 hours a day in bed. And more importantly its
+            the most important time of your life because the brain cleans up.
+            Now assist the body in moving flooding the body with blood and lymph assiting it in doing the job.
+            Use the moving bed
+       `,
+
+        science_links: [
+            {
+            title: 'doctor illustrating why its so important to sleep well and keep lymph floating',
+            link: 'https://www.facebook.com/reel/1148203199983374/?rdid=sxHeDkuEO3AJ4Ilz&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fr%2F1B2YfzmiJ6%2F',
+            }
+        ],
+
+        tags: "#health",
+
+
+        monetization_ideas: [
+            "selling it"
+        ],
+
+        relationships: [
+            {uses: "brain_measuring_health_games"}
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        customer_stories = [
+            {
+            title: "Mr X feels tired",
+                story: `
+                Buys the bed. His brain gets flooded with blood at night and does its job. Long term no wake up like this! Totally refreshej
+                `
+            }
+        ]
+
+
+    },
+
+
+    {
+        idea_id: "brain_measuring_health_games",
+
+        priority: "h",
+
+        execution_summary: `
+            Without brain you're totally lost.
+            The fun think is that you do something good to your brain not by using it but by relaxing doing sport or sleeping ?
+            So how to find the optimal usage patterns and then accept and be happy with it ?
+
+       `,
+
+        tags: "#health",
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            {uses: "brain_measuring_health_games"}
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            You can be unhealthy in many ways. Not sleeping enough. Not eating
+            right. Not having enough sun. Not seeing friends. Slowly turning
+            too fat and turning diabetic. The brain health games will help you
+            understand how fit you are and whether you're aging naturally.
+            Games can be as simple as teaching vocabluary or memory.
+        `,
+
+        customer_stories = [
+        ],
+
+        market_tests_results = [
+            `gutefarge.net -> 8 times no`,
+            `de.quora.com -> 6 times no one time yes !`, // <<< !
+            `asking friend -> no`,
+
+
+            // # doctors
+            `Kurt Müller => waiting`
+
+// Hallo Herr Kurt Mülller,
+
+// Ich habe ihr Interview  "Immunsystem am Limit" [1] gesehen.
+
+// Sie sprechen z.B. davon gerne messen zu können, ob immunmodulierende Substanzen Gutes oder Böses tun.
+
+// Ich will App schreiben, welche es erlaubt die Fitness von Menschen zu messen.
+// Also das grau zwischen mir gehts gut oder Ich bin krank. Vielleicht gibts hier einfache Wege wie
+// - Memory spielen, und messen wie lange man braucht
+// - Bilder zeigen, bereits gesehen
+// - schwache grau-Bilder erkennen soll auch funktonieren weil z.B. bei
+//   Entzündungen die Augen schlechter durchblutet sind.
+
+// Der erste Markttest eine von 1/16 Personen hat ja, gesagt, dass sie eine solche
+// App nutzen würde.
+
+// Wenn man die Daten der App teilt, kann man über Big-Data eben auch herausfinden
+// wie schwer ist Covid, wo ist Covid schwer. Gibts Golfplätze mit Spritzmitteln
+// in der Nähe oder Stickstoff-Verbindungen in der Luft oder Feintsaub (erste Reihe)
+
+// Ihr Vortrag hat meine Vorstellung erweitert und bestärkt: Vielleicht kann man auch messen,
+// ob das Immun-System gut funktioniert ? Und vielleicht kann man so auch helfen
+// die Entscheidung zu treffen ab wann es sinnvoll ist einen Arzt zu besuchen zur
+// Abklährung.
+
+// Ich kenne einige Menschen auch schon vor 20 Jahren (mich selbst einbezogen)
+// die auf einmal gesagt haben; Ich fühle mich nicht mehr so fit.
+
+// Meine Idee war eigentlich ein einfaches Maß dafür zu finden, ob man normal
+// altert oder schneller.
+
+// Haben sie Interesse an einer Zusammenarbeit ?
+
+// MfG
+// Marc Weber, Villingen-Schwenningen
+
+// [1] https://www.youtube.com/watch?v=bMQeP4bsGQY&t=2783s
+
+
+        ]
+    },
+
+    {
+        idea_id: "predict_health_app",
+
+        priority: "h",
+
+        execution_summary: `
+            Measure your various performances like sport brain.
+            Record behavior. Based on behavior predict the future
+       `,
+
+        tags: "#health",
+
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            {uses: "brain_measuring_health_games"}
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        Imagine your best friend being a stone. Wouldn't be much fun. So in
+        order to relate to your loved once their brain and health must be fine.
+        This tools helps you measuring your brain health by simply giving it tasks
+        thereby identifying slow downs such as blockings dementian diabetis not
+        enough sleep bad food or just a flue.
+        So it tells you when to step back and think about your brain health.
+        `,
+
+        customer_stories = [
+        ]
+
+    },
+
+
+    {
+        idea_id: "trucks_and_trailers",
+
+        priority: "h",
+
+        execution_summary: `
+            Some tracks drive without trailer.
+            So they could pick one up and drive them some some way.
+            So companies can deliver faster easier with less trucks and routes.
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        Imagine a company producing ice cream. Some must go north. Some south.
+        So the company drives the truck and trailers to a park & ride. Places the trailer there.
+        Starts moving north. Another truck without trailer picks up the trailer and moves it south.
+        Happy customers because delivery times went down
+        `,
+
+        customer_stories = [
+        ]
+
+    },
+
+
+    {
+        idea_id: "meotional_website_testing",
+
+        priority: "h",
+
+        execution_summary: `
+            Your brand your vibe. Test it. By having random people look at your page and talk about how it made them feel.
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+            "charge for the service",
+        ],
+
+        relationships: [
+            // can be used by all own procudcts/services/websites/apps/experiences
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Its said that in human realtionships its most important how you made somebody feel. So this service allows measuring it.
+        `,
+
+        customer_stories = [
+        ]
+
+    },
+
+
+    {
+        idea_id: "houses_you_can_clean_with_pressure_washer",
+
+        priority: "h",
+
+        execution_summary: `
+            Tired of cleaning your house ? Use pressure washer and be done in minutes
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+            "charge for the service",
+        ],
+
+        relationships: [
+            // can be used by all own procudcts/services/websites/apps/experiences
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            CLeaning house takes time. If you had water proof cupboards and a
+            sink you could just use the pressure washer and be done.
+        `,
+
+        customer_stories = [
+        ]
+
+    },
+
+
+    {
+        idea_id: "rocking_sofa",
+
+        priority: "h",
+
+        execution_summary: `
+            How about cheaping *chips* watching TV and exercise? Learn about the rocking sofa :-)
+            Moving means living and still sitting means slow death.
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            // can be used by all own procudcts/services/websites/apps/experiences
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Your body depends on nutritients. Especially the cartilages between joints.
+            So alow a comfy coach to be like a swing alowing moving and strengthening your back.
+            It improves blood flow, helps cleaning the the brain and feeds cartilages.
+            Many organs require constant blood flow to produce vitamin-D and others.
+            Immune system will have easier time to find and defeat all bacteria and viruses.
+
+
+        `,
+
+        customer_stories = [
+            {title: "Elisabeth turning more awake while sitting",
+            story: `Elisabeth starts swinging. And step by step she feels more and more alive. Loves it. Best investment ever lasting forever.`
+            }
+        ],
+
+        additional_long_internal_memo: `
+          rocking chair Schaukelsofa
+          -> sitting too long ..
+          https://www.morgenpost.de/ratgeber-wissen/article409014198/sport-schuetzt-nicht-sitzen-laesst-das-gehirn-schrumpfen.html
+
+          https://www.facebook.com/story.php?story_fbid=1282466803440184&id=100050306297601&post_id=100050306297601_1282466803440184&rdid=WClJzN6sLlCo6p8C&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1ANv4n1EPj%2F
+          -> brain health moving will help lymph ..
+
+          -> Werbung https://www.facebook.com/groups/auszeit2null/
+
+          Wo Holz her?
+
+          Furnierhandel
+          https://woodworking.de/viewtopic.php?p=137013
+
+          https://www.google.de/search?source=hp&ei=SebtXt6CGo-XlwT0j51w&q=furniere+berlin&oq=furniere+berl&gs_lcp=CgZwc3ktYWIQARgAMgIIADIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjoFCAAQgwE6BQgAELEDUDpY3y9grlhoAHAAeACAAXqIAcoJkgEDOS40mAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab#spf=1592649304039
+        `
+
+    },
+
+
+    {
+        idea_id: "detect_fake_news_ai",
+
+        priority: "h",
+
+        execution_summary: `
+            Have a fake news app which on Facebook or other pages reveals fake articles and sayings.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            // can be used by all own procudcts/services/websites/apps/experiences
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {title: "X on aliexpress prevented from buying bad shit",
+             story: `
+                disk for 20,- ? 4K display for 100 with touch ? Doesn't exist. So fake products prevented.
+                Elon Musk's houses for 2000 USD with solar ? Hoax.
+                `
+            }
+        ]
+
+    },
+
+
+    {
+        idea_id: "indoor_humidity_control",
+
+        priority: "h",
+
+        execution_summary: `
+            Control indoor humidity and oxgen by telling inhabitants when it
+            makes sense to heat vs opening the window to keep thou house and
+            people healthy.
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Having somewhat dry air is healthy for buildings otherwise mold
+            builds up and eats the house.
+            So we need a device telling when it makes sense to open the window.
+            Now the amount of water air can carry depends on its temperature.
+            Relative humidity tells how full the air is. 100% means it cannot take more.
+            Eveerything above 80% means mold is likely which will damage your health.
+            Now opening the window only makes sense if humidity outside is less than inside
+
+            And on rainy daiys relative humidity is 100% thus 80% inside thus
+            opening the window would not make a difference. Then eventually you
+            have to increase heating.
+
+            And when to heat when to open the window this device will tell you.
+
+            Additionally in covid like times opening the window occasionally
+            can reduce the amount of viruse floating through the air.
+            And having enough oxygen is important. Like 2 dogs one man sleeping
+            in a room can turn critical. So additionally CO2 will be measured
+            maximize heath of inhabitants by telling to let in oxygen occasionally.
+        `,
+
+        customer_stories = [
+            {title: "Fighting mold with preconfigured smart home sensors",
+             story: `
+                Getting the devices. Whenever humidity strikes every houre a beep is heard.
+                Window is opened. Mold is prevented.
+                `
+            }
+        ]
+
+    },
+
+
+    {
+        idea_id: "smart_home_send_preconfigured_devices",
+
+        priority: "h",
+
+        execution_summary: `
+            Many people love smart homes. But configuring takes time. So send all the smarthome software preconnected and configured
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+            { uses: "indoor_humidity_control" } // maybe ..
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {title: "Fighting mold with preconfigured smart home sensors",
+             story: `
+                Getting the devices. Whenever humidity strikes every houre a beep is heard.
+                Window is opened. Mold is prevented.
+                `
+            }
+        ]
+
+    },
+
+
+    {
+        idea_id: "fact_checker",
+
+        priority: "h",
+
+        execution_summary: `
+            There are lot's of scam sites and scam information also on Facebook.
+            So have an AI tool which reads data and fact checks the contents
+       `,
+
+        tags: "#health",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {title: "Anton dooesn't buy a product because he understoods it was scam",
+             story: `
+                Anton gets offered a scam phone from Temu claiming to have 2 TB for 75 USD.
+                Fact checker tells him cannot be produced and likely only has 300 GB.
+                So Anton can make a better decision.
+                `
+            }
+        ]
+
+    },
+
+
+    {
+        idea_id: "nonoisenews",
+
+        priority: "h",
+
+        execution_summary: `
+            It must be possible to individualize news such as allow to say only facts or only this topic.
+            Or follow up on that trace.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {title: "Emma is very busy. By signing up to nonoisenews she can control what she feeds herself as news",
+             story: `
+                Emma is very busy. She dosen't like bloat. She loves facts rather than guessing and maybes.
+                So she signs up at nonoisenews configures what she likes and
+                doesn't like. Gets fed with facts and is up to date about what
+                really works and happens rather than would could eventually to seek attention
+                of reader.
+                `
+            },
+
+
+            {title: "Berthold is a programmer setting light based computers as special area of interest",
+             story: `
+                ␔Berthold must think 10 years ahead of time at least. So small
+                details whether light based general computing chips like arm / risc will be
+                created makes a huge difference because light might be 100x
+                faster hus even outperforming parallel execution strategies.
+                By watching this field evidence is building up that light based
+                general computing might not be possible in foreseeable future thus he knows
+                that his code must be multi threaded to be safe in the future.
+                `
+            }
+        ]
+
+
+        additional_long_internal_memo: `
+        Example: light based computer manufacturing is set up and might be ready in 2027:
+        https://www.youtube.com/watch?v=2xE4bopeXhw
+        `
+    },
+
+
+    {
+        idea_id: "foam_hauses_build_yourself",
+
+        priority: "h",
+
+        execution_summary: `
+            In USA they start building houses from foam which is lightweight.
+            Allow people to build it themselves only do some quality control ?
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {title: "Patrik designs his own house and builds it",
+             story: `
+                Patrik designs his own house using VR, gets ok.
+                Starts building. Sends regular updates and architect controls him.
+                Hes' done cheap and fast with his house.
+                `
+            }
+        ]
+
+
+        additional_long_internal_memo: `
+        Example: light based computer manufacturing is set up and might be ready in 2027:
+        https://www.youtube.com/watch?v=2xE4bopeXhw
+        `
+
+    },
+
+
+    {
+        idea_id: "judge_programmer",
+
+        priority: "h",
+
+        execution_summary: `
+            Programmers get judged by LOC which is stupid.
+            So find measures to judge programmers quality so that they can be
+            fit most paying clients and tasks. Properties like 
+            - reading speed & memory
+            - coding speed
+            - Short term reading memory
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {
+            title: `X has millions of lines of code looking for perfect person`,
+            story: `
+            X requires a programmer helping him which can understand and digest his millions of lines of code.
+            So coding speed is less important than reading speed and comprehension.
+            Finds his perfect match fast because he's willing to pay more.
+            `
+            }
+        ]
+
+    },
+
+
+    {
+        idea_id: "annotate_the_internet",
+
+        old_ids: ['annotate_the_web'],
+
+        priority: "h",
+
+        execution_summary: `
+            Pages like Reddit are about commenting topics.
+            Advertising is about showing information to customers when it matters most.
+            We'll allow annotating the web thus help users to discuss
+            *ANYTHING* and allow advertisers to show their solutions when it matters most
+            to customers on product pages and more
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+              { used_by_all: true }
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {
+            title: `X has millions of lines of code looking for perfect person`,
+            story: `
+            X requires a programmer helping him which can understand and digest his millions of lines of code.
+            So coding speed is less important than reading speed and comprehension.
+            Finds his perfect match fast because he's willing to pay more.
+            `
+            },
+
+            {
+            title: `Unsuck Deddit`,
+            story: `
+            Ben hates smooth scrolling cause taking time. After searching multiple times gemini tells:
+            defaults write -g NSScrollAnimationEnabled -bool false
+            So Ben wants to make life easier for others goes back to what Google finds:
+            https://www.reddit.com/r/chrome/comments/153tfev/smooth_scrolling_not_available_on_mac/
+            but can't annotate cause thread is archived. Luckily
+            annotate_the_web allows to add this hint so that others can benefit from it.
+            `
+            },
+        ]
+
+    },
+
+
+    {
+        idea_id: "interieur_design_save_space",
+
+        old_ids: ['annotate_the_web'],
+
+        priority: "h",
+
+        execution_summary: `
+            Make more out of the space you own. Find multi-use furniture to save space.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {
+            title: `Berta greatly improves flexibility by buying most valuable multi use furniture`,
+            story: `
+                Berta only hase one room. So she buys multi use furniture allowing to do all she wants and accomodate friends.
+            `
+            }
+        ],
+
+    additional_long_internal_memo: `
+              How to get more out of living space
+              https://fb.watch/wTH9TC7qbn/
+              TODO get data from imimi
+              https://www.facebook.com/reel/1274309236960203
+              https://www.facebook.com/reel/949454346934832
+        `
+
+    },
+
+
+    {
+        idea_id: "resource_planning_system",
+
+        old_ids: ['annotate_the_web'],
+
+        priority: "h",
+
+        execution_summary: `
+            Most flexible system to build workflows manage resources by having
+            simple cards representing things + some additional glue code.
+            Be simple first, then allow specializing
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        `,
+
+        customer_stories = [
+            {
+            title: `Otto requires digitalization of his business`,
+            story: `
+                So he uses resource_planning_system defines his own card types to manage his details.
+                Later after 2 month hires somebody to add some additional invoicing logic.
+                Is up and running within no time.
+                Then needs to hire some people.
+                And adds employee module.
+                Because everything can be analyzed he always knows what to do next.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+    {
+        idea_id: "surfnwork",
+
+        priority: "h",
+
+        execution_summary: `
+            Provide people who want to travel means to do so by offering both simple jobs and accomodation.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+            // charge monthly for usage on both sides ?
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+        Experiencing new things is most joyful for the brain keeping in flow.
+        But in order to keep traveling you have to support yourself protecting from weather and you need to eat.
+        So this platform will offer both.
+        `,
+
+        customer_stories = [
+            {
+            title: `Clara loves new experiences`,
+            story: `
+            So she signs up and surfnwork and determines that Australia this
+            season might be a welcoming place cause many locations where she can be hosted
+            and will find simple jobs. So she flies there and keeps going and keeps going 3 years later
+            settles down and offers the same to others.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+
+    {
+        idea_id: "come_and_look",
+
+        priority: "h",
+
+        execution_summary: `
+            Gamification of companies products and services to teach users what
+            to expect and how to behave.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+            // charge monthly for usage on both sides ?
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Some people have some anxiety. And some are quest curious.
+            Help them turn certain about a product by inviting them to paly a
+            game to learn more.
+        `,
+
+        customer_stories = [
+            {
+            title: `Oliander stops babysitting customers by showing them his game teaching them instead`,
+            story: `
+            Oliander has VR area in his shop. It helps peolpe learn in a
+            relaxed comfy way to about what's important when buying beds and to find the
+            perfect mattress and support.
+            People tell him that they find it very refrshing to leave the real
+            world for a short moment in time. After the virtual guidance most
+            customers find their way without further assitance.
+            This allows Oliander to open a secod bed store with same amount of staff.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+
+    {
+        idea_id: "humanoid_robots_controlled_by_humans",
+
+        priority: "h",
+
+        execution_summary: `
+            AI either is dump *OR* expensive to train. You only find stupid
+            fake videos about how the future might look like.
+            The compromise is to have people control the robots to separate the
+            location where service is provided and where its controlled.
+            Once AI is ready integrating AI chips will not be a problem.
+            BUT AI in its current state cannot adopt.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            AI is dump. Rock stone scissors can be trained to humans with less
+            than 20 attempts. It takes 80 tries to teach it to apes and probbaly many more
+            to teach it to AI. While there are factories (same task over and
+            over again) there is a long tail. Restaurants and many more. And each is different.
+            So because AI will not do it we suggest humans remote controlling robots.
+            ␔This will allow to run businesses as needed in less crowded areas
+            such as post offices, too.
+            Once AI is ready (maybe it will never be beacuse flexible means
+            machine learning requiring expensive hardware !) adding AI controls will be easy
+        `,
+
+        customer_stories = [
+            {
+            title: `Oliander stops babysitting customers by showing them his game teaching them instead`,
+            story: `
+            Oliander has VR area in his shop. It helps peolpe learn in a
+            relaxed comfy way to about what's important when buying beds and to find the
+            perfect mattress and support.
+            People tell him that they find it very refrshing to leave the real
+            world for a short moment in time. After the virtual guidance most
+            customers find their way without further assitance.
+            This allows Oliander to open a secod bed store with same amount of staff.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+
+  related: pobots_contorlled_semic_automacially
+
+  Porphyromonas gingivalis
+https://www.youtube.com/watch?v=0jfYSncSTEY (https://interestingengineering.com/innovation/humanoid-robots-copy-human-moves)
+
+  Example: but remote. You can see how fast she learns and the more smooth she gets at the end
+  https://www.shadowrobot.com/teleoperation/
+  https://www.facebook.com/shadowrobot
+
+potential partners:
+
+  https://www.facebook.com/igordrofenu
+  Wants to bring African Togo people to Germany and sets up schools teaching
+  German culture.
+
+robots hardware brain is missing
+
+  Examples about mechanical properties
+    https://youtu.be/Tnb6SOdCkr0?t=269
+    https://www.youtube.com/results?search_query=torobo
+    -> Japanese robot with torque sensors (serving 
+
+    G2 with wheels https://www.youtube.com/watch?v=k5DgxdDjZzc
+
+  https://www.youtube.com/watch?v=pVM5MDFcO_M
+    Elon musks robots where controlled by humans :-)
+
+  https://www.starlink.com/map?view=latency
+
+  competition automotive:
+  https://www.perceptyne.com/
+
+  https://fb.watch/v_KMqE2ffc/
+
+  targets: farming USA ?
+
+  humanoid robot exhibition nancy
+
+  names / robots
+    DLR Toro (Germany)
+    mirokai (company enchanted tools)
+    company fourier (no walking robot yet 2024-12-01)
+    unitree G1
+    Boston Dynamics
+    Tesla Optimus
+    G2 with wheels https://www.youtube.com/watch?v=k5DgxdDjZzc
+
+  A full running company requires the following
+  pieces to be setup:
+    [x] robot operator (eg you) +220 788 3515
+    [ ] software (unknown price)
+    [ ] robot (10 to 20 K USD)
+    [ ] customer buying services
+    [ ] platform managing everything
+       [ ] talking aobut what it is about
+       [ ] managing operators and customers and bots
+    [ ] legal consultation (what challenges will
+         this business model have)
+    [ ] because real robots are expensive,
+        have a simulation for training pruproses
+    [ ] advertising engine (find new customers
+
+
+      Kosten Roboter 1.50 EUR/h:
+        0.18 EUR/h:  16K für Roboter -> 10 Jahre Laufzeit (wie E-Bike)
+        1.25 EUR/h:  Operator aus Afrika 10 USD/8h
+        0.04 EUR/h Internet (40 / Monat)
+
+      80.0e6 /4 * 2 * 52 * 1.50 / 1.0e6 / 100 = 3 Millionen EUR/Jahr
+        80: Bevölkerung  Deutschland
+        /4 -> Familie mit 4 Kindern
+        2 Stunden pro Woche
+        52 Wochen
+        1.5 EUR verdient (siehe unten)
+        /100 -> Annehmen, dass man nur 1% erreicht und viele nie einen Roboter
+        wollen.
+
+
+    1. ROS (Robot Operating System)
+        ROS Control Packages: These include tools like ros_control and
+        gazebo_ros_control which can help with walking.
+
+        Humanoid Locomotion Frameworks: ROS packages such as
+        humanoid_navigation are designed for navigating and controlling
+        humanoid robots.
+
+
+    2. Open Dynamics Engine (ODE)
+
+    ODE is a physics engine that provides capabilities for simulating
+      rigid body dynamics. It is often used in robotics simulations for
+      developing walking algorithms before deploying them on real robots.
+      Some humanoid robots, such as the Nao robot, have been simulated using
+  ODE to develop walking algorithms.
+
+ODE GitHub Repository
+
+    3. PyBullet
+    PyBullet is an open-source Python module for real-time physics simulation and robotics, with examples for humanoid robots. It includes locomotion controllers that can be used for bipedal walking simulations.
+
+  PyBullet GitHub Repository
+
+4. Drake
+    Developed by MIT, Drake is a toolbox for analyzing and designing
+    robot control systems. It includes solvers for dynamics, planning,
+    and control, which are useful for developing walking algorithms
+    for humanoid robots.
+
+  Drake GitHub Repository
+
+5. Open Robotics Software for Humanoids
+  The Open Robotics organization has a set of tools and simulators
+  such as Gazebo, which are widely used for robot simulation and can
+  be used to simulate humanoid robot walking. With Gazebo, you can
+  integrate control algorithms and test them in a simulated
+  environment.
+
+  Gazebo
+
+6. Roboschool (for reinforcement learning)
+  This is an open-source simulation environment that works with OpenAI
+  Gym and helps train robots with reinforcement learning. It includes
+  humanoid models that can be trained to walk.
+
+Roboschool GitHub Repository
+7. DARwin-OP Framework
+  The DARwin-OP is a humanoid robot designed for research and
+  education, and its software is open-source. The robot is well-known
+  in the field of robotics education, and you can find libraries to
+  control its walking, balancing, and other behaviors.
+
+DARwin-OP Source Code
+8. OpenAI Gym with Humanoid
+  OpenAI Gym provides environments where reinforcement learning
+  algorithms can be applied, including humanoid robot environments where
+  you can train agents to walk.
+
+OpenAI Gym GitHub Repository
+9. SL Simulator
+  Developed by the Max Planck Institute for Intelligent Systems, SL is an open-source software package that has been widely used for studying humanoid walking and other complex control tasks in robots.
+
+SL Simulator Website
+10. YARP (Yet Another Robot Platform)
+  YARP is an open-source framework that allows interfacing sensors and
+  actuators for humanoid robots, making it easier to implement and
+  control locomotion algorithms. It’s primarily used with the iCub
+  humanoid robot.
+
+YARP GitHub Repository
+  These platforms provide tools and libraries that can either directly
+  control humanoid robots or simulate them for developing walking
+  algorithms. Many of these frameworks are also compatible with
+  machine learning methods to optimize and improve the robot's walking
+  ability.
+
+}}}
+
+
+        `
+
+    },
+
+
+    {
+        idea_id: "",
+
+        priority: "h",
+
+        execution_summary: `
+            AI either is dump *OR* expensive to train. You only find stupid
+            fake videos about how the future might look like.
+            The compromise is to have people control the robots to separate the
+            location where service is provided and where its controlled.
+            Once AI is ready integrating AI chips will not be a problem.
+            BUT AI in its current state cannot adopt.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            AI is dump. Rock stone scissors can be trained to humans with less
+            than 20 attempts. It takes 80 tries to teach it to apes and probbaly many more
+            to teach it to AI. While there are factories (same task over and
+            over again) there is a long tail. Restaurants and many more. And each is different.
+            So because AI will not do it we suggest humans remote controlling robots.
+            ␔This will allow to run businesses as needed in less crowded areas
+            such as post offices, too.
+            Once AI is ready (maybe it will never be beacuse flexible means
+            machine learning requiring expensive hardware !) adding AI controls will be easy
+        `,
+
+        customer_stories = [
+            {
+            title: `Oliander stops babysitting customers by showing them his game teaching them instead`,
+            story: `
+            Oliander has VR area in his shop. It helps peolpe learn in a
+            relaxed comfy way to about what's important when buying beds and to find the
+            perfect mattress and support.
+            People tell him that they find it very refrshing to leave the real
+            world for a short moment in time. After the virtual guidance most
+            customers find their way without further assitance.
+            This allows Oliander to open a secod bed store with same amount of staff.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+
+  related: pobots_contorlled_semic_automacially
+
+  Porphyromonas gingivalis
+https://www.youtube.com/watch?v=0jfYSncSTEY (https://interestingengineering.com/innovation/humanoid-robots-copy-human-moves)
+
+  Example: but remote. You can see how fast she learns and the more smooth she gets at the end
+  https://www.shadowrobot.com/teleoperation/
+  https://www.facebook.com/shadowrobot
+
+potential partners:
+
+  https://www.facebook.com/igordrofenu
+  Wants to bring African Togo people to Germany and sets up schools teaching
+  German culture.
+
+robots hardware brain is missing
+
+  Examples about mechanical properties
+    https://youtu.be/Tnb6SOdCkr0?t=269
+    https://www.youtube.com/results?search_query=torobo
+    -> Japanese robot with torque sensors (serving 
+
+    G2 with wheels https://www.youtube.com/watch?v=k5DgxdDjZzc
+
+  https://www.youtube.com/watch?v=pVM5MDFcO_M
+    Elon musks robots where controlled by humans :-)
+
+  https://www.starlink.com/map?view=latency
+
+  competition automotive:
+  https://www.perceptyne.com/
+
+  https://fb.watch/v_KMqE2ffc/
+
+  targets: farming USA ?
+
+  humanoid robot exhibition nancy
+
+  names / robots
+    DLR Toro (Germany)
+    mirokai (company enchanted tools)
+    company fourier (no walking robot yet 2024-12-01)
+    unitree G1
+    Boston Dynamics
+    Tesla Optimus
+    G2 with wheels https://www.youtube.com/watch?v=k5DgxdDjZzc
+
+  A full running company requires the following
+  pieces to be setup:
+    [x] robot operator (eg you) +220 788 3515
+    [ ] software (unknown price)
+    [ ] robot (10 to 20 K USD)
+    [ ] customer buying services
+    [ ] platform managing everything
+       [ ] talking aobut what it is about
+       [ ] managing operators and customers and bots
+    [ ] legal consultation (what challenges will
+         this business model have)
+    [ ] because real robots are expensive,
+        have a simulation for training pruproses
+    [ ] advertising engine (find new customers
+
+
+      Kosten Roboter 1.50 EUR/h:
+        0.18 EUR/h:  16K für Roboter -> 10 Jahre Laufzeit (wie E-Bike)
+        1.25 EUR/h:  Operator aus Afrika 10 USD/8h
+        0.04 EUR/h Internet (40 / Monat)
+
+      80.0e6 /4 * 2 * 52 * 1.50 / 1.0e6 / 100 = 3 Millionen EUR/Jahr
+        80: Bevölkerung  Deutschland
+        /4 -> Familie mit 4 Kindern
+        2 Stunden pro Woche
+        52 Wochen
+        1.5 EUR verdient (siehe unten)
+        /100 -> Annehmen, dass man nur 1% erreicht und viele nie einen Roboter
+        wollen.
+
+
+    1. ROS (Robot Operating System)
+        ROS Control Packages: These include tools like ros_control and
+        gazebo_ros_control which can help with walking.
+
+        Humanoid Locomotion Frameworks: ROS packages such as
+        humanoid_navigation are designed for navigating and controlling
+        humanoid robots.
+
+
+    2. Open Dynamics Engine (ODE)
+
+    ODE is a physics engine that provides capabilities for simulating
+      rigid body dynamics. It is often used in robotics simulations for
+      developing walking algorithms before deploying them on real robots.
+      Some humanoid robots, such as the Nao robot, have been simulated using
+  ODE to develop walking algorithms.
+
+ODE GitHub Repository
+
+    3. PyBullet
+    PyBullet is an open-source Python module for real-time physics simulation and robotics, with examples for humanoid robots. It includes locomotion controllers that can be used for bipedal walking simulations.
+
+  PyBullet GitHub Repository
+
+4. Drake
+    Developed by MIT, Drake is a toolbox for analyzing and designing
+    robot control systems. It includes solvers for dynamics, planning,
+    and control, which are useful for developing walking algorithms
+    for humanoid robots.
+
+  Drake GitHub Repository
+
+5. Open Robotics Software for Humanoids
+  The Open Robotics organization has a set of tools and simulators
+  such as Gazebo, which are widely used for robot simulation and can
+  be used to simulate humanoid robot walking. With Gazebo, you can
+  integrate control algorithms and test them in a simulated
+  environment.
+
+  Gazebo
+
+6. Roboschool (for reinforcement learning)
+  This is an open-source simulation environment that works with OpenAI
+  Gym and helps train robots with reinforcement learning. It includes
+  humanoid models that can be trained to walk.
+
+Roboschool GitHub Repository
+7. DARwin-OP Framework
+  The DARwin-OP is a humanoid robot designed for research and
+  education, and its software is open-source. The robot is well-known
+  in the field of robotics education, and you can find libraries to
+  control its walking, balancing, and other behaviors.
+
+DARwin-OP Source Code
+8. OpenAI Gym with Humanoid
+  OpenAI Gym provides environments where reinforcement learning
+  algorithms can be applied, including humanoid robot environments where
+  you can train agents to walk.
+
+OpenAI Gym GitHub Repository
+9. SL Simulator
+  Developed by the Max Planck Institute for Intelligent Systems, SL is an open-source software package that has been widely used for studying humanoid walking and other complex control tasks in robots.
+
+SL Simulator Website
+10. YARP (Yet Another Robot Platform)
+  YARP is an open-source framework that allows interfacing sensors and
+  actuators for humanoid robots, making it easier to implement and
+  control locomotion algorithms. It’s primarily used with the iCub
+  humanoid robot.
+
+YARP GitHub Repository
+  These platforms provide tools and libraries that can either directly
+  control humanoid robots or simulate them for developing walking
+  algorithms. Many of these frameworks are also compatible with
+  machine learning methods to optimize and improve the robot's walking
+  ability.
+
+}}}
+
+
+        `
+
+    },
+
+
+    {
+        idea_id: "rc_cars_with_utilities_like_unimok",
+
+        priority: "h",
+
+        execution_summary: `
+            Children love playing.
+            Now if you add tools like unimok they can clean and mowe and do more awesome stuff.
+            Happy children and happy parents ;-)
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `Father buys RC car for son who starts cleaning the house`,
+            story: `
+            Father buys his son a RC car which can be attached cleaning tools.
+            Son loves it and cleanes the house.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+            Maybe we can add self control then it cleanes the house on its own
+        `
+
+    },
+
+
+    {
+        idea_id: "toilet_paper_with_ads",
+
+        priority: "h",
+
+        execution_summary: `
+          Sell toilet paper cheaper and print ads on them
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `New startups makes itself known all over the world`,
+            story: `
+            Prints his QR codes and stories on toilet papers therebuy entering every house.
+            Thus gets known and loved by the world easy and fast.
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+
+    {
+        idea_id: "learning_cards_from_fotos",
+
+        priority: "h",
+
+        execution_summary: `
+            Take fotos of what you want to learn. Mark areas to create cards fastest
+            Targeting all who want to learn
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `Emma wants to turn better in French`,
+            story: `
+                So creates learning cards.
+                While at the bus station she can learn.
+                Gets better grades is happier
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+
+
+    {
+        idea_id: "lobbying_patent_fighters",
+
+        priority: "h",
+
+        execution_summary: `
+            Patents are for trolls and big companies and biggest companies often in big countries maybe even government supported (like China)
+            So small companies don't have a chance. So this allows to build up
+            evidence why patents should be revoked and catch people who want to fight a
+            patent. If the evidence is good enough maybe fighting is no longer required
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `PrusaSlicer`,
+            story: `
+                Has created designs for long time. But China starts registering Patents and Gebrauchsmuster which are very very very similar.
+                Problem is that fighting the patents costs money. So they
+                gather evidence that they have been using it for long time as open source and
+                open hardware. And people all over the world using pruca slicer
+                join and tell they'd help fight the patent and upload their own images as
+                proof. Now because there is that much evidence there is no
+                longer point in fighting the patent because it will not be used against users anymore.
+                So this lobbying_patent_fighters platform even saved fighting the patent ?
+                Result: Everybody can keep using buying Prusa or open source 3d
+printers without having to fear that spare parts are no longer available
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+
+    {
+        idea_id: "business_trainer",
+
+        priority: "h",
+
+        execution_summary: `
+            Gamificatin of learning how to run a business.
+            Playfully experience all the traps you could run into step by step
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `Ben is turning into a an estate mongul`,
+            story: `
+            Ben isn't good at anything. but he starts ylaing a game every single day which boosts is confidence.
+            It trains him how to buy sell and judge estates. So finds best spots buys and turns rhich.
+            Not the school has taught him about all laws and important behaviors and sanity checks, but the game.
+            Because the game turned into his second nature he succeeded.
+            The smart game ensures he learns the most important things first
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+        `
+
+    },
+
+    
+    {
+        idea_id: "casino_trainer",
+
+        priority: "h",
+
+        execution_summary: `
+            It's not about emotion but about math. So train AI which is better than humans to learn black jack whatever.
+            Once that is trained teach users by showing what winning AI would play. So user can turn into top gambler.
+       `,
+
+        tags: "",
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+
+        `,
+
+        customer_stories = [
+            {
+            title: `PrusaSlicer`,
+            story: `
+                Has created designs for long time. But China starts registering Patents and Gebrauchsmuster which are very very very similar.
+                Problem is that fighting the patents costs money. So they
+                gather evidence that they have been using it for long time as open source and
+                open hardware. And people all over the world using pruca slicer
+                join and tell they'd help fight the patent and upload their own images as
+                proof. Now because there is that much evidence there is no
+                longer point in fighting the patent because it will not be used against users anymore.
+                So this lobbying_patent_fighters platform even saved fighting the patent ?
+                Result: Everybody can keep using buying Prusa or open source 3d
+printers without having to fear that spare parts are no longer available
+            `
+            }
+        ],
+
+        additional_long_internal_memo: `
+            Need AI competitions to force best AI
+        `
+
+    },
+
+
+
+    {
+        idea_id: "researched_news_about_anti_aging", # 
+
+        priority: "h",
+
+        execution_summary: `
+       `,
+
+        monetization_ideas: [
+        ],
+
+        relationships: [
+        ],
+
+        market_sizes_visions: [
+        ],
+
+        description_for_5_year_old?: `
+            Facebook exagerrates you never know what's true.
+            Youtube can be better, but even here are exagerrated claims.
+            Yet technology and AI advanced that if its possible probably the
+            next years ways are found to make humans younger healther and live longer.
+        `,
+
+        description_for_humans_and_ai: ``,
+
+        customer_stories = [ ],
+
+        market_tests: [
+            { title: "gutefragen.net", text: "Would you pay 5 EUR/year to get updated ...", result: "1 maybe, 1 no"},
+        ]
+        // https://thehill.com/changing-america/well-being/prevention-cures/478830-how-reading-and-screen-time-affect-the-brains-of/
+        // not more than 1 hour / day
+    },
+
+/*
+
+ honest-review:
+ products like this are they as good as they claim to be ?
+ https://xsztvdo.com/products/pet-hair-remover-electrostatic-gloves?qclid=1268325088478716165%7C211106242296294%7C0
+
+I will 
+
+BRICS_COIN if you want to run USD vs BRICS what currency to choose ?
+If Brics country want to trade - what currency to choose to replace USD ?
+Can we do a BRICS like stable count representing many BRICS currencies updating itself ?
+
+usable micro mobility
+
+    suitcase as ebike. Sharing the frame and allowing to use public transport easily
+    bike is too big other stuff like moonwalkers eventually have too small wheels ?
+
+    moonwalk like shoes but with some additional protection at the front for
+    better climbing abilities ?
+
+
+ fight_patents
+
+ buy_it_later have peolpe create wishlists what to buy later so you can get in
+ touch with them before they have the money to buy something So you start
+ cognitive dissonance
+
+Pimp old sewivg machines by new eletronics:
+
+Sewing machines are cool. Eg you can use paper napkins and sew names on it to
+make them look more noble. The problem is the computers in the sewing machines
+are dump and cannot do this efficiently.
+So by using any cheap programmable microcontroller we'll create new firmware and 
+and turn 200 USD second hand machines into computer programmable sewing
+machines worth $4000
+
+
+Upgrade existing sewing machines by adding new motherboard with bluetooth/usb app support allowing to create own stitch patterns.
+Turning a 200 EUR sewing machine into an 800 EUR marvel ? https://github.com/F33RNI/OpenEmbroidery
+brother M340ED
+
+https://youtu.be/KR3GaM2eYXg?si=Gwjqt6YQ0H1tPHfj
+Dellen verbessern wirbel und damit …
+-> cars, racing bikes, racing cars, ..
+
+        smart home with radio -> tell action / time of day / give structure
+        child go to bed ..
+
+dating after baby steps (how was he called) ?
+ 
+[#project:identities]
+  purpose: Have an identity better than mobile phone number sticking to your
+  - private
+  - business / German Verein / Stiftung whatever
+
+
+        [#project:]
+          +49431363069584 optimizes in Germany Google ...
+
+
+
+            [#project:Mitarbeiterbenefits] geldwertender Vorteil
+              Konkurrenz https://belonio.de/benefits/
+
+]
+
+
+[#project:electricity_from_temperature]
+  Wow!!??
+  https://www.nature.com/articles/s41467-024-52047-5
+
+
+https://www.youtube.com/shorts/BVAEvMG3el0
+for children learn how to bulid a house ..
+
+Kaltwasser Abnehmbecken ?
+
+*/
+

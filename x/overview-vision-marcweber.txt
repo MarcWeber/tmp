@@ -1,0 +1,228 @@
+First I have German passport. I'd even relocate to USA if that would make a difference.
+
+I have several pain points and many more ideas but before going all in I want to build up more 
+evidence that there will be a market fit following lean startup rules (build up communication,
+find early customers who are willing to spend money and identify potential lead costs)..
+
+Because before that step risk is maybe too high. So as initial step I'm looking
+for about 50-100K USD to setup 100 to 150 websites and setup communication to catch customers
+to allow setting focus. Then I know whether going bigger steps make sense.
+Because this money I could pay back getting a job easily
+
+The overall pitch is like let's spent 50 million (well smaller steps first)
+to reach the billion and be fine with having wasted some million.
+
+Here are some pitches for some ideas of the overall concept.
+However please mind that a pitch is paper only and not worth a shit.
+
+Rather than flooding you with 100 to 150 ideas I'll pick some headliness.
+Some of the ideas in the starting phase require 20K USD.
+Some easily require millions (eg warehouses).
+
+And projects should support each other.
+If the education system uses *my cloud* companies might fall for it more easily
+because workers now it.
+
+
+* AI based match making (legal spamming)
+  You create text profiles
+  You can reach out (and pay AI to rate your reach out and the target profile).
+  The target has an inbox with rating so target can decide how much spam to read.
+  The rating will be 
+  +5 .. 0 .. -5 where 0 means can't be rated because profile doesn't give enough hints.
+
+  So your profile could look like
+  - 40y
+  - no crypto
+  - love dancing
+  - need help in my home
+
+  And a guy looking for a weekend job will find the adult next door
+
+  So this long tail approach (like Google) will allow to get market shares from
+  all niche apps because its most simple to use.
+
+  This includes dating, business, B2C, whatever.
+
+  Sending a message to 3K profiles might cost 3USD or less (running the AI).
+
+* annotating the world wide web (also turning every website into an advertising platform).
+
+* replacing the web because the sole reason why airbinb/booking/ and others exist is
+  - specialized search
+  - common interface
+  - integrated rating
+  -> it works
+
+  And the web doesn't guarantee things to be working
+  So by creating an eco system (which also can target the web)
+  we can get those traits for all industries
+
+* world wide education and micro education for humans and AI
+
+  (because basic science no longer changes so we can
+  hardwire it with exercising or AI)
+  micro education means giving pieces of knowledge an id.
+  -> HR could be disrupted because >>do you know math<<
+  turns into >>sort people by how well they know analysis and prime numbers<<
+  cause its what I care about.
+
+  And people will be able to make decisions: Is it worth spending more time on
+  learning a topic how much more will I earn and how long will it take me to
+  get there ?
+
+  So I want to build an education system which can be used by 
+  - AI
+  - people
+
+  and give answers to how long will it take to learn a topic given personal
+  learning speed.
+
+* homeless IT cloud systems: The balance 
+  - be simple (eg run in browser)
+  - be fast (for power users) require native
+  - have data local (to protect it)
+  - have data in the cloud (to allow it to be processed by in cloud AI which is
+    too big to run on local machine)
+
+  Because creating new operating systems only woks if you're China/Huawei
+  I want to have data with distributed changelog so that you can access it
+  in the cloud or local depending on your exact setup also allowing to 
+  specify derived contents.
+
+  I magine having a bag putting in images/videos and then having a time list
+  -> ready is your movie. And where the data is the system will figure out on
+  its own.
+
+  So this will touch
+    - databases
+    - hosting
+    - VR worlds (like omniverse)
+    - code (github) coding (programmers) and software distribution - cause
+      there is no unified system yet I always have pain
+    - private and business data
+
+  and eventually allow installing Wordpress or other software systems by Drag
+  & Drop.
+
+* health
+  cheapest health surveillance by measuring eg brain performance within seconds:
+
+  there is tons of scientific evidence that some parts can change in your body if you age.
+  But when how fast and how much is an open question. So when is it time to see a doctor 
+  get checked up and see what you can do ?
+  Current testing is expensive. So I want to create an app which basically 
+  tests your brains performance. If it degrades way faster than it should
+  you know something went wrong and you want to investigate.
+
+* warehousing. Even in Germany automous driving will start next year in Munich.
+  This opens up the market of delivery because getting a drilling machine frome
+  warehouse will be easier than finding it in your house  (and drilling bits
+  will be sharp always)
+
+  -> Those warehouses will allow additional business such as disrupting second
+  hand market places, dietry supplements, ... beause you can just put your iphone
+  there and wait till its sold then you get the money. No appointments nothing.
+ / And for big data reasons each warehouse will know what products will be
+  bought fast so that they can be delivered instantly
+
+  So think about it like RAM. Its memory shared by all programs.
+  And I want to build warehoues which serve all businesses:
+  So i want to build by trucks connected warehouses to have decentral delivery chains
+  serving global and local markets.
+  If you're a farmer you can put your eggs there and the village can buy.
+
+* going into details about It programming languages
+  The world is divided into the many technologies like JS Java(Kotlin) Dart Rust Python Ruby Go
+  Nim Zig Haskell all have their sweet spots. The exhausting part is having to know them all.
+  But the technology nowadays is simple: You need GPU rendering to serve 4K
+  displays without draining battery. You have to target the web (eg qwik.dev
+  with resumable components which is the technology beyond SSR (React and
+  similar)
+
+  So I see a huge potential by harmonizing and simplifying the software world
+  by creating a new tools which blurr the borders between the extrems such as:
+  allowing to be interpreted or compiled or be dynamic so that only one systems has to be learned
+  with bidirectional typing allow to escape the compiler and modify your database scheme
+  so println(row.age) will have a quickfix add age INT to your table saving lot's of time.
+
+  By allowing other languages to be integrated we merge with shells.
+  So we'd have one language for sytem level web and UI programming and embedded
+  with compromising only if you have to.
+
+  So you could push it into JS or Rust or a shell script if you want but by default
+  it will optimize programmers time (writability and readability)
+
+  This should be 3 phases:
+  1) compiled
+  2) compiled version but in interpreter because compiling all to only run parts doesn't make sense
+  3) dynamic (which will be like Python/JS) a different subset within the language.
+  2&3 might include jitting
+
+
+  The challenge here is that eg Java had 10 million advertising budget.
+  Now coding markeplaces sizes is 200-300 million each year (eg upwork)
+
+  The key is to gradually make people aware what they are missing out because
+  its deep topic so need to change minds slowly.
+  And even then this will be 10+ years projeect
+
+  Let me give you an example what the segmentation of the current landscapes actually means:
+
+    Rust is cool, until you find a case where borrow checking won't work. There
+    is Alloy fork but doeesn't work on OSX
+    Go is best compromise unless you need best speed as web scripitng language
+    or unless you want to target OpenXR (VR glasses) then the bintdings haven't
+    been written yet. Could be done - but yet another 4 weeks of my time lost
+
+  So it always means that you as programmer have to learn a new language *AND*
+  the new topics and cannot share code and cannot guide cusomers because its
+  always complicated and this has to end.
+
+* going into details software distribution
+  Like wis programming languages there are different systems such as
+  brew (osx) Nix(os) for Linux(osx), winget install chocolately ...
+  pip (and alike for all scripthing languages)
+
+  But they all don't work together.  Like Pip fails with certain shared libraries.
+  All scripting languages fail with installing C dependencies
+  Nix being linux only. It's the perfect distirbution system but not nice enough for developers.
+
+  So I will build one distribution system for all which can be configured
+  - use native dependencies if possible otherwise built (maximizing chance to integrate within operating system)
+  - built all from scratch (maximizing chance to reproduce working result)
+  which looks like this:
+    pool = native + [mylib1 mylib2]
+    solveed = solve(pool)
+    with solved build env with apps solved.app1 solved.app2
+
+  This is going to be much more complicated because you can imagine fun setups such as
+  sharing packages on hosting with virtual machines via shared filesystems etc.
+
+
+* tons of small projects like 
+
+  - better hitch hiking than blablacar with statistics in mind.
+    If every 10 minutes a car drivesn no need to hook up 4 days ahead of time cause plans always change.
+    By allowing to change cars many more rides are possible
+    So there mtight be much bigger market which is only missing some software
+
+  - learning the piano 10x faster by using janko like keys which allows instant
+    transposition and play along because the same pattern to press always means
+    the same sound. So much less muscle memory has to be trained.
+
+  - Trying to sell samsung Dex because if it works it means building new smartphones
+    which can replace PCs. Why pay twice for much and state of the art
+    CPU,GPU,NPU memory and storage device if buying a bigger used screen might
+    be enough ?
+
+  - common look and feel for all operating systems (window management)
+    because the defaults suck
+    Eg mixing Yabai/WMII/AltSnap/...
+
+  - using VR controllers as better Wacom tablet because it has > 2x the
+    dimensions (5x + buttons for one hand).
+
+  ....
+
+  Now I could copy paste a long text file which would take at least hours to read.
