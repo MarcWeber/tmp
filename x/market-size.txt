@@ -1,0 +1,59 @@
+Execution summary:
+===================
+sign in system guiding towards many services using cloud, AI, delivery
+(eg integraing or using Alibaba)
+
+startup description:
+===========
+
+Person signs up with private or business identity.
+
+Then he/she can sign up easily for multiple services
+including but not limited to:
+
+- messenger
+- payments
+- websites (with AI)
+- video editing online/offline (with AI)
+- send messages and rate by AI (spamming)
+- CV / job applicant system (with AI)
+- payment system
+- shop system (so products can target Alibaba ..)
+- teaching (with AI)
+- warehouses in each zip region (helping delivery and storage)
+  -> Alibaba could put stuff here to have faster delivery
+  targeting autonomous cars etc.
+- contract system (with AI suggestions)
+- second hand shop system (using AI)
+- build my house suggestions (using AI)
+- energy simulations of existing houses (using GPU)
+- guide my carrier (using AI and databases)
+
+So we easily can make you Alibaba money by
+- using your cloud
+- integrating with your product sales platforms bringing you new customers
+
+A = Market size (USD billions)
+B = estimated server costs (USD thausands)
+C = Estimated server costs turning into market leader
+
+                A        B      C
+Messenger	136	15	30.2
+Payments	170	20	17.1
+Websites	2.5	5	0.8
+Video Editing	2.4	4	2.4
+Anti-Spam	9.6	2	146
+CV/Job System	17.2	3	5.1
+Shop System	10.5	5	1.2
+Teaching	400	10	0.3
+Warehouses	713	50	98.5
+Contracts	33	5	0.7
+Second-Hand Shop	475	10	2.8
+House Suggestions	6.8	5	0.6
+Energy Simulations	6.4	10	0.1
+Career Guide	2.8	3	5.1
+Data Cloud	161	20	39
+
+=========================================
+SUM	A = 2146.2	B = 167	C = 349.9
+==========================================
