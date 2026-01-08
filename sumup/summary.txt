@@ -1,0 +1,153 @@
+Ich bin ein bischen verrückt. Chaos :-)
+Immer wenn es ein Konflikt gibt, frage Ich mich was ist richtig?
+
+Beispiel: Chef sollte seine Prioritäten immer kennen,
+vs die Welt ist chaotisch.
+
+Man sollte eine Sache machen vs Chef sollte kein Bottle-Neck werden.
+Andere sagen auch ein mittelmäßiges Management-Team hat Erfolg wenns im
+richtigen Markt ist. Ist man im falschen nützt auch das Beste nichts.
+
+D.h. meine Frage ist eher ist was der richtige Markt eher als bin Ich die
+richtige Person, weil die richtige Person kann man ja vielleicht finden und
+anstellen.
+
+====
+
+Thema 1: Programmierung: Es gibt ganz viele doppelte Dinge, aber keine
+weltweite Führung der OpenSource Welt (außer .net ?).
+Pain Points: Jede Sprache folgt einer Idee. Und wenn man eine andere Idee braucht,
+muss man alles neu lernen (die vielen Details)
+- QT (C++ + Python + QuickQT (JS) => 60MB executable WOW shit.
+- Go - gute Perfomance -> aber noch keine OpenXR bindings
+- Micropython auf ESP32 (1 sec Reboot Zeit), aber wenn man mp3 decodieren will
+  muss man auf C++ wechseln (20-30 Sek Flush-Zeit)
+  -> Hier ist die Parallele zu esbuild (vite).
+  das gleiche nur für JS
+- Oracle Macros -> Keine Hashes. Man muss Tabellen erstellen !
+- Zig -> man muss Allocator mitschleppen ob man will oder nicht,
+  auch wenn der Anwendungsfall keine Performance benötigt
+- Julia auf embedded, ja aber ohne GC, mit AOT - zittern obs klappt ..
+  Warum, es gibt doch schnellere JITs also llvm! ?
+
+Und meine Frage ist dann immer, kann man einen Kompiler gradual machen.
+D.h. die Nische dann wählen, wenn man sie braucht. Das führt zu mehreren
+Kompilern in einem Kompiler, Erlaubt es aber wenigstens Shell Scripte
+einfache Web-Sachen, Embedded etc mit den gleichen Tools zu machen ohne jedes
+Mal sich merken zu müssen ob MYSQL_SUBSTRING bei 1 oder 0 anfängt.
+
+-> Ich kann hier Pitch-Deck mit mehr Details geben.
+Ich hätte gerne ein Tools
+  1) AST -> CODE (wie Lisp)
+  2) Modes wie GC, AOT, interpreted, jitted
+Und dass der Kompiler in der Runtime ist
+Ich habe zuerst gedacht, dass man dynamisch braucht,
+aber vielleicht reicht hot reloading und replacement points.
+temporär optimierter Code für bestimmte Bereiche.
+
+
+
+Thema 2: Software Distribution:
+  Nix vs brew vs conda vs ... Chaos .. gehts besser ?
+
+  wenn man wals drin ist funktionierts. Problem ist cmake hat 20 Dependencies.
+  Werden von cmake ausgecheckt. Nix verbietet das.
+  D.h. der Aufwand was zu packagen und aktuell zu halten ist nicht immer
+  einfach abschätzbar.
+  Hätte man einen cross language / cross OS dependency tree könnte
+  man Pakete automatisch für viele Ziele (conda, brew, gentoo, debian, Nix,
+  chocolately, ..) erstellen und vielleicht ein paar Schritte weiter gehen
+  schnell kompilier vs 10% schneller auswählen (z.B. Rust llvm vs Cranelift).
+  aber eben auf Pakete Ebene. Warum kein jitting auf OS Ebene? Erstmal da sein laufen,
+  dann Teile mit Perfektion neu kompilieren und ersetzen ..
+
+  Was Ich mir vorstelle ist am Ende sowas wie
+  pool = Pool([ mein-os, dieses-repo])
+  pool.solve(firefox)
+  x = pool.erstelle-dev-env-installiere-was-installiere-bar-ist(hack_on = [libjpeg, firefox])
+  x.rebuild() x.open_editor() x....
+
+  Die Idee ist Programmieren zu können, Code und Ergebnisse teilen zu können
+  ohne jedes Mal eine Umgebung managen zu müssen (dafür gibts doch auch GC ..
+  ?)
+
+-> Ich kann hier Pitch-Deck mit mehr Details geben.
+
+Thema 3: Wo speichert man Daten ? Heutige Dualität:
+  - local (Datenschutz)
+  - cloud (weil gute AI Modelle 250 GB oder mehr brauchen hat das niemand)
+  - auf dem Handy und den 2 PCs die man hat ?
+  => Man braucht Daten local und in der Cloud
+
+  Wenn man jetzt verteilte journaled Dateisysteme hätte, dann je nach
+  Konfiguration könnten die Daten da hinfließen, wo man sie gerade braucht.
+
+  Die meisten Software Produkte bestehen aus
+  1) Incredients (Quellcode, Videos, Bildern)
+  2) wo mit eine Umwandlung dann was daraus entsteht
+    - webseite
+    - video
+    - bild
+    - webseite
+    - PDF Präsentation
+    - ..
+
+  Beispiel:
+  Wenn man mit Rust was macht (kleiner Server weil ).. dann braucht man unter Windows.
+  Dann muss man 1GB Daten runterziehen um 20 Zeilen Code Cross- zu kompilieren ? 
+  Und man hat noch die Wahl zwischen Native und Docker (wegen openssl)
+
+  Ist dann nicht einfacher die Binary in der Cloud zu kompilieren, und 6MB
+  runterzuladen ?
+
+  Beispiele: Wenn man PC neu einrichhtet und grosße Programme installiert, muss man lange warten,
+  auch wenn man noch nicht alles braucht.
+
+
+Das eigentliche Problem was Ich lösen will:
+
+- Vscode (JS jitted) vs  Eclipse (compiled, lapce) -> warum 2 Projekte ?
+  beim Entwickeln will man jitted, wenn man Batterie sparen will will man lapce
+  unterwegs !
+
+- Produkte müssen heute kostenlos sein (Facebook, Google)
+  aber selbst Webassembly ist 1.5-3x langsamer als native.
+  Power User (Minority) brauchen native.
+
+Meine Zielsetzung ist ein wenig Canva, Gimp, Krita, Kdenlive, aber mit Open -
+Source Erweiterungen. (Gimp = kotz weil kein Background-Removal). Krita = kotz weil
+gibt kein Tool -> AI mach mir Pinsel damit Haar so aussieht wie von der Person 
+Ja, es geht, aber immer langsame manuelle Prozesse. Und Ich will dass die
+Community Tools bereitstellt, und die Masse Abo bezahlt, und die Community dann
+Provision erhält.
+
+  1) verteilte aber synchronisierte Daten
+
+  2) darauf basierend Github, Adobe (Bild/Video), Canva, Nvidia Omniverse (3d
+    Welten) .. Konkurrenz machen
+
+Vereinfacht: Ich habe hier 'ne URL, die representiert was
+Ich will das nutzen im Web-Browser oder native. Präferenz 
+Daten in Cloud (embedded - Handy tablet case) oder lokal (Ich habe Power-PC und
+es ist ok 5 GB runterzuladen)
+
+Weil die Grenzen verschwimmen. Youtube Video-Liste ist schneller als lokale
+Video-Snippets anzuschauen. Wenn man Color-Grading macht reichen oft 20 Frames,
+braucht man das ganze 4K Video?
+
+Es gibt aber keine Technologie, die sagt "Ja, es gibt ein Video, das in noch auf dem Handy,
+wenn Verbindung frei ist wirds in Cloud hochgeladen, wenn du schonmal HD full Frame Vorschau willst,
+lade Ich das mit Priorität hoch .."
+
+Und auf einmal kann man mit geringsten Daten verteilt Video schneiden, zuest mit Vorschau-Qualität.
+Sobald aber das Handy im Hotel ist wird 4k ergänzt ..
+
+
+Weitere Fälle: Vesuvis Scroll:
+  Mac hat viel RAM / GPU für wenig Geld.
+  Aber ist nicht gut genug für OpenXR wegen Timing-Synchronizations (?)
+  3D Daten manipulatiert man am besten, mit 3d Tools (VR Brille).
+  Aber VR Brillen sind Kompromiss Akku-Laufzeit und Power.
+  verteilte Daten lösen einige Probleme auch hier wieder.
+  Anzeige so gut wie sie kann.
+  Computing da wos am schnellsten geht.
