@@ -1,0 +1,17 @@
+
+metronome.html reference implementation
+with >human in the loop< done 6 month ago.
+Human in the loop = rewriting all the core logic to play sounds.
+Making sure that wave forms don't get generated on each beat causing slow down.
+
+description for ai
+./ai.txt
+-> new description with all the wisdom integrated
+-> still all AI fail
+
+all fail
+./gemini-flash.html
+./gemini-thinking.html
+./claude-sonnet-4.4.html
+-> didn' task for sine/square etc
+-> even gets labels wrong 4/4 for 3/4 ?

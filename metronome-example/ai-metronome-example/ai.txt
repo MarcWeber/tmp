@@ -1,0 +1,58 @@
+
+Can you write the following JS / html code as index.html ?
+
+
+loudness: slider
+BPM: input (beats per minit) defaults to 60
+
+divisions: textarea
+Now here it turns interesting
+each line contains characters.
+All characters are one measure
+upper characters are 100% loudness, lower case characters are 50%  loudness.
+Z is high pitch a is low pitch
+
+now the first line tells beats per measure.
+Additional lines are arbitrary subdivisions.
+. means silence.
+
+Examples:
+
+name: 4 beats in a measure
+line1: Zaaa 
+
+name: 3 beats in a measure with 8th subdivisioning
+line1: Zaa
+line2: .x.x.x
+
+Now you see the second line is subdivisioning the measure into 6 pieces, not 3
+
+
+name: Fun pattern
+line1: ZaYaXa
+line2: abcdefg
+
+
+Also add a select which allows to select any of the given samples
+
+This means base measure has 6 divisionings.
+On top of that divide by 7.
+
+So you need common divisor or such and then within a line divide 
+the tick by that to find rest, if there is rest do nothing otherwise
+start the next tone unless its '.'
+
+then there must be [star/stop] button.
+
+Now to make this work you must 
+1) find all characters making noices and precalculate some wave form to play
+2) find common subdivisioning of all lines within text area so that timer
+   can be used to find the next tick 
+3) if the next tick happens iterate over each line and if the tick position matches
+   a character play that sound
+
+The esult should be a metronome
+
+
+pitch_range_frequencies_lower_upper = [100, 10000] so must be hearable to humans and 10000 ensures older peolpe still can hear everything .
+

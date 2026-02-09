@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metronome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .char {
+            font-size: 2em;
+            margin: 0 5px;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .slider-container {
+            margin: 10px 0;
+        }
+        .checkbox-container {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="toggleMetronome()">Start</button>
+            <select id="pattern-select" onchange="updateTextAreas()">
+                <option value="">Select a pattern</option>
+            </select>
+
+        <div class="slider-container">
+            <label for="bpm">BPM: <span id="bpm-value">60</span></label><br>
+            <input type="range" id="bpm" min="20" max="180" value="60">
+      </div>
+      <div>
+            <textarea type="text" id="beat-patterns" style="min-height: 80px" >
+E.e.
+...mmm
+oooo....
+</textarea>
+        </div>
+        <div>
+        <textarea type="text" id="subdivision-patterns">
+.y
+</textarea>
+        </div>
+    </div>
+
+    <div id="display" id="beat-display">
+    </div>
+
+    <script>
+
+        const options = [
+                  ["4/4 und Achtel", "Eeee", ".m"],
+                  ["4/4 und Achtel Regenbogen", "Eeee\nCdefghij", ""],
+                  ["Viertel-Triolen und Achtel", "Eeee\n...nnn\nhhhh....", ""],
+                  ["3/4 (Walzer)", "Emm", ""],
+                  ["4/4 Achtel Swing", "Eeee\n..g..h..i..j", ""],
+                  ["4/4 halbe Achtel-Triole", "E.\n...ggg", ""],
+        ];
+
+        const select = document.getElementById('pattern-select');
+        options.forEach(([name], index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = name;
+            select.appendChild(option);
+        });
+
+        function updateTextAreas() {
+            const index = select.value;
+            if (index === "") {
+                document.getElementById('beat-patterns').value = "";
+                document.getElementById('subdivision-patterns').value = "";
+                return;
+            }
+            const [, beat, subdivision] = options[index];
+            document.getElementById('beat-patterns').value = beat;
+            document.getElementById('subdivision-patterns').value = subdivision;
+        }
+
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const pause = '.'
+        let isRunning = false;
+        let intervalId = null;
+        let step = 0;
+        let beats = [];
+        let subs = [];
+        let isSubdivisionPerCycle = false;
+        let steps1, common_denominator;
+        let sineCache = {}
+
+        const sounds = {
+            // 'b': 'x.wav',
+            // 'c': 'c.wav'
+        };
+
+        function choose_sound(char) {
+            const isUpper = char === char.toUpperCase();
+            const volume = isUpper ? 100 : 30;
+            const lowerChar = char.toLowerCase();
+            if (sounds[lowerChar]) {
+                return { volume, sound: sounds[lowerChar] };
+            }
+            const charCode = char.toUpperCase().charCodeAt(0);
+            const aCode = 'A'.charCodeAt(0);
+            const zCode = 'Z'.charCodeAt(0);
+            // 10000 older people might not be hearing good
+            let freq = 300 + ((charCode - aCode) / (zCode - aCode)) * (8000 - 300);
+            return { volume, sound: freq };
+        }
+
+        async function playSound(char) {
+            if (!char || char === pause) return;
+            const { volume, sound } = choose_sound(char);
+            let buffer;
+            if (typeof sound === 'string') {
+                try {
+                    const response = await fetch(sound);
+                    if (!response.ok) throw new Error('Sound not found');
+                    const arrayBuffer = await response.arrayBuffer();
+                    buffer = await ctx.decodeAudioData(arrayBuffer);
+                } catch (e) {
+                    console.warn(`Sound ${sound} not found, generating sine wave for ${char}`);
+                    buffer = generateSineWave(char, sound);
+                }
+            } else {
+                buffer = generateSineWave(char, sound);
+            }
+            const source = ctx.createBufferSource();
+            source.buffer = buffer;
+            const gainNode = ctx.createGain();
+            gainNode.gain.value = volume / 100;
+            source.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            source.start(0);
+        }
+
+        function generateSineWave(char, freq) {
+            const key= `${char}-${freq}`
+          if (!sineCache[key]){
+            console.log(`generating pattern ${key}`)
+            const sampleRate = ctx.sampleRate;
+            const duration = 0.1; // 100ms
+            const buffer = ctx.createBuffer(1, sampleRate * duration, sampleRate);
+            const data = buffer.getChannelData(0);
+            const frequency = freq || choose_sound(char).sound;
+            for (let i = 0; i < data.length; i++) {
+                data[i] = Math.sin(2 * Math.PI * frequency * i / sampleRate) * 0.5;
+            }
+            sineCache[key] = buffer;
+          }
+          return sineCache[key]
+        }
+
+        function gcd(a, b) {
+            return b === 0 ? a : gcd(b, a % b);
+        }
+
+        function lcm(a, b) {
+            return (a * b) / gcd(a, b);
+        }
+
+        function beat_index (s) {
+          // const steps = s.length
+          // return Math.floor((step) / (common_denominator / steps)) % steps;
+          const steps = s.length
+          const y =  (step) / (common_denominator / steps)
+          const x = Math.floor(y)
+          const f = y - Math.floor(y)
+          return [
+            x % steps,
+            f < 0.01
+          ]
+
+        }
+
+        function beat_index_sub (s) {
+          const steps = beats[0].length * s.length
+          const y =  (step) / (common_denominator / steps)
+          const x = Math.floor(y)
+          const f = y - Math.floor(y)
+          return [
+            x % s.length,
+            f < 0.01
+          ]
+
+          // const steps = s.length
+          // const y =  (step) / (common_denominator / steps)
+          // const x = Math.floor(y)
+          // const f = y - Math.floor(y)
+          // return [
+            // x % steps,
+            // f < 0.01
+          // ]
+          // <!--      const steps = s.length -->
+          // <!--      return Math.floor((step) / (common_denominator / steps)) % steps; -->
+        }
+
+        function updateDisplay() {
+            let html = ""
+
+            if (isRunning){
+              html = ""
+              const render_pattern = (s) => {
+                const index = beat_index(s)[0]
+                html += `<div class="row">${s.map((char, i) => `<span class="char ${i === index ? 'highlight' : ''}">${char}</span>`).join('')} </div>`
+              }
+              const render_sub_pattern = (s) => {
+                const subIndex = beat_index_sub(s)[0]
+                html += `<div class="row">${s.map((char, i) => `<span class="char ${i === subIndex ? 'highlight' : ''}">${char}</span>`).join('')} </div>`
+              }
+              beats.map(render_pattern)
+              subs.map(render_sub_pattern)
+            } else {
+              html = "Erstes Textarea -> ganzer Takt Aufteilung<br/>Zweites Textfeld: Unterteilung der Schläge der ersten Zeile";
+            }
+            document.getElementById('display').innerHTML = html
+        }
+
+
+        const re = new RegExp(`[A-Za-z${pause}]`)
+
+        const parseBeatPattern = (s) => s.split('') /* .filter(char => re.test(char)) */
+
+        function parseInputs() {
+            const lines_to_pattern = (s) => s.split("\n").filter(x => x.trim() != "").map(parseBeatPattern)
+            beats = lines_to_pattern(document.getElementById('beat-patterns').value);
+            subs  = lines_to_pattern(document.getElementById('subdivision-patterns').value);
+        }
+
+        function tick() {
+            for (const s of beats) {
+              const [i, y] = beat_index(s)
+              if (y) playSound(s[i])
+            }
+            for (const s of subs) {
+              const [i, y] = beat_index_sub(s)
+              if (y) playSound(s[i])
+            }
+            updateDisplay();
+            step = (step + 1) % common_denominator;
+        }
+
+        function toggleMetronome() {
+            if (isRunning) {
+                clearInterval(intervalId);
+                isRunning = false;
+                document.querySelector('button').textContent = 'Start';
+                step = 0;
+                updateDisplay();
+            } else {
+                sineCache = {}
+                parseInputs();
+                if (!beats.length) return;
+                isRunning = true;
+                document.querySelector('button').textContent = 'Stop';
+
+                steps1 = beats[0].length;
+                // steps2 = isSubdivisionPerCycle ? subdivisionPattern.length : subdivisionPattern.length * steps1;
+
+                steps = [
+                  ...beats.map(x => x.length),
+                  ...subs.map(x => x.length * beats[0].length)
+                ]
+
+                common_denominator = steps.reduce((a,b) => lcm(a,b), 1)
+
+                const bpm = parseInt(document.getElementById('bpm').value);
+                const interval_ms = (60000 / bpm) / common_denominator * steps1;
+
+                step = 0;
+                updateDisplay()
+                tick(); // Immediate call for first beat
+                intervalId = setInterval(tick, interval_ms);
+
+            }
+        }
+
+        document.getElementById('bpm').addEventListener('input', function() {
+            document.getElementById('bpm-value').textContent = this.value;
+            if (isRunning) {
+                clearInterval(intervalId);
+                toggleMetronome();
+            }
+        });
+
+        const clear = () => {
+            if (isRunning) {
+                clearInterval(intervalId);
+                toggleMetronome();
+            }
+        }
+
+        document.getElementById('beat-patterns').addEventListener('input', clear)
+        document.getElementById('subdivision-patterns').addEventListener('input', clear)
+
+        parseInputs();
+        updateDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polyrhythmic Metronome</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 20px auto; display: flex; flex-direction: column; gap: 15px; }
+        textarea { height: 150px; font-family: monospace; font-size: 1.1rem; padding: 10px; }
+        .controls { display: grid; grid-template-columns: 120px 1fr; gap: 10px; align-items: center; }
+        button { padding: 12px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        button.stop { background: #dc3545; }
+        select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <h2>Advanced Metronome</h2>
+
+    <div class="controls">
+        <label>Presets:</label>
+        <select id="presetSelect">
+            <option value="4\nZaaa">4 Beats Simple</option>
+            <option value="3\nZaa\n.x.x.x">3 Beats / 6 Subdivision</option>
+            <option value="ZaYaXa\nabcdefg">6 vs 7 (Fun Pattern)</option>
+            <option value="4\nZ.a.y.x.\nAAAA">Syncopated Overlap</option>
+        </select>
+
+        <label>Loudness:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+        
+        <label>BPM:</label>
+        <input type="number" id="bpm" value="120">
+    </div>
+
+    <label>Divisions (one measure per line):</label>
+    <textarea id="divisions">4
+Zaaa</textarea>
+
+    <button id="toggleBtn">Start</button>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let isPlaying = false;
+        let nextTickTime = 0;
+        let currentTick = 0;
+        let totalTicksInMeasure = 0;
+        let masterBase = 1;
+        let timerID = null;
+
+        const freqMin = 100;
+        const freqMax = 10000;
+
+        const presetSelect = document.getElementById('presetSelect');
+        const divisionsInput = document.getElementById('divisions');
+
+        // Handle Preset Selection
+        presetSelect.addEventListener('change', (e) => {
+            divisionsInput.value = e.target.value.replace(/\\n/g, '\n');
+            if (isPlaying) updateSyncLogic(); // Hot-reload timing if playing
+        });
+
+        function getFrequency(char) {
+            const code = char.toLowerCase().charCodeAt(0) - 97;
+            const percent = Math.max(0, Math.min(code / 25, 1));
+            return freqMin + (freqMax - freqMin) * percent;
+        }
+
+        function getVolume(char) {
+            return char === char.toUpperCase() ? 1.0 : 0.5;
+        }
+
+        const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+        const lcm = (a, b) => (a * b) / (gcd(a, b) || 1);
+
+        function playTone(freq, vol, time) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const masterVol = document.getElementById('volume').value;
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, time);
+
+            gain.gain.setValueAtTime(vol * masterVol, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(time);
+            osc.stop(time + 0.1);
+        }
+
+        function updateSyncLogic() {
+            const lines = divisionsInput.value.trim().split('\n');
+            const lengths = lines.map(l => l.trim().length).filter(l => l > 0);
+            if (lengths.length === 0) return;
+
+            totalTicksInMeasure = lengths.reduce(lcm, 1);
+            masterBase = lengths[0] || 1; 
+            // Reset position to prevent overflow if totalTicks changed
+            currentTick = currentTick % totalTicksInMeasure;
+        }
+
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                processTick(nextTickTime);
+                const secondsPerBeat = 60.0 / document.getElementById('bpm').value;
+                nextTickTime += secondsPerBeat / (totalTicksInMeasure / masterBase);
+            }
+            timerID = setTimeout(scheduler, 25);
+        }
+
+        function processTick(time) {
+            const lines = divisionsInput.value.trim().split('\n');
+            
+            lines.forEach(line => {
+                const chars = line.trim();
+                if (chars.length === 0) return;
+
+                const stepSize = totalTicksInMeasure / chars.length;
+                if (currentTick % stepSize === 0) {
+                    const char = chars[Math.floor(currentTick / stepSize)];
+                    if (char && char !== '.') {
+                        playTone(getFrequency(char), getVolume(char), time);
+                    }
+                }
+            });
+
+            currentTick++;
+            if (currentTick >= totalTicksInMeasure) currentTick = 0;
+        }
+
+        document.getElementById('toggleBtn').addEventListener('click', function() {
+            if (isPlaying) {
+                clearTimeout(timerID);
+                this.textContent = 'Start';
+                this.classList.remove('stop');
+            } else {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                updateSyncLogic();
+                currentTick = 0;
+                nextTickTime = audioCtx.currentTime;
+                scheduler();
+                this.textContent = 'Stop';
+                this.classList.add('stop');
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>

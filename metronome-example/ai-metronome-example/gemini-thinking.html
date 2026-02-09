@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Subdivision Metronome</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: #e0e0e0; display: flex; justify-content: center; padding: 20px; }
+        .container { width: 100%; max-width: 500px; background: #2d2d2d; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .control-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9em; color: #aaa; }
+        input[type="number"], input[type="range"], select, textarea { width: 100%; box-sizing: border-box; background: #3d3d3d; border: 1px solid #444; color: #fff; padding: 8px; border-radius: 4px; }
+        textarea { height: 120px; font-family: monospace; resize: vertical; }
+        button { width: 100%; padding: 12px; font-weight: bold; cursor: pointer; border: none; border-radius: 4px; transition: 0.2s; }
+        .start { background: #2ecc71; color: white; }
+        .stop { background: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Metronome</h2>
+    
+    <div class="control-group">
+        <label>BPM (Beats per minute)</label>
+        <input type="number" id="bpm" value="60" min="10" max="300">
+    </div>
+
+    <div class="control-group">
+        <label>Loudness</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+
+    <div class="control-group">
+        <label>Waveform Type</label>
+        <select id="waveform">
+            <option value="sine">Sine (Soft)</option>
+            <option value="square">Square (Buzzy)</option>
+            <option value="triangle">Triangle (Flute-like)</option>
+            <option value="sawtooth">Sawtooth (Sharp)</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label>Divisions (Line 1 = Beats per measure)</label>
+        <textarea id="divisions" spellcheck="false">Zaaa
+.x.x.x</textarea>
+    </div>
+
+    <button id="toggleBtn" class="start">START</button>
+</div>
+
+<script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let isPlaying = false;
+    let nextTickTime = 0;
+    let currentTick = 0;
+    let timerID = null;
+    let totalTicksInMeasure = 0;
+    let lineData = [];
+
+    const bpmInput = document.getElementById('bpm');
+    const volInput = document.getElementById('volume');
+    const divInput = document.getElementById('divisions');
+    const waveInput = document.getElementById('waveform');
+    const toggleBtn = document.getElementById('toggleBtn');
+
+    // Utility for frequency mapping: a -> 100Hz, z -> 10000Hz
+    function getFrequency(char) {
+        const index = char.toLowerCase().charCodeAt(0) - 97; // 0-25
+        if (index < 0 || index > 25) return 440; 
+        return 100 + (index / 25) * (10000 - 100);
+    }
+
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const lcm = (a, b) => (a * b) / gcd(a, b);
+
+    function parsePatterns() {
+        const lines = divInput.value.split('\n').filter(l => l.trim().length > 0);
+        if (lines.length === 0) return null;
+
+        const lengths = lines.map(l => l.length);
+        totalTicksInMeasure = lengths.reduce(lcm);
+
+        lineData = lines.map(line => {
+            const stepSize = totalTicksInMeasure / line.length;
+            return { line, stepSize };
+        });
+
+        return totalTicksInMeasure;
+    }
+
+    function playTone(freq, vol) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = waveInput.value;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        const globalVol = parseFloat(volInput.value);
+        gain.gain.setValueAtTime(vol * globalVol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.1);
+    }
+
+    function scheduler() {
+        while (nextTickTime < audioCtx.currentTime + 0.1) {
+            scheduleNotes(currentTick, nextTickTime);
+            advanceTick();
+        }
+        timerID = setTimeout(scheduler, 25);
+    }
+
+    function scheduleNotes(tick, time) {
+        lineData.forEach(item => {
+            if (tick % item.stepSize === 0) {
+                const charIdx = tick / item.stepSize;
+                const char = item.line[charIdx];
+                if (char && char !== '.') {
+                    const freq = getFrequency(char);
+                    const volume = char === char.toUpperCase() ? 1.0 : 0.5;
+                    playTone(freq, volume);
+                }
+            }
+        });
+    }
+
+    function advanceTick() {
+        const bpm = parseFloat(bpmInput.value);
+        // Line 1 determines the base beat duration
+        const firstLineLength = lineData[0].line.length;
+        const secondsPerMeasure = (60 / bpm) * firstLineLength;
+        const secondsPerTick = secondsPerMeasure / totalTicksInMeasure;
+
+        nextTickTime += secondsPerTick;
+        currentTick = (currentTick + 1) % totalTicksInMeasure;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        if (isPlaying) {
+            clearTimeout(timerID);
+            toggleBtn.textContent = 'START';
+            toggleBtn.className = 'start';
+        } else {
+            if (parsePatterns()) {
+                currentTick = 0;
+                nextTickTime = audioCtx.currentTime + 0.05;
+                scheduler();
+                toggleBtn.textContent = 'STOP';
+                toggleBtn.className = 'stop';
+            }
+        }
+        isPlaying = !isPlaying;
+    });
+</script>
+
+</body>
+</html>

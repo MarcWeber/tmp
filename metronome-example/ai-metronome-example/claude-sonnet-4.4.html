@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Metronome</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .control-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        input[type="number"],
+        input[type="range"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="range"] {
+            padding: 0;
+            height: 40px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        .value-display {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #startStop {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        #startStop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        #startStop.playing {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .info code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .examples {
+            margin-top: 10px;
+        }
+        .examples h3 {
+            margin: 10px 0 5px 0;
+            font-size: 14px;
+        }
+        .example-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+        .example-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Advanced Metronome</h1>
+        
+        <div class="control-group">
+            <label for="loudness">
+                Loudness: <span class="value-display" id="loudnessValue">50%</span>
+            </label>
+            <input type="range" id="loudness" min="0" max="100" value="50">
+        </div>
+
+        <div class="control-group">
+            <label for="bpm">BPM (Beats Per Minute):</label>
+            <input type="number" id="bpm" min="20" max="300" value="60">
+        </div>
+
+        <div class="control-group">
+            <label for="waveform">Waveform:</label>
+            <select id="waveform">
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="triangle">Triangle</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="divisions">Divisions (one line per rhythm layer):</label>
+            <textarea id="divisions" placeholder="Enter rhythm patterns...
+Example:
+Zaaa
+.x.x.x"></textarea>
+        </div>
+
+        <div class="examples">
+            <h3>Quick Examples:</h3>
+            <span class="example-btn" onclick="loadExample('Zaaa')">Simple 4/4</span>
+            <span class="example-btn" onclick="loadExample('Zaa\n.x.x.x')">4/4 with 8ths</span>
+            <span class="example-btn" onclick="loadExample('ZaYaXa\nabcdefg')">Polyrhythm 6/7</span>
+            <span class="example-btn" onclick="loadExample('ZYXW\nabcd\n.x.x.x.x.x.x.x.x')">Complex</span>
+        </div>
+
+        <button id="startStop">Start</button>
+
+        <div class="info">
+            <strong>How to use:</strong>
+            <ul>
+                <li><code>Upper case</code> = 100% loudness, <code>lower case</code> = 50% loudness</li>
+                <li><code>Z</code> = highest pitch (10000 Hz), <code>a</code> = lowest pitch (100 Hz)</li>
+                <li><code>.</code> = silence (rest)</li>
+                <li>First line defines beats per measure</li>
+                <li>Each line is one measure with arbitrary subdivisions</li>
+                <li>Characters in a line divide the measure equally</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Audio Context
+        let audioContext;
+        let isPlaying = false;
+        let intervalId = null;
+        let currentTick = 0;
+        
+        // Precomputed data
+        let rhythmData = [];
+        let ticksPerMeasure = 1;
+        let tickDuration = 0;
+
+        // UI Elements
+        const loudnessSlider = document.getElementById('loudness');
+        const loudnessValue = document.getElementById('loudnessValue');
+        const bpmInput = document.getElementById('bpm');
+        const divisionsTextarea = document.getElementById('divisions');
+        const waveformSelect = document.getElementById('waveform');
+        const startStopButton = document.getElementById('startStop');
+
+        // Update loudness display
+        loudnessSlider.addEventListener('input', () => {
+            loudnessValue.textContent = loudnessSlider.value + '%';
+        });
+
+        // Load example patterns
+        function loadExample(pattern) {
+            divisionsTextarea.value = pattern;
+        }
+
+        // Character to frequency mapping
+        function charToFrequency(char) {
+            const lowerBound = 100;
+            const upperBound = 10000;
+            
+            // Normalize character to 0-1 range
+            // Z(90) is highest, a(97) is lowest
+            let normalized;
+            if (char === char.toUpperCase()) {
+                // A-Z: 65-90
+                normalized = 1 - ((char.charCodeAt(0) - 65) / 25);
+            } else {
+                // a-z: 97-122
+                normalized = 1 - ((char.charCodeAt(0) - 97) / 25);
+            }
+            
+            // Map to frequency range (logarithmic)
+            const logLower = Math.log(lowerBound);
+            const logUpper = Math.log(upperBound);
+            const frequency = Math.exp(logLower + normalized * (logUpper - logLower));
+            
+            return frequency;
+        }
+
+        // Get loudness for character
+        function charToLoudness(char) {
+            return char === char.toUpperCase() ? 1.0 : 0.5;
+        }
+
+        // Calculate GCD
+        function gcd(a, b) {
+            return b === 0 ? a : gcd(b, a % b);
+        }
+
+        // Calculate LCM
+        function lcm(a, b) {
+            return (a * b) / gcd(a, b);
+        }
+
+        // Parse divisions and prepare rhythm data
+        function parseRhythm() {
+            const lines = divisionsTextarea.value.split('\n').filter(line => line.trim());
+            if (lines.length === 0) return false;
+
+            rhythmData = [];
+            
+            // Calculate LCM of all line lengths for common subdivision
+            let commonDivision = lines[0].length;
+            for (let i = 1; i < lines.length; i++) {
+                commonDivision = lcm(commonDivision, lines[i].length);
+            }
+            
+            ticksPerMeasure = commonDivision;
+
+            // Parse each line
+            lines.forEach(line => {
+                const lineLength = line.length;
+                const ticksPerChar = commonDivision / lineLength;
+                const events = [];
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char !== '.' && char !== ' ') {
+                        const frequency = charToFrequency(char);
+                        const loudness = charToLoudness(char);
+                        events.push({
+                            tick: i * ticksPerChar,
+                            frequency: frequency,
+                            loudness: loudness
+                        });
+                    }
+                }
+
+                rhythmData.push({
+                    events: events,
+                    ticksPerChar: ticksPerChar
+                });
+            });
+
+            return true;
+        }
+
+        // Play a tone
+        function playTone(frequency, loudness, duration) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.type = waveformSelect.value;
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+            const masterLoudness = loudnessSlider.value / 100;
+            const volume = loudness * masterLoudness * 0.3; // Scale down to prevent clipping
+            
+            gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        // Process tick
+        function processTick() {
+            const noteDuration = tickDuration * 0.8; // 80% of tick duration for note length
+
+            rhythmData.forEach(layer => {
+                layer.events.forEach(event => {
+                    if (event.tick === currentTick) {
+                        playTone(event.frequency, event.loudness, noteDuration);
+                    }
+                });
+            });
+
+            currentTick = (currentTick + 1) % ticksPerMeasure;
+        }
+
+        // Start/Stop metronome
+        function toggleMetronome() {
+            if (isPlaying) {
+                // Stop
+                clearInterval(intervalId);
+                isPlaying = false;
+                startStopButton.textContent = 'Start';
+                startStopButton.classList.remove('playing');
+            } else {
+                // Parse rhythm
+                if (!parseRhythm()) {
+                    alert('Please enter at least one line of rhythm pattern');
+                    return;
+                }
+
+                // Calculate timing
+                const bpm = parseInt(bpmInput.value);
+                const beatsPerMeasure = divisionsTextarea.value.split('\n')[0].length;
+                const measureDuration = (60 / bpm) * beatsPerMeasure * 1000; // in milliseconds
+                tickDuration = measureDuration / ticksPerMeasure / 1000; // in seconds
+                const tickInterval = tickDuration * 1000; // in milliseconds
+
+                // Start
+                currentTick = 0;
+                isPlaying = true;
+                startStopButton.textContent = 'Stop';
+                startStopButton.classList.add('playing');
+
+                // Play first tick immediately
+                processTick();
+
+                // Set interval for subsequent ticks
+                intervalId = setInterval(processTick, tickInterval);
+            }
+        }
+
+        startStopButton.addEventListener('click', toggleMetronome);
+
+        // Load default example
+        loadExample('Zaaa\n.x.x.x');
+    </script>
+</body>
+</html>
